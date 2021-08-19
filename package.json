@@ -1,0 +1,61 @@
+{
+  "name": "node-express-es6-airbnb",
+  "version": "1.0.0",
+  "description": "Boilerplate to creates node.js API with ES6 Transpiler and airbnb rules configured to eslint. ",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "setup": "nodemon ./src/components/commons/database/checkAdmin.js",
+    "dev": "nodemon --experimental-json-modules src/server.js",
+    "build": "rimraf dist && babel src -s -D -d dist",
+    "start": "babel-node ./src/server.js",
+    "lint": "eslint ./src/**/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoniihdc/node-express-es6-airbnb.git"
+  },
+  "author": "jperazafeliciano@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoniihdc/node-express-es6-airbnb/issues"
+  },
+  "homepage": "https://github.com/yoniihdc/node-express-es6-airbnb#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.2",
+    "google-distance": "^1.0.1",
+    "joi": "^17.4.0",
+    "joi-objectid": "^3.0.1",
+    "joi-phone-number": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.4",
+    "morgan-body": "^2.3.1",
+    "multer": "^1.4.2",
+    "node-geocoder": "^3.27.0",
+    "nodemailer": "^6.6.3",
+    "swagger-jsdoc": "^1.9.7",
+    "swagger-ui-express": "^2.0.15"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15",
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "nodemon": "^1.19.4",
+    "rimraf": "^2.6.2"
+  }
+}

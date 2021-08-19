@@ -1,0 +1,8 @@
+dist/
+node_modules/
+
+src/config/dev.js
+src/config/prod.js
+src/uploads/
+.env.development
+.env.production
