@@ -8,7 +8,7 @@ import order from "../components/orders/orderRouter.js";
 import report from "../components/reports/reportRouter.js";
 import customer from "../components/customers/customerRouter.js";
 import store from "../components/store/storeRouter.js";
-import staff from "../components/staffRequirement/staffRequirementRouter.js";
+import staff from "../components/staffs/staffRouter.js";
 
 import express from "express";
 const router = express.Router();

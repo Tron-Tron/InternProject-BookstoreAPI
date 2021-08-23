@@ -6,7 +6,6 @@ const StaffSchema = new Schema(
     staff_name: {
       type: String,
       required: [true, "staff_name is required"],
-      default: " ",
     },
     email: {
       type: String,
@@ -16,22 +15,22 @@ const StaffSchema = new Schema(
       province: {
         type: String,
         required: [true, "province is required"],
-        default: " ",
+        //     default: " ",
       },
       district: {
         type: String,
         required: [true, "district is required"],
-        default: " ",
+        //       default: " ",
       },
       ward: {
         type: String,
         required: [true, "ward is required"],
-        default: " ",
+        //  default: " ",
       },
       text: {
         type: String,
         required: [true, "text is required"],
-        default: " ",
+        //     default: " ",
       },
     },
     location: {

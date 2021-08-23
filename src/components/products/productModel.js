@@ -33,6 +33,7 @@ const ProductSchema = new Schema(
       required: [true, "status is required"],
       default: "active",
     },
+    author: { type: String, required: [true, "author is required"] },
     store: {
       type: Schema.Types.ObjectId,
       ref: "Store",

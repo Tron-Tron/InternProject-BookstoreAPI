@@ -14,7 +14,7 @@ export const createCategory = asyncMiddleware(async (req, res, next) => {
   const isExistCategory = await categoryService.findOne({
     name,
     store: storeId,
-    status: "confirmed",
+    status: "active",
   });
 
   if (isExistCategory) {
@@ -26,17 +26,7 @@ export const createCategory = asyncMiddleware(async (req, res, next) => {
   });
   return new SuccessResponse(200, savedCategory).send(res);
 });
-export const approveCategory = asyncMiddleware(async (req, res, next) => {
-  const { categoryId } = req.params;
-  const category = await categoryService.findOneAndUpdate(
-    { _id: categoryId, status: "waiting" },
-    { status: "confirmed" }
-  );
-  if (!category) {
-    throw new ErrorResponse(400, `No requirement has id ${categoryId}`);
-  }
-  return new SuccessResponse(200, "Requirement Category is accepted").send(res);
-});
+
 export const rejectCategory = asyncMiddleware(async (req, res, next) => {
   const { categoryId } = req.params;
   const category = await categoryService.findOneAndDelete({

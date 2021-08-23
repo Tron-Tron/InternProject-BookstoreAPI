@@ -21,6 +21,7 @@ export const addStore = asyncMiddleware(async (req, res, next) => {
     name,
     address: { province, district, ward, text },
   });
+  console.log("store", savedStore);
   await staffService.findOneAndUpdate(
     { _id: req.user._id, status: "active" },
     { store: savedStore._id },
@@ -64,6 +65,11 @@ export const acceptStore = asyncMiddleware(async (req, res, next) => {
   if (!owner) {
     throw new ErrorResponse(404, "No user");
   }
+  await staffService.findOneAndUpdate(
+    { email: owner.email, status: "active" },
+    { store: storeId },
+    { new: true }
+  );
   await mailService(
     process.env.EMAIL,
     owner.email,

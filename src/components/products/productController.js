@@ -4,9 +4,10 @@ import SuccessResponse from "../utils/SuccessResponse.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
 import { categoryService } from "../categories/categoryService.js";
 import { productService } from "./productService.js";
-
+import search from "./../utils/search.js";
+import standardizedString from "./../commons/standardizedString.js";
 export const createNewProduct = asyncMiddleware(async (req, res, next) => {
-  const { name, price, category, amount, description } = req.body;
+  const { name, price, category, amount, description, author } = req.body;
   const store = req.user.storeId;
   const checkCategory = await categoryService.findOne({
     _id: category,
@@ -30,31 +31,22 @@ export const createNewProduct = asyncMiddleware(async (req, res, next) => {
   if (amount < 1) {
     throw new ErrorResponse(401, "amount must be greater than 0");
   }
-  const images = req.files.map((val) => {
+  const image = req.files.map((val) => {
     return val.filename;
   });
   const createdProduct = await productService.create({
-    name,
+    name: standardizedString(name),
     price,
+    author: standardizedString(author),
     category,
     store,
     amount,
     description,
-    image: images,
+    image,
   });
   return new SuccessResponse(200, createdProduct).send(res);
 });
-export const approveProduct = asyncMiddleware(async (req, res, next) => {
-  const { productId } = req.params;
-  const product = await productService.findOneAndUpdate(
-    { _id: productId, status: "waiting" },
-    { status: "confirmed" }
-  );
-  if (!product) {
-    throw new ErrorResponse(400, `No requirement has id ${productId}`);
-  }
-  return new SuccessResponse(200, "Requirement Product is accepted").send(res);
-});
+
 export const rejectProduct = asyncMiddleware(async (req, res, next) => {
   const { productId } = req.params;
   const product = await productService.findOneAndDelete({
@@ -66,22 +58,7 @@ export const rejectProduct = asyncMiddleware(async (req, res, next) => {
   }
   return new SuccessResponse(200, "Requirement Product is rejected").send(res);
 });
-export const getAllProductRequirements = asyncMiddleware(
-  async (req, res, next) => {
-    const { page, perPage } = req.query;
-    const products = await productService.getAll(
-      { status: "waiting" },
-      null,
-      null,
-      page,
-      perPage
-    );
-    if (!products.length) {
-      throw new ErrorResponse(400, "No products");
-    }
-    return new SuccessResponse(400, products).send(res);
-  }
-);
+
 export const getAllProducts = asyncMiddleware(async (req, res, next) => {
   const storeId = req.user.storeId;
   const { page, perPage } = req.query;
@@ -149,7 +126,7 @@ export const searchProductByName = asyncMiddleware(async (req, res, next) => {
   const { keyName, page, perPage } = req.query;
   const storeId = req.user.storeId;
   const productArr = await productService.getAll(
-    { store: storeId, status: "confirmed" },
+    { store: storeId, status: "active" },
     "name",
     null,
     page,
@@ -160,6 +137,22 @@ export const searchProductByName = asyncMiddleware(async (req, res, next) => {
       value.productName.toLowerCase().indexOf(keyName.toLowerCase()) !== -1
     );
   });
+  if (searchedProduct.length === 0) {
+    throw new ErrorResponse(400, "No Products");
+  }
+  return new SuccessResponse(200, searchedProduct).send(res);
+});
+export const searchByEveryThing = asyncMiddleware(async (req, res, next) => {
+  const { page, perPage, ...keyName } = req.query;
+  const storeId = req.user.storeId;
+  const productArr = await productService.getAll(
+    { store: storeId, status: "active" },
+    null,
+    null,
+    page,
+    perPage
+  );
+  const searchedProduct = search(productArr, keyName);
   if (searchedProduct.length === 0) {
     throw new ErrorResponse(400, "No Products");
   }

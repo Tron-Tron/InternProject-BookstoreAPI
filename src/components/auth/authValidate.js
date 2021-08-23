@@ -16,6 +16,7 @@ const schemaAuth = {
     newPassword: Joi.string().trim().required(),
   }),
   registerOwner: Joi.object({
+    staff_name: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
     province: Joi.string().required(),

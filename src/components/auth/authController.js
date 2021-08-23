@@ -11,11 +11,18 @@ import { storeService } from "../store/storeService.js";
 import { staffService } from "../staffs/staffService.js";
 export const register = asyncMiddleware(async (req, res, next) => {
   const { email, password } = req.body;
-  const auth = await userService.create({
-    email,
-    password,
-  });
-  const customer = await customerService.create({ email });
+  const [auth, customer] = await Promise.all([
+    userService.create({
+      email,
+      password,
+    }),
+    customerService.create({ email }),
+  ]);
+  // const auth = await userService.create({
+  //   email,
+  //   password,
+  // });
+  // const customer = await customerService.create({ email });
   await cartService.create({
     user: auth._id,
     deliveryAddress: customer.address,
@@ -23,13 +30,15 @@ export const register = asyncMiddleware(async (req, res, next) => {
   return new SuccessResponse(201, auth).send(res);
 });
 export const registerStoreAccount = asyncMiddleware(async (req, res, next) => {
-  const { email, password, province, district, ward, text } = req.body;
+  const { staff_name, email, password, province, district, ward, text } =
+    req.body;
   const auth = await userService.create({
     email,
     password,
     roles: "manager",
   });
   await staffService.create({
+    staff_name,
     email,
     address: { province, district, ward, text },
   });
@@ -63,9 +72,16 @@ export const login = asyncMiddleware(async (req, res, next) => {
     if (!checkStore) {
       throw new ErrorResponse(404, "This staff is not exist");
     }
-    if (checkStore.store === null) {
-      throw new ErrorResponse(404, "This staff is not belong to any store");
-    }
+    // if (checkStore.store === " ") {
+    //   throw new ErrorResponse(404, "This staff is not belong to any store");
+    // }
+    // const isActiveStore = await storeService.findOne({
+    //   _id: checkStore.store,
+    //   status: "active",
+    // });
+    // if (!isActiveStore) {
+    //   throw new ErrorResponse(400, "Your store haven't been active");
+    // }
     token = jwt.sign(
       {
         _id: isExistEmail._id,

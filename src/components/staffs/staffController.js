@@ -15,20 +15,20 @@ function randomText(num_of_symbol) {
 }
 export const registerStaff = asyncMiddleware(async (req, res, next) => {
   const { email, staff_name, province, district, ward, text, roles } = req.body;
-  const password = randomText(9);
-  await Promise.all([
-    userService.create({ email, password }),
-    staffService.create({
-      email,
-      staff_name,
-      address: { province, district, ward, text },
-    }),
-  ]);
+  const password = randomText(6);
+  await userService.create({ email, password, roles });
+  await staffService.create({
+    email,
+    staff_name,
+    address: { province, district, ward, text },
+    store: req.user.storeId,
+  });
   await mailService(
     process.env.EMAIL,
     email,
     "THÔNG BÁO CẤP TÀI KHOẢN CHO NHÂN VIÊN",
-    `<p>Nhân viên có thông tin đăng nhập như sau: </p><br>
+    `<p>Chào ${staff_name}</p>
+    <p>Nhân viên có thông tin đăng nhập như sau: </p><br>
         <i>Email đăng nhập: ${email}</i> <br>
         <i>Mật khẩu: ${password}</i> <br>
         <i>giới hạn quyền sử dụng: ${roles}</i>
@@ -37,18 +37,17 @@ export const registerStaff = asyncMiddleware(async (req, res, next) => {
     </p>
     `
   );
-  return new SuccessResponse(201, "Please check email");
+  return new SuccessResponse(201, "Please check email").send(res);
 });
 export const updateProfileStaff = asyncMiddleware(async (req, res, next) => {
-  const { customer_name, province, district, ward, text } = req.body;
-  const updatedCustomer = await customerService.findOneAndUpdate(
+  const { staff_name, province, district, ward, text } = req.body;
+  const updatedStaff = await staffService.findOneAndUpdate(
     {
       email: req.user.email,
       status: "active",
     },
     {
-      customer_name,
-      avatar: req.file.filename,
+      staff_name,
       address: {
         province,
         district,
@@ -58,51 +57,52 @@ export const updateProfileStaff = asyncMiddleware(async (req, res, next) => {
     },
     { new: true }
   );
-  if (!updatedCustomer) {
-    throw new ErrorResponse(401, "Customer is not exist");
+  if (!updatedStaff) {
+    throw new ErrorResponse(404, "Staff is not exist");
   }
-  return new SuccessResponse(201, updatedCustomer).send(res);
+  return new SuccessResponse(201, updatedStaff).send(res);
 });
 export const getProfile = asyncMiddleware(async (req, res, next) => {
-  const profile = await customerService.findOne({
+  const profile = await staffService.findOne({
     email: req.user.email,
     status: "active",
   });
   if (!profile) {
-    throw new ErrorResponse(404, `Customer ${email} is not exist`);
+    throw new ErrorResponse(404, `staff ${email} is not exist`);
   }
   return new SuccessResponse(200, profile).send(res);
 });
-export const getAllCustomers = asyncMiddleware(async (req, res, next) => {
+export const getAllStaffStore = asyncMiddleware(async (req, res, next) => {
   const { page, perPage } = req.query;
-  const customers = await customerService.getAll(
-    null,
+  const store = req.user.storeId;
+  const staffs = await staffService.getAll(
+    { store, status: "active" },
     null,
     null,
     page,
     perPage
   );
-  if (!customers.length) {
-    throw new ErrorResponse(404, "No customers");
+  if (!staffs.length) {
+    throw new ErrorResponse(404, "No staffs");
   }
-  return new SuccessResponse(200, customers).send(res);
+  return new SuccessResponse(200, staffs).send(res);
 });
-export const deleteCustomer = asyncMiddleware(async (req, res, next) => {
-  const { customerId } = req.params;
-  if (!customerId.trim()) {
-    throw new ErrorResponse(400, "customerId is empty");
+export const deleteStaff = asyncMiddleware(async (req, res, next) => {
+  const { staffId } = req.params;
+  if (!staffId.trim()) {
+    throw new ErrorResponse(400, "staffId is empty");
   }
-  const deletedCustomer = await customerService.findOneAndUpdate(
-    { _id: customerId, status: "active" },
+  const deletedStaff = await staffService.findOneAndUpdate(
+    { _id: staffId, status: "active" },
     { status: "disable" },
     { new: true }
   );
 
-  if (!deletedCustomer) {
-    throw new ErrorResponse(404, ` Customer ${customerId} is not found`);
+  if (!deletedStaff) {
+    throw new ErrorResponse(404, ` Staff ${staffId} is not found`);
   }
   return new SuccessResponse(
     200,
-    `Customer id ${customerId} is deleted successfully`
+    `Staff id ${staffId} is deleted successfully`
   ).send(res);
 });

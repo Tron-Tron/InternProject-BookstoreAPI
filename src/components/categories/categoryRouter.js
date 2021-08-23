@@ -7,14 +7,13 @@ import paginationValidate from "./../utils/paginationValidate.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 import {
   createCategory,
-  approveCategory,
   rejectCategory,
   getCategoryStoreById,
   getAllCategories,
   updateCategoryById,
   deleteCategoryById,
 } from "./categoryController.js";
-
+import checkActiveStore from "../commons/checkActiveStore.js";
 const router = express.Router();
 const routerStore = express.Router();
 const routerAdmin = express.Router();
@@ -22,36 +21,36 @@ router.use("/store", routerStore);
 routerStore.use(jwtAuth, authorize("manager", "officer"));
 routerStore.post(
   "/",
+  checkActiveStore,
   validateMiddleware(categoryValidate.postCategory, "body"),
   createCategory
 );
 routerStore.get(
   "/all",
+  checkActiveStore,
   validateMiddleware(paginationValidate.paging, "query"),
   getAllCategories
 );
 routerStore.get(
   "/:categoryId",
+  checkActiveStore,
   validateMiddleware(categoryValidate.paramCategory, "params"),
   getCategoryStoreById
 );
 routerStore.patch(
   "/:categoryId",
+  checkActiveStore,
   validateMiddleware(categoryValidate.paramCategory, "params"),
   updateCategoryById
 );
 routerStore.delete(
   "/:categoryId",
+  checkActiveStore,
   validateMiddleware(categoryValidate.paramCategory, "params"),
   deleteCategoryById
 );
 router.use("/admin", routerAdmin);
 routerAdmin.use(jwtAuth, authorize("admin"));
-routerAdmin.post(
-  "/:categoryId",
-  validateMiddleware(categoryValidate.paramCategory, "params"),
-  approveCategory
-);
 routerAdmin.delete(
   "/:categoryId",
   validateMiddleware(categoryValidate.paramCategory, "params"),

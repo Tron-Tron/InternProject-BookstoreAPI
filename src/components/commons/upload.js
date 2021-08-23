@@ -12,9 +12,17 @@ const fileFilter = (req, file, cb) => {
 };
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    const fieldname = file.fieldname;
+    // console.log(fieldname);
+    let stringPath = "";
+    if (fieldname === "products") {
+      stringPath = "product";
+    }
+    if (fieldname === "avatar") {
+      stringPath = "avatar";
+    }
     const __dirname = path.resolve();
-
-    cb(null, path.join(`${__dirname}/uploads`));
+    cb(null, path.join(`${__dirname}/uploads/${stringPath}`));
   },
   filename: (req, file, cb) => {
     cb(

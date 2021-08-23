@@ -21,22 +21,22 @@ const CustomerSchema = new Schema(
       province: {
         type: String,
         required: [true, "province is required"],
-        default: "Hồ Chí Minh",
+        default: " ",
       },
       district: {
         type: String,
         required: [true, "district is required"],
-        default: "TP. Thủ Đức",
+        default: " ",
       },
       ward: {
         type: String,
         required: [true, "ward is required"],
-        default: "Phường Linh Chiểu",
+        default: " ",
       },
       text: {
         type: String,
         required: [true, "text is required"],
-        default: "11 Đường số 4",
+        default: " ",
       },
     },
     location: {

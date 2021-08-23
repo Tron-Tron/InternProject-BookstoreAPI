@@ -3,10 +3,10 @@ import geocoder from "./../utils/geocoder.js";
 const { Schema } = mongoose;
 const CartSchema = new Schema(
   {
-    user: {
+    customer: {
       type: Schema.Types.ObjectId,
-      ref: "User",
-      require: [true, "user is required"],
+      ref: "Customer",
+      require: [true, "customer is required"],
     },
     products: [
       {
@@ -31,22 +31,18 @@ const CartSchema = new Schema(
       province: {
         type: String,
         required: [true, "province is required"],
-        default: "Hồ Chí Minh",
       },
       district: {
         type: String,
         required: [true, "district is required"],
-        default: "TP. Thủ Đức",
       },
       ward: {
         type: String,
         required: [true, "ward is required"],
-        default: "Phường Linh Chiểu",
       },
       text: {
         type: String,
         required: [true, "text is required"],
-        default: "11 Đường số 4",
       },
     },
     location: {

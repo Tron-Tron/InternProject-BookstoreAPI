@@ -7,13 +7,12 @@ import paginationValidate from "./../utils/paginationValidate.js";
 import {
   createNewProduct,
   getAllProducts,
-  getAllProductRequirements,
-  approveProduct,
   getProductById,
   deleteProductById,
   updateProductById,
   searchProductByName,
 } from "./productController.js";
+import upload from "../commons/upload.js";
 import productValidate from "./productValidate.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 const router = express.Router();
@@ -24,6 +23,7 @@ router.use("/admin", routerAdmin);
 routerStore.use(jwtAuth, authorize("manager", "officer"));
 routerStore.post(
   "/",
+  upload.array("products", 10),
   validateMiddleware(productValidate.postProduct, "body"),
   createNewProduct
 );
@@ -53,16 +53,6 @@ router.get(
   searchProductByName
 );
 
-routerStore.use(jwtAuth, authorize("admin"));
-routerStore.post(
-  "/:productId",
-  validateMiddleware(productValidate.paramProduct, "params"),
-  approveProduct
-);
-routerStore.get(
-  "/require",
-  validateMiddleware(paginationValidate.paging, "query"),
-  getAllProductRequirements
-);
+routerAdmin.use(jwtAuth, authorize("admin"));
 
 export default router;

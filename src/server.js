@@ -13,7 +13,7 @@ import root from "./routes/root.js";
 
 const app = express();
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 // middleware
 app.use(cors());
 
