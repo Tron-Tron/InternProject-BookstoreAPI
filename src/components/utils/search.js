@@ -1,7 +1,7 @@
 const search = (dataSearch, filterQuery) => {
   const filteredData = dataSearch.filter((data) => {
     let isValid = true;
-    for (key in filterQuery) {
+    for (let key in filterQuery) {
       console.log(key, data[key], filterQuery[key]);
       isValid = isValid && data[key] === filterQuery[key];
     }

@@ -22,35 +22,6 @@ const CartSchema = new Schema(
         },
       },
     ],
-    paymentMethod: {
-      type: String,
-      enum: ["cod", "wallet"],
-      default: "wallet",
-    },
-    deliveryAddress: {
-      province: {
-        type: String,
-        required: [true, "province is required"],
-      },
-      district: {
-        type: String,
-        required: [true, "district is required"],
-      },
-      ward: {
-        type: String,
-        required: [true, "ward is required"],
-      },
-      text: {
-        type: String,
-        required: [true, "text is required"],
-      },
-    },
-    location: {
-      type: { type: String },
-      coordinates: {
-        type: [],
-      },
-    },
     total: {
       type: Number,
       require: [true, "total is required"],
@@ -67,18 +38,6 @@ const CartSchema = new Schema(
     timestamps: true,
   }
 );
-CartSchema.virtual("normalizedAddress").get(function () {
-  return `${this.deliveryAddress.text}, ${this.deliveryAddress.ward}, ${this.deliveryAddress.district}, ${this.deliveryAddress.province}`;
-});
-
-CartSchema.pre("save", async function (next) {
-  const loc = await geocoder.geocode(this.normalizedAddress);
-  this.location = {
-    type: "Point",
-    coordinates: [loc[0].longitude, loc[0].latitude],
-  };
-  next();
-});
 
 const Cart = mongoose.models.Cart || mongoose.model("Cart", CartSchema);
 export default Cart;

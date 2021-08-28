@@ -24,8 +24,7 @@ export const register = asyncMiddleware(async (req, res, next) => {
   // });
   // const customer = await customerService.create({ email });
   await cartService.create({
-    user: auth._id,
-    deliveryAddress: customer.address,
+    customer: customer._id,
   });
   return new SuccessResponse(201, auth).send(res);
 });
@@ -72,16 +71,6 @@ export const login = asyncMiddleware(async (req, res, next) => {
     if (!checkStore) {
       throw new ErrorResponse(404, "This staff is not exist");
     }
-    // if (checkStore.store === " ") {
-    //   throw new ErrorResponse(404, "This staff is not belong to any store");
-    // }
-    // const isActiveStore = await storeService.findOne({
-    //   _id: checkStore.store,
-    //   status: "active",
-    // });
-    // if (!isActiveStore) {
-    //   throw new ErrorResponse(400, "Your store haven't been active");
-    // }
     token = jwt.sign(
       {
         _id: isExistEmail._id,

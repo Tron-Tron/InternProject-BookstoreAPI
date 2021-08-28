@@ -44,6 +44,7 @@ const CustomerSchema = new Schema(
       coordinates: {
         type: [],
       },
+      default: {},
     },
     status: {
       type: String,
@@ -59,12 +60,23 @@ CustomerSchema.virtual("normalizedAddress").get(function () {
 });
 
 CustomerSchema.pre("save", async function (next) {
-  const loc = await geocoder.geocode(this.normalizedAddress);
-  this.location = {
-    type: "Point",
-    coordinates: [loc[0].longitude, loc[0].latitude],
-  };
-  next();
+  if (
+    this.address.province === " " &&
+    this.address.district === " " &&
+    this.address.ward === " " &&
+    this.address.text === " "
+  ) {
+    this.location = {};
+    next();
+  } else {
+    const loc = await geocoder.geocode(this.normalizedAddress);
+    this.location = {
+      type: "Point",
+      coordinates: [loc[0].longitude, loc[0].latitude],
+    };
+    next();
+  }
 });
+
 const Customer = mongoose.model("Customer", CustomerSchema);
 export default Customer;

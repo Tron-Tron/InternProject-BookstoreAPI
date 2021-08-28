@@ -47,9 +47,9 @@ routerStore.get(
   validateMiddleware(paginationValidate.paging, "query"),
   getAllProducts
 );
-router.get(
+routerStore.get(
   "/",
-  validateMiddleware(productValidate.paramProduct, "params"),
+  // validateMiddleware(productValidate.paramProduct, "params"),
   searchProductByName
 );
 

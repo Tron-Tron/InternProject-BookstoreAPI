@@ -6,7 +6,7 @@ import paginationValidate from "./../utils/paginationValidate.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 import {
   getCart,
-  updatedProduct,
+  addProductCart,
   checkout,
   confirmDelivery,
 } from "./cartController.js";
@@ -17,7 +17,7 @@ router.post(
   jwtAuth,
   authorize("customer"),
   validateMiddleware(cartValidate.addProduct, "body"),
-  updatedProduct
+  addProductCart
 );
 router.post(
   "/checkout",

@@ -13,11 +13,7 @@ const PromotionSchema = new Schema(
     date_end: {
       type: Date,
       required: [true, "date_end is required"],
-    },
-    staff: {
-      type: Schema.Types.ObjectId,
-      ref: "Staff",
-      required: [true, "staff is required"],
+      default: Date.now(),
     },
     promotion_code: {
       type: String,

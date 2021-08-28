@@ -2,9 +2,16 @@ import asyncMiddleware from "../../middleware/asyncMiddleware.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
 import SuccessResponse from "../utils/SuccessResponse.js";
 import { customerService } from "./customerService.js";
+import geocoder from "./../utils/geocoder.js";
 import { userService } from "../users/userService.js";
 export const updateProfileCustomer = asyncMiddleware(async (req, res, next) => {
   const { customer_name, province, district, ward, text } = req.body;
+  const normalizedAddress = `${text}, ${ward}, ${district}, ${province}`;
+  const loc = await geocoder.geocode(normalizedAddress);
+  const location = {
+    type: "Point",
+    coordinates: [loc[0].longitude, loc[0].latitude],
+  };
   const updatedCustomer = await customerService.findOneAndUpdate(
     {
       email: req.user.email,
@@ -19,6 +26,7 @@ export const updateProfileCustomer = asyncMiddleware(async (req, res, next) => {
         ward,
         text,
       },
+      location,
     },
     { new: true }
   );

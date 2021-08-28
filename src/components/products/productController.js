@@ -113,7 +113,7 @@ export const updateProductById = asyncMiddleware(async (req, res, next) => {
   const { productId } = req.params;
   const storeId = req.user.storeId;
   const updatedProduct = await productService.findOneAndUpdate(
-    { _id: productId, store: storeId, status: "confirmed" },
+    { _id: productId, store: storeId, status: "active" },
     req.body,
     { new: true }
   );

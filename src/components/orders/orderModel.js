@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-import { userService } from "./../users/userService.js";
-import User from "./../users/userModel.js";
 
 const OrderSchema = new Schema(
   {
@@ -42,10 +40,53 @@ const OrderSchema = new Schema(
         },
       },
     ],
+    ship: {
+      type: Number,
+      required: [true, "ship is required"],
+      default: 0,
+    },
+    voucher: {
+      type: Number,
+      required: [true, "voucher is required"],
+      default: 0,
+    },
     totalOrder: {
       type: Number,
       require: [true, "totalOrder is required"],
       default: 0,
+    },
+    paymentMethod: {
+      type: String,
+      enum: ["cod", "wallet"],
+      default: "wallet",
+    },
+    deliveryAddress: {
+      province: {
+        type: String,
+        required: [true, "province is required"],
+        default: " ",
+      },
+      district: {
+        type: String,
+        required: [true, "district is required"],
+        default: " ",
+      },
+      ward: {
+        type: String,
+        required: [true, "ward is required"],
+        default: " ",
+      },
+      text: {
+        type: String,
+        required: [true, "text is required"],
+        default: " ",
+      },
+    },
+    location: {
+      type: { type: String },
+      coordinates: {
+        type: [],
+      },
     },
     note: {
       type: String,
@@ -58,5 +99,27 @@ const OrderSchema = new Schema(
     timestamps: true,
   }
 );
+OrderSchema.virtual("normalizedAddress").get(function () {
+  return `${this.deliveryAddress.text}, ${this.deliveryAddress.ward}, ${this.deliveryAddress.district}, ${this.deliveryAddress.province}`;
+});
+
+OrderSchema.pre("save", async function (next) {
+  if (
+    this.deliveryAddress.province === " " &&
+    this.deliveryAddress.district === " " &&
+    this.deliveryAddress.ward === " " &&
+    this.deliveryAddress.text === " "
+  ) {
+    this.location = {};
+    next();
+  } else {
+    const loc = await geocoder.geocode(this.normalizedAddress);
+    this.location = {
+      type: "Point",
+      coordinates: [loc[0].longitude, loc[0].latitude],
+    };
+    next();
+  }
+});
 const Order = mongoose.model("Order", OrderSchema);
 export default Order;

@@ -4,12 +4,12 @@ import Store from "../store/storeModel.js";
 import geocoder from "./../utils/geocoder.js";
 import mongoose from "mongoose";
 const service = (model) => {
-  const getCartDetail = async (userId) => {
+  const getCartDetail = async (customerId) => {
     try {
       const agg = await Cart.aggregate([
         {
           $match: {
-            user: new mongoose.Types.ObjectId(userId),
+            customer: new mongoose.Types.ObjectId(customerId),
           },
         },
         {
@@ -55,6 +55,7 @@ const service = (model) => {
           },
         },
       ]);
+      console.log(agg);
       return agg;
     } catch (err) {
       throw err;
@@ -75,10 +76,44 @@ const service = (model) => {
         },
       },
     ]);
-
+    // console.log("agg", agg);
     return agg[0].distance;
   };
-  return { getCartDetail, getDistance, ...baseService.bind(null, Cart)() };
+  const getTotalCart = async (customerId) => {
+    try {
+      const agg = await Cart.aggregate([
+        {
+          $match: {
+            customer: new mongoose.Types.ObjectId(customerId),
+          },
+        },
+        {
+          $unwind: "$products",
+        },
+        {
+          $lookup: {
+            from: "products",
+            localField: "products.productId",
+            foreignField: "_id",
+            as: "product-detail",
+          },
+        },
+        {
+          $unwind: "$product-detail",
+        },
+      ]);
+      console.log(agg);
+      return agg;
+    } catch (err) {
+      throw err;
+    }
+  };
+  return {
+    getCartDetail,
+    getDistance,
+    getTotalCart,
+    ...baseService.bind(null, Cart)(),
+  };
 };
 export const cartService = {
   ...service(Cart),
