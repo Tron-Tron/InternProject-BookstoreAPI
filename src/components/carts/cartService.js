@@ -101,8 +101,22 @@ const service = (model) => {
         {
           $unwind: "$product-detail",
         },
+        {
+          $project: {
+            total: {
+              $sum: {
+                $multiply: ["$product-detail.price", "$products.amountCart"],
+              },
+            },
+          },
+        },
+        {
+          $group: {
+            _id: customerId,
+            total: { $sum: "$total" },
+          },
+        },
       ]);
-      console.log(agg);
       return agg;
     } catch (err) {
       throw err;

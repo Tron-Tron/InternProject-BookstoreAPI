@@ -142,7 +142,7 @@ export const searchProductByName = asyncMiddleware(async (req, res, next) => {
   }
   return new SuccessResponse(200, searchedProduct).send(res);
 });
-export const searchByEveryThing = asyncMiddleware(async (req, res, next) => {
+export const searchByPrice = asyncMiddleware(async (req, res, next) => {
   const { page, perPage, ...keyName } = req.query;
   const storeId = req.user.storeId;
   const productArr = await productService.getAll(

@@ -157,6 +157,7 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
     }
     const shipFee = 5000;
     const address = `${text},${ward},${district},${province}`;
+    const cartTotal = await cartService.getTotalCart(customer._id);
     for (const element of cartDetail) {
       // const storeAddress = `${element.storeAddress.text},${element.storeAddress.ward},${element.storeAddress.district},${element.storeAddress.province}`;
       // const distanceDelivery = await new Promise((result, error) => {
@@ -176,7 +177,7 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
       // }, opts).catch((err) => {
       //   throw err;
       //});
-      const totalRateOnBill = (element.total / cart.total).toFixed(2);
+      const totalRateOnBill = (element.total / cartTotal.total).toFixed(2);
       const distanceDelivery = await cartService.getDistance(
         element._id,
         address
