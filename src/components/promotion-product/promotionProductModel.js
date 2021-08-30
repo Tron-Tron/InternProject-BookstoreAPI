@@ -5,6 +5,7 @@ const PromotionProductSchema = new Schema(
     name: {
       type: String,
       required: [true, "name is required"],
+      unique: true,
     },
     date_start: {
       type: Date,
@@ -23,7 +24,7 @@ const PromotionProductSchema = new Schema(
       type: Number,
       required: [true, "percent is required"],
     },
-    product: [
+    products: [
       {
         type: Schema.Types.ObjectId,
         ref: "Product",

@@ -16,10 +16,10 @@ const OrderSchema = new Schema(
       require: [true, "status is required"],
       default: "picking",
     },
-    user: {
+    customer: {
       type: Schema.Types.ObjectId,
-      ref: "User",
-      require: [true, "user is required"],
+      ref: "Customer",
+      require: [true, "customer is required"],
     },
     store: {
       type: Schema.Types.ObjectId,

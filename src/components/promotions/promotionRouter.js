@@ -6,38 +6,45 @@ import {
   getAllPromotions,
   deletePromotion,
 } from "./promotionController.js";
+
+import { createPromotionProduct } from "../promotion-product/promotionProductController.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 import promotionValidate from "./promotionValidate.js";
 import jwtAuth from "../../middleware/jwtAuth.js";
 import authorize from "../../middleware/authorize.js";
 import paginationValidate from "../utils/paginationValidate.js";
+
 const router = express.Router();
-//router.use(jwtAuth);
-router.post(
+const routerStore = express.Router();
+const routerAdmin = express.Router();
+routerAdmin.post(
   "/",
-  jwtAuth,
-  authorize("admin"),
   validateMiddleware(promotionValidate.postPromotion, "body"),
   createPromotion
 );
-router.patch(
+routerAdmin.patch(
   "/:promotionId",
-  authorize("admin"),
   validateMiddleware(promotionValidate.paramPromotion, "params"),
   validateMiddleware(promotionValidate.updatePromotion, "body"),
   updatePromotion
 );
-router.delete(
+routerAdmin.delete(
   "/:promotionId",
-  authorize("admin"),
   validateMiddleware(promotionValidate.paramPromotion, "params"),
   deletePromotion
 );
-router.get(
+routerAdmin.get(
   "/all",
   validateMiddleware(paginationValidate.paging, "query"),
   getAllPromotions
 );
+routerAdmin.get("/", getPromotionBuying);
 
-router.get("/", getPromotionBuying);
+routerStore.post(
+  "/",
+  validateMiddleware(promotionValidate.postPromotionProduct, "body"),
+  createPromotionProduct
+);
+router.use("/admin", jwtAuth, authorize("admin"), routerAdmin);
+router.use("/store", jwtAuth, authorize("manager", "officer"), routerStore);
 export default router;

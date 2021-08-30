@@ -11,6 +11,7 @@ import {
   deleteProductById,
   updateProductById,
   searchProductByName,
+  searchByPrice,
 } from "./productController.js";
 import upload from "../commons/upload.js";
 import productValidate from "./productValidate.js";
@@ -50,7 +51,7 @@ routerStore.get(
 routerStore.get(
   "/",
   // validateMiddleware(productValidate.paramProduct, "params"),
-  searchProductByName
+  searchByPrice
 );
 
 routerAdmin.use(jwtAuth, authorize("admin"));

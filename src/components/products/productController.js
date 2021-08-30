@@ -143,18 +143,14 @@ export const searchProductByName = asyncMiddleware(async (req, res, next) => {
   return new SuccessResponse(200, searchedProduct).send(res);
 });
 export const searchByPrice = asyncMiddleware(async (req, res, next) => {
-  const { page, perPage, ...keyName } = req.query;
+  const { page, perPage, min, max } = req.query;
   const storeId = req.user.storeId;
   const productArr = await productService.getAll(
-    { store: storeId, status: "active" },
-    null,
+    { store: storeId, status: "active", price: { $gte: min, $lte: max } },
+    "name price",
     null,
     page,
     perPage
   );
-  const searchedProduct = search(productArr, keyName);
-  if (searchedProduct.length === 0) {
-    throw new ErrorResponse(400, "No Products");
-  }
-  return new SuccessResponse(200, searchedProduct).send(res);
+  return new SuccessResponse(200, productArr).send(res);
 });
