@@ -48,6 +48,37 @@ const service = (model) => {
       throw error;
     }
   };
+  const getPromotionOfProduct = async (productId, store) => {
+    try {
+      const currentDate = Date.now();
+      // const usedPromotion = await PromotionProduct.find({
+      //   date_start: { $lte: currentDate },
+      //   date_end: { $gte: currentDate },
+      //   store,
+      // });
+      // let pricePromotion;
+      // if (usedPromotion) {
+      //   usedPromotion.map((itemPromotion) => {
+      //     if (itemPromotion.products.includes(productId)) {
+      //       throw new ErrorResponse(
+      //         400,
+      //         `product ${productId} is exist on another promotion`
+      //       );
+      //     }
+      //   });
+      // }
+      const promotion = await PromotionProduct.aggregate({
+        $match: {
+          date_start: { $lte: currentDate },
+          date_end: { $gte: currentDate },
+          store,
+        },
+      });
+      console.log("promotion", "promotion");
+    } catch (err) {
+      throw err;
+    }
+  };
   return {
     checkExpiredPromotion,
     isExistOnProductPromotion,

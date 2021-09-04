@@ -1,18 +1,12 @@
 import mongoose from "mongoose";
+import geocoder from "./../utils/geocoder.js";
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema(
   {
     status: {
       type: String,
-      enum: [
-        "picking",
-        "picked",
-        "delivering",
-        "delivered",
-        "completed",
-        "canceled",
-      ],
+      enum: ["picking", "picked", "delivering", "delivered", "canceled"],
       require: [true, "status is required"],
       default: "picking",
     },
@@ -26,7 +20,7 @@ const OrderSchema = new Schema(
       ref: "Store",
       require: [true, "store is required"],
     },
-    productOrder: [
+    product_orders: [
       {
         productId: {
           type: Schema.Types.ObjectId,
@@ -58,7 +52,7 @@ const OrderSchema = new Schema(
     paymentMethod: {
       type: String,
       enum: ["cod", "wallet"],
-      default: "wallet",
+      default: "cod",
     },
     deliveryAddress: {
       province: {

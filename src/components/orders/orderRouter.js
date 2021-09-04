@@ -14,7 +14,7 @@ const router = express.Router();
 const routerStore = express.Router();
 const routerUser = express.Router();
 
-router.use("/user", routerUser);
+router.use("/customer", routerUser);
 routerUser.use(jwtAuth, authorize("customer"));
 routerUser.get("/", getUserOrder);
 routerUser.patch(

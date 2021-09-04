@@ -124,18 +124,20 @@ export const updateProductById = asyncMiddleware(async (req, res, next) => {
 });
 export const searchProductByName = asyncMiddleware(async (req, res, next) => {
   const { keyName, page, perPage } = req.query;
-  const storeId = req.user.storeId;
+  // const storeId = req.user.storeId;
   const productArr = await productService.getAll(
-    { store: storeId, status: "active" },
+    {
+      //     store: storeId,
+      status: "active",
+    },
     "name",
     null,
     page,
     perPage
   );
+  console.log(productArr);
   const searchedProduct = productArr.filter((value) => {
-    return (
-      value.productName.toLowerCase().indexOf(keyName.toLowerCase()) !== -1
-    );
+    return value.name.toLowerCase().indexOf(keyName.toLowerCase()) !== -1;
   });
   if (searchedProduct.length === 0) {
     throw new ErrorResponse(400, "No Products");

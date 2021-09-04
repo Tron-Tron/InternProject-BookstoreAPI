@@ -20,7 +20,8 @@ export const updateStatusOrderStore = asyncMiddleware(
         store: storeId,
         status: { $nin: ["completed", "canceled"] },
       },
-      { status }
+      { status },
+      { new: true }
     );
     if (!updatedOrder) {
       throw new ErrorResponse(404, "No order");

@@ -134,13 +134,6 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
       ward = customer.address.ward;
       text = customer.address.text;
     }
-    console.log(
-      "add",
-      customer.address.province,
-      customer.address.district,
-      customer.address.ward,
-      customer.address.text
-    );
     let promotionTotal;
     if (voucher) {
       //  console.log("1");
@@ -155,59 +148,44 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
     } else {
       promotionTotal = 0;
     }
-    const shipFee = 5000;
+    const shipFee = 1000;
     const address = `${text},${ward},${district},${province}`;
     const cartTotal = await cartService.getTotalCart(customer._id);
+    console.log("cartTotal", cartTotal);
     for (const element of cartDetail) {
       // const storeAddress = `${element.storeAddress.text},${element.storeAddress.ward},${element.storeAddress.district},${element.storeAddress.province}`;
-      // const distanceDelivery = await new Promise((result, error) => {
-      //   distance.get(
-      //     {
-      //       origin: storeAddress,
-      //       destination: address,
-      //     },
-      //     function (err, data) {
-      //       if (err) {
-      //         error(err);
-      //       } else {
-      //         result(data.distanceValue);
-      //       }
-      //     }
-      //   );
-      // }, opts).catch((err) => {
-      //   throw err;
-      //});
-      const totalRateOnBill = (element.total / cartTotal.total).toFixed(2);
+      const totalRateOnBill = (element.total / cartTotal[0].total).toFixed(2);
       const distanceDelivery = await cartService.getDistance(
         element._id,
         address
       );
-      console.log("distanceDelivery", distanceDelivery);
       const totalOrder =
         element.total +
         (distanceDelivery / 1000).toFixed(2) * shipFee -
         totalRateOnBill * promotionTotal;
-      console.log("totalOrder", totalOrder);
-      // await orderService.create(
-      //   {
-      //     user: userId,
-      //     status: "picking",
-      //     store: element._id,
-      //     productOrder: element.productOrder,
-      //     totalOrder,
-      //     note,
-      //   },
-      //   opts
-      // );
+      await orderService.create(
+        {
+          customer: customer._id,
+          status: "picking",
+          store: element._id,
+          product_orders: element.productOrder,
+          ship: (distanceDelivery / 1000).toFixed(2) * shipFee,
+          totalOrder,
+          note,
+          voucher,
+          deliveryAddress: { province, district, ward, text },
+        },
+        opts
+      );
     }
-    // await cartService.findOneAndUpdate(
-    //   { customer: customer._id },
-    //   { products: [], total: 0 },
-    //   opts
-    // );
+    await cartService.findOneAndUpdate(
+      { customer: customer._id },
+      { products: [], total: 0 },
+      opts
+    );
     await session.commitTransaction();
     session.endSession();
-    //   return new SuccessResponse(200, "Cart is confirmed").send(res);
+    return new SuccessResponse(200, "Cart is confirmed").send(res);
   } catch (err) {
     await session.abortTransaction();
     session.endSession();

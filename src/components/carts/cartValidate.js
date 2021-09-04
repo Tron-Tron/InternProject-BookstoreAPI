@@ -5,7 +5,7 @@ const myJoiObjectId = JoiObjectId(Joi);
 const schemas = {
   addProduct: Joi.object({
     productId: myJoiObjectId().trim().required(),
-    amountCart: Joi.number().required(),
+    amountCart: Joi.number().integer().positive().required(),
   }),
   paramCart: Joi.object({
     cartId: myJoiObjectId().trim().required(),

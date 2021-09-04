@@ -52,6 +52,7 @@ routerStore.get(
   "/",
   // validateMiddleware(productValidate.paramProduct, "params"),
   searchByPrice
+  // searchProductByName
 );
 
 routerAdmin.use(jwtAuth, authorize("admin"));
