@@ -38,7 +38,17 @@ export const createPromotionProduct = asyncMiddleware(
           `amount product ${productId} in stock is not enough`
         );
       }
-      await promotionProductService.isExistOnProductPromotion(productId, store);
+      const isExistOnPromotion =
+        await promotionProductService.isExistOnProductPromotion(
+          productId,
+          store
+        );
+      if (isExistOnPromotion) {
+        throw new ErrorResponse(
+          400,
+          `product ${productId} is exist on another promotion`
+        );
+      }
     }
     const promotion = await promotionProductService.create({
       name: standardizedString(name),

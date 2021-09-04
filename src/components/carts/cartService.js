@@ -28,6 +28,20 @@ const service = (model) => {
         },
         {
           $lookup: {
+            from: "promotionproducts",
+            localField: "products.productId",
+            foreignField: "products",
+            as: "product-promotion-detail",
+          },
+        },
+        {
+          $unwind: {
+            path: "$product-promotion-detail",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
             from: "stores",
             localField: "product-detail.store",
             foreignField: "_id",
@@ -38,24 +52,74 @@ const service = (model) => {
           $unwind: "$store-detail",
         },
         {
+          $project: {
+            storeId: "$store-detail._id",
+            productId: "$products.productId",
+            storeAddress: "$store-detail.address",
+            priceProduct: "$product-detail.price",
+            amount: "$products.amountCart",
+            percent: {
+              $cond: [
+                {
+                  $and: [
+                    {
+                      $lte: [
+                        "$product-promotion-detail.date_start",
+                        new Date(),
+                      ],
+                    },
+                    {
+                      $gte: ["$product-promotion-detail.date_end", new Date()],
+                    },
+                  ],
+                },
+                { $subtract: [1, "$product-promotion-detail.percent"] },
+                {
+                  $cond: [
+                    { $ifNull: ["$product-promotion-detail", false] },
+                    0,
+                    1,
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
           $group: {
-            _id: "$store-detail._id",
-            storeAddress: { $first: "$store-detail.address" },
-            total: {
+            _id: "$productId",
+            storeId: { $first: "$storeId" },
+            storeAddress: { $first: "$storeAddress" },
+            percent: {
+              $sum: "$percent",
+            },
+            priceProduct: { $first: "$priceProduct" },
+            amount: { $first: "$amount" },
+            totalProduct: {
               $sum: {
-                $multiply: ["$product-detail.price", "$products.amountCart"],
+                $multiply: ["$priceProduct", "$amount", "$percent"],
               },
+            },
+          },
+        },
+        {
+          $group: {
+            _id: "$storeId",
+            storeAddress: { $first: "$storeAddress" },
+            total: {
+              $sum: "$totalProduct",
             },
             productOrder: {
               $push: {
-                productId: "$products.productId",
-                amountCart: "$products.amountCart",
+                productId: "$productId",
+                amountCart: "$amount",
+                totalProduct: "$totalProduct",
               },
             },
           },
         },
       ]);
-      console.log(agg);
+      console.log("cart", agg);
       return agg;
     } catch (err) {
       throw err;
@@ -102,18 +166,58 @@ const service = (model) => {
           $unwind: "$product-detail",
         },
         {
+          $lookup: {
+            from: "promotionproducts",
+            localField: "products.productId",
+            foreignField: "products",
+            as: "product-promotion-detail",
+          },
+        },
+        {
+          $unwind: {
+            path: "$product-promotion-detail",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
           $project: {
-            total: {
-              $sum: {
-                $multiply: ["$product-detail.price", "$products.amountCart"],
-              },
+            priceProduct: "$product-detail.price",
+            amount: "$products.amountCart",
+            percent: {
+              $cond: [
+                {
+                  $and: [
+                    {
+                      $lte: [
+                        "$product-promotion-detail.date_start",
+                        new Date(),
+                      ],
+                    },
+                    {
+                      $gte: ["$product-promotion-detail.date_end", new Date()],
+                    },
+                  ],
+                },
+                { $subtract: [1, "$product-promotion-detail.percent"] },
+                {
+                  $cond: [
+                    { $ifNull: ["$product-promotion-detail", false] },
+                    0,
+                    1,
+                  ],
+                },
+              ],
             },
           },
         },
         {
           $group: {
             _id: customerId,
-            total: { $sum: "$total" },
+            total: {
+              $sum: {
+                $multiply: ["$priceProduct", "$amount", "$percent"],
+              },
+            },
           },
         },
       ]);

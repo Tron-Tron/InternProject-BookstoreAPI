@@ -136,7 +136,6 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
     }
     let promotionTotal;
     if (voucher) {
-      //  console.log("1");
       const checkPromotion = await promotionService.checkExpiredPromotion(
         voucher
       );
@@ -152,37 +151,37 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
     const address = `${text},${ward},${district},${province}`;
     const cartTotal = await cartService.getTotalCart(customer._id);
     console.log("cartTotal", cartTotal);
-    for (const element of cartDetail) {
-      // const storeAddress = `${element.storeAddress.text},${element.storeAddress.ward},${element.storeAddress.district},${element.storeAddress.province}`;
-      const totalRateOnBill = (element.total / cartTotal[0].total).toFixed(2);
-      const distanceDelivery = await cartService.getDistance(
-        element._id,
-        address
-      );
-      const totalOrder =
-        element.total +
-        (distanceDelivery / 1000).toFixed(2) * shipFee -
-        totalRateOnBill * promotionTotal;
-      await orderService.create(
-        {
-          customer: customer._id,
-          status: "picking",
-          store: element._id,
-          product_orders: element.productOrder,
-          ship: (distanceDelivery / 1000).toFixed(2) * shipFee,
-          totalOrder,
-          note,
-          voucher,
-          deliveryAddress: { province, district, ward, text },
-        },
-        opts
-      );
-    }
-    await cartService.findOneAndUpdate(
-      { customer: customer._id },
-      { products: [], total: 0 },
-      opts
-    );
+    // for (const element of cartDetail) {
+    //   // const storeAddress = `${element.storeAddress.text},${element.storeAddress.ward},${element.storeAddress.district},${element.storeAddress.province}`;
+    //   const totalRateOnBill = (element.total / cartTotal[0].total).toFixed(2);
+    //   const distanceDelivery = await cartService.getDistance(
+    //     element._id,
+    //     address
+    //   );
+    //   const totalOrder =
+    //     element.total +
+    //     (distanceDelivery / 1000).toFixed(2) * shipFee -
+    //     totalRateOnBill * promotionTotal;
+    //   // await orderService.create(
+    //   //   {
+    //   //     customer: customer._id,
+    //   //     status: "picking",
+    //   //     store: element._id,
+    //   //     product_orders: element.productOrder,
+    //   //     ship: (distanceDelivery / 1000).toFixed(2) * shipFee,
+    //   //     totalOrder,
+    //   //     note,
+    //   //     voucher,
+    //   //     deliveryAddress: { province, district, ward, text },
+    //   //   },
+    //   //   opts
+    //   // );
+    // }
+    // await cartService.findOneAndUpdate(
+    //   { customer: customer._id },
+    //   { products: [], total: 0 },
+    //   opts
+    // );
     await session.commitTransaction();
     session.endSession();
     return new SuccessResponse(200, "Cart is confirmed").send(res);
