@@ -113,10 +113,13 @@ export const createReportProduct = asyncMiddleware(async (req, res, next) => {
     {
       $group: {
         _id: "$product_orders.productId",
+        // revenue: {
+        //   $sum: {
+        //     $multiply: ["$product-detail.price", "$product_orders.amountCart"],
+        //   },
+        // },
         revenue: {
-          $sum: {
-            $multiply: ["$product-detail.price", "$product_orders.amountCart"],
-          },
+          $sum: "$product_orders.totalProduct",
         },
         total_order: { $sum: "$product_orders.amountCart" },
       },

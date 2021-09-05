@@ -8,6 +8,11 @@ const CustomerSchema = new Schema(
       required: [true, "customer_name is required"],
       default: " ",
     },
+    phone: {
+      type: String,
+      require: [true, "phone is required"],
+      default: " ",
+    },
     email: {
       type: String,
       required: [true, "email is required"],

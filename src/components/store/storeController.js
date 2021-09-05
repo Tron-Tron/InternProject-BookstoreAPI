@@ -21,7 +21,6 @@ export const addStore = asyncMiddleware(async (req, res, next) => {
     name,
     address: { province, district, ward, text },
   });
-  console.log("store", savedStore);
   await staffService.findOneAndUpdate(
     { _id: req.user._id, status: "active" },
     { store: savedStore._id },

@@ -108,7 +108,6 @@ export const deleteProductById = asyncMiddleware(async (req, res, next) => {
   }
   return new SuccessResponse(200, "Delete Successfully").send(res);
 });
-
 export const updateProductById = asyncMiddleware(async (req, res, next) => {
   const { productId } = req.params;
   const storeId = req.user.storeId;
@@ -124,18 +123,26 @@ export const updateProductById = asyncMiddleware(async (req, res, next) => {
 });
 export const searchProductByName = asyncMiddleware(async (req, res, next) => {
   const { keyName, page, perPage } = req.query;
-  // const storeId = req.user.storeId;
-  const productArr = await productService.getAll(
-    {
-      //     store: storeId,
+  const storeId = req.user.storeId;
+  const roleLogin = req.user.roles;
+  let condition;
+  if (roleLogin === "customer") {
+    condition = {
       status: "active",
-    },
+    };
+  } else {
+    condition = {
+      store: storeId,
+      status: "active",
+    };
+  }
+  const productArr = await productService.getAll(
+    condition,
     "name",
     null,
     page,
     perPage
   );
-  console.log(productArr);
   const searchedProduct = productArr.filter((value) => {
     return value.name.toLowerCase().indexOf(keyName.toLowerCase()) !== -1;
   });
@@ -154,5 +161,8 @@ export const searchByPrice = asyncMiddleware(async (req, res, next) => {
     page,
     perPage
   );
+  if (!productArr.length) {
+    throw new ErrorResponse(404, "No Products");
+  }
   return new SuccessResponse(200, productArr).send(res);
 });

@@ -64,15 +64,23 @@ export const deleteCustomer = asyncMiddleware(async (req, res, next) => {
   if (!customerId.trim()) {
     throw new ErrorResponse(400, "customerId is empty");
   }
+  const customer = await customerService.findOne({
+    _id: customerId,
+    status: "active",
+  });
+  if (!customer) {
+    throw new ErrorResponse(404, `No customer has is ${customerId}`);
+  }
   const deletedCustomer = await customerService.findOneAndUpdate(
     { _id: customerId, status: "active" },
     { status: "disable" },
     { new: true }
   );
-
-  if (!deletedCustomer) {
-    throw new ErrorResponse(404, ` Customer ${customerId} is not found`);
-  }
+  await userService.findOneAndUpdate(
+    { email: customer.email, status: true },
+    { status: false },
+    { new: true }
+  );
   return new SuccessResponse(
     200,
     `Customer id ${customerId} is deleted successfully`

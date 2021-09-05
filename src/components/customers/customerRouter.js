@@ -13,26 +13,25 @@ import {
 } from "./customerController.js";
 
 const router = express.Router();
-const routerCustomer = express.Router();
-const routerAdmin = express.Router();
-router.use(routerCustomer);
-routerCustomer.use(jwtAuth, authorize("customer"));
-routerCustomer.patch(
+router.use(jwtAuth);
+router.patch(
   "/",
+  authorize("customer"),
   upload.single("avatar"),
   validateMiddleware(customerValidate.postCustomer, "body"),
   updateProfileCustomer
 );
-routerCustomer.get("/", getProfile);
-router.use("/admin", routerAdmin);
-routerAdmin.use(jwtAuth, authorize("admin"));
-routerAdmin.delete(
+router.get("/", authorize("customer"), getProfile);
+
+router.delete(
   "/:customerId",
+  authorize("admin"),
   validateMiddleware(customerValidate.paramCustomer, "params"),
   deleteCustomer
 );
-routerAdmin.get(
+router.get(
   "/all",
+  authorize("admin"),
   validateMiddleware(paginationValidate.paging, "query"),
   getAllCustomers
 );

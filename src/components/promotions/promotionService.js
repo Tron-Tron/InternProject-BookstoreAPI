@@ -10,7 +10,10 @@ const service = (model) => {
         throw new ErrorResponse(404, `${code} is not exist`);
       }
       const dateNow = new Date();
-      if (promotion.date_end.getTime() > dateNow.getTime()) {
+      if (promotion.date_start.getTime() > dateNow.getTime()) {
+        throw new ErrorResponse(400, `${code} is not ready to use`);
+      }
+      if (promotion.date_end.getTime() < dateNow.getTime()) {
         throw new ErrorResponse(400, `${code} is out of date`);
       }
       return promotion;

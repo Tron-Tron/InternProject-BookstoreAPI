@@ -20,6 +20,10 @@ const OrderSchema = new Schema(
       ref: "Store",
       require: [true, "store is required"],
     },
+    phoneReceiver: {
+      type: String,
+      require: [true, "phoneReceiver is required"],
+    },
     product_orders: [
       {
         productId: {
@@ -32,16 +36,15 @@ const OrderSchema = new Schema(
           require: [true, "amount is required"],
           default: 0,
         },
+        totalProduct: {
+          type: Number,
+          require: [true, "totalProduct is required"],
+        },
       },
     ],
     ship: {
       type: Number,
       required: [true, "ship is required"],
-      default: 0,
-    },
-    voucher: {
-      type: Number,
-      required: [true, "voucher is required"],
       default: 0,
     },
     totalOrder: {

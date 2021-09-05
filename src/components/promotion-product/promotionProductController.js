@@ -43,12 +43,6 @@ export const createPromotionProduct = asyncMiddleware(
           productId,
           store
         );
-      if (isExistOnPromotion) {
-        throw new ErrorResponse(
-          400,
-          `product ${productId} is exist on another promotion`
-        );
-      }
     }
     const promotion = await promotionProductService.create({
       name: standardizedString(name),
@@ -62,51 +56,51 @@ export const createPromotionProduct = asyncMiddleware(
     return new SuccessResponse(201, promotion).send(res);
   }
 );
-export const updatePromotion = asyncMiddleware(async (req, res, next) => {
-  const { promotionId } = req.query;
-  const store = req.user.storeId;
-  const updatedPromotion = await promotionProductService.findOneAndUpdate(
-    {
-      _id: promotionId,
-      store,
-    },
-    req.body,
-    { new: true }
-  );
-  if (!updatedPromotion) {
-    throw new ErrorResponse(404, `${promotionId} is not exist`);
+export const updatePromotionProduct = asyncMiddleware(
+  async (req, res, next) => {
+    const { promotionId } = req.query;
+    const store = req.user.storeId;
+    let { name, date_start, date_end, percent, products } = req.body;
+    //check phan tu trung
+    let newArrProduct = [];
+    newArrProduct = products.filter((item) => {
+      return newArrProduct.includes(item) ? "" : newArrProduct.push(item);
+    });
+    //kiem tra cac id trong mang
+    for (const productId of newArrProduct) {
+      const checkProduct = await productService.findOne({
+        _id: productId,
+        status: "active",
+        store,
+      });
+      if (!checkProduct) {
+        throw new ErrorResponse(404, `${productId} is not exist`);
+      }
+      if (checkProduct.amount < 1) {
+        throw new ErrorResponse(
+          400,
+          `amount product ${productId} in stock is not enough`
+        );
+      }
+      //  await promotionProductService.isExistOnProductPromotion(productId, store);
+    }
+    const updatedPromotion = await promotionProductService.findOneAndUpdate(
+      {
+        _id: promotionId,
+        store,
+      },
+      {
+        name: standardizedString(name),
+        date_start,
+        date_end,
+        percent,
+        products,
+      },
+      { new: true }
+    );
+    if (!updatedPromotion) {
+      throw new ErrorResponse(404, `${promotionId} is not exist`);
+    }
+    return new SuccessResponse(201, updatedPromotion).send(res);
   }
-  return new SuccessResponse(201, updatedPromotion).send(res);
-});
-
-export const getAllPromotions = asyncMiddleware(async (req, res, next) => {
-  const { page, perPage } = req.query;
-  const promotions = await promotionService.getAll(
-    null,
-    null,
-    null,
-    page,
-    perPage
-  );
-  if (!promotions.length) {
-    throw new ErrorResponse(404, "No promotions");
-  }
-  return new SuccessResponse(200, promotions).send(res);
-});
-export const deletePromotion = asyncMiddleware(async (req, res, next) => {
-  const { promotionId } = req.params;
-  if (!promotionId.trim()) {
-    throw new ErrorResponse(400, "promotionId is empty");
-  }
-  const deletedPromotion = await promotionService.findByIdAndDelete({
-    _id: promotionId,
-  });
-
-  if (!deletedPromotion) {
-    throw new ErrorResponse(404, ` Promotion ${promotionId} is not found`);
-  }
-  return new SuccessResponse(
-    200,
-    `Promotion id ${promotionId} is deleted successfully`
-  ).send(res);
-});
+);

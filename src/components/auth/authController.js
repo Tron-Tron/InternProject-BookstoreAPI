@@ -18,11 +18,6 @@ export const register = asyncMiddleware(async (req, res, next) => {
     }),
     customerService.create({ email }),
   ]);
-  // const auth = await userService.create({
-  //   email,
-  //   password,
-  // });
-  // const customer = await customerService.create({ email });
   await cartService.create({
     customer: customer._id,
   });

@@ -2,7 +2,6 @@ import express from "express";
 import authorize from "../../middleware/authorize.js";
 import jwtAuth from "../../middleware/jwtAuth.js";
 import categoryValidate from "./categoryValidate.js";
-import upload from "../commons/upload.js";
 import paginationValidate from "./../utils/paginationValidate.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 import {
@@ -12,6 +11,7 @@ import {
   getAllCategories,
   updateCategoryById,
   deleteCategoryById,
+  getAllCategoriesSystem,
 } from "./categoryController.js";
 import checkActiveStore from "../commons/checkActiveStore.js";
 const router = express.Router();
@@ -51,6 +51,11 @@ routerStore.delete(
 );
 router.use("/admin", routerAdmin);
 routerAdmin.use(jwtAuth, authorize("admin"));
+routerAdmin.get(
+  "/all",
+  validateMiddleware(categoryValidate.paramCategory, "params"),
+  getAllCategoriesSystem
+);
 routerAdmin.delete(
   "/:categoryId",
   validateMiddleware(categoryValidate.paramCategory, "params"),

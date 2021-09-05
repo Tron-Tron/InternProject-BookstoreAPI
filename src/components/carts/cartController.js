@@ -12,6 +12,7 @@ import distance from "google-distance";
 distance.apiKey = process.env.API_KEY;
 import mongoose from "mongoose";
 import Order from "../orders/orderModel.js";
+import { storeService } from "../store/storeService.js";
 
 export const addProductCart = asyncMiddleware(async (req, res, next) => {
   const { productId, amountCart } = req.body;
@@ -42,6 +43,16 @@ export const addProductCart = asyncMiddleware(async (req, res, next) => {
       throw new ErrorResponse(
         400,
         `${isExistProduct.name} is out of stock or not enough for you`
+      );
+    }
+    const checkActiveStore = await storeService.findOne({
+      _id: isExistProduct.store,
+      status: "active",
+    });
+    if (!checkActiveStore) {
+      throw new ErrorResponse(
+        401,
+        "You can not add this product because this store is no longer active"
       );
     }
     const indexProduct = cart.products.findIndex(
@@ -87,7 +98,7 @@ export const checkout = asyncMiddleware(async (req, res, next) => {
   return new SuccessResponse(200, cart).send(res);
 });
 export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
-  let { paymentMethod, province, district, ward, text, voucher, note } =
+  let { paymentMethod, province, district, ward, text, voucher, note, phone } =
     req.body;
   const emailLogin = req.user.email;
   const customer = await customerService.findOne({
@@ -134,6 +145,12 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
       ward = customer.address.ward;
       text = customer.address.text;
     }
+    if (!phone) {
+      if (customer.phone === " ") {
+        throw new ErrorResponse(401, "Please add phone number");
+      }
+      phone = customer.phone;
+    }
     let promotionTotal;
     if (voucher) {
       const checkPromotion = await promotionService.checkExpiredPromotion(
@@ -150,38 +167,43 @@ export const confirmDelivery = asyncMiddleware(async (req, res, next) => {
     const shipFee = 1000;
     const address = `${text},${ward},${district},${province}`;
     const cartTotal = await cartService.getTotalCart(customer._id);
-    console.log("cartTotal", cartTotal);
-    // for (const element of cartDetail) {
-    //   // const storeAddress = `${element.storeAddress.text},${element.storeAddress.ward},${element.storeAddress.district},${element.storeAddress.province}`;
-    //   const totalRateOnBill = (element.total / cartTotal[0].total).toFixed(2);
-    //   const distanceDelivery = await cartService.getDistance(
-    //     element._id,
-    //     address
-    //   );
-    //   const totalOrder =
-    //     element.total +
-    //     (distanceDelivery / 1000).toFixed(2) * shipFee -
-    //     totalRateOnBill * promotionTotal;
-    //   // await orderService.create(
-    //   //   {
-    //   //     customer: customer._id,
-    //   //     status: "picking",
-    //   //     store: element._id,
-    //   //     product_orders: element.productOrder,
-    //   //     ship: (distanceDelivery / 1000).toFixed(2) * shipFee,
-    //   //     totalOrder,
-    //   //     note,
-    //   //     voucher,
-    //   //     deliveryAddress: { province, district, ward, text },
-    //   //   },
-    //   //   opts
-    //   // );
-    // }
-    // await cartService.findOneAndUpdate(
-    //   { customer: customer._id },
-    //   { products: [], total: 0 },
-    //   opts
-    // );
+    for (const element of cartDetail) {
+      const totalRateOnBill = (element.total / cartTotal[0].total).toFixed(2);
+      const distanceDelivery = await cartService.getDistance(
+        element._id,
+        address
+      );
+      const totalOrder =
+        element.total +
+        (distanceDelivery / 100000).toFixed(2) * shipFee -
+        totalRateOnBill * promotionTotal;
+
+      for (const product_element of element.productOrder) {
+        await productService.findOneAndUpdate(
+          { _id: product_element.productId, status: "active" },
+          { $inc: { amount: -product_element.amountCart } },
+          opts
+        );
+      }
+      await orderService.create(
+        {
+          customer: customer._id,
+          status: "picking",
+          store: element._id,
+          product_orders: element.productOrder,
+          ship: (distanceDelivery / 1000).toFixed(2) * shipFee,
+          totalOrder,
+          note,
+          deliveryAddress: { province, district, ward, text },
+        },
+        opts
+      );
+    }
+    await cartService.findOneAndUpdate(
+      { customer: customer._id },
+      { products: [], total: 0 },
+      opts
+    );
     await session.commitTransaction();
     session.endSession();
     return new SuccessResponse(200, "Cart is confirmed").send(res);

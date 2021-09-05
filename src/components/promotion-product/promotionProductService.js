@@ -14,10 +14,10 @@ const service = (model) => {
       const dateNow = new Date();
       const dateStart = new Date(promotion.date_start);
       const dateEnd = new Date(promotion.date_end);
-      if (dateStart.getTime() < dateNow.getTime()) {
+      if (dateStart.getTime() > dateNow.getTime()) {
         throw new ErrorResponse(400, `${code} is not ready to use`);
       }
-      if (dateEnd.getTime() > dateNow.getTime()) {
+      if (dateEnd.getTime() < dateNow.getTime()) {
         throw new ErrorResponse(400, `${code} is out of date`);
       }
       return promotion;
@@ -36,16 +36,13 @@ const service = (model) => {
       if (usedPromotion) {
         usedPromotion.map((itemPromotion) => {
           if (itemPromotion.products.includes(productId)) {
-            return true;
-            // throw new ErrorResponse(
-            //   400,
-            //   `product ${productId} is exist on another promotion`
-            // );
+            throw new ErrorResponse(
+              400,
+              `product ${productId} is exist on another promotion`
+            );
           }
-          return false;
         });
       }
-      return false;
     } catch (error) {
       throw error;
     }

@@ -35,6 +35,7 @@ const StoreSchema = new Schema(
       type: { type: String },
       coordinates: {
         type: [],
+        index: "2dsphere",
       },
     },
     status: {

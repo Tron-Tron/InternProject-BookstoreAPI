@@ -5,7 +5,13 @@ import upload from "../commons/upload.js";
 import paginationValidate from "./../utils/paginationValidate.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 import staffValidate from "./staffValidate.js";
-import { registerStaff } from "./staffController.js";
+import {
+  registerStaff,
+  updateProfileStaff,
+  getProfile,
+  getAllStaffStore,
+  deleteStaff,
+} from "./staffController.js";
 const router = express.Router();
 router.use(jwtAuth, authorize("manager"));
 router.post(

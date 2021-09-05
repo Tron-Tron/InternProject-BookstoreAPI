@@ -7,7 +7,10 @@ import {
   deletePromotion,
 } from "./promotionController.js";
 
-import { createPromotionProduct } from "../promotion-product/promotionProductController.js";
+import {
+  createPromotionProduct,
+  updatePromotionProduct,
+} from "../promotion-product/promotionProductController.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
 import promotionValidate from "./promotionValidate.js";
 import jwtAuth from "../../middleware/jwtAuth.js";
@@ -44,6 +47,12 @@ routerStore.post(
   "/",
   validateMiddleware(promotionValidate.postPromotionProduct, "body"),
   createPromotionProduct
+);
+routerStore.patch(
+  "/:promotionId",
+  validateMiddleware(promotionValidate.paramPromotion, "params"),
+  validateMiddleware(promotionValidate.postPromotionProduct, "body"),
+  updatePromotionProduct
 );
 router.use("/admin", jwtAuth, authorize("admin"), routerAdmin);
 router.use("/store", jwtAuth, authorize("manager", "officer"), routerStore);

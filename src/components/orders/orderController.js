@@ -5,12 +5,35 @@ import SuccessResponse from "../utils/successResponse.js";
 import { orderService } from "./orderService.js";
 import { userService } from "../users/userService.js";
 import mongoose from "mongoose";
+export const confirmOrderStore = asyncMiddleware(async (req, res, next) => {
+  const { orderId } = req.params;
+  const storeId = req.user.storeId;
+  const updatedOrder = await orderService.findOneAndUpdate(
+    {
+      _id: orderId,
+      store: storeId,
+      status: "picking",
+    },
+    { status: "picked" },
+    { new: true }
+  );
+  if (!updatedOrder) {
+    throw new ErrorResponse(404, "No order");
+  }
+  return new SuccessResponse(200, updatedOrder).send(res);
+});
 export const updateStatusOrderStore = asyncMiddleware(
   async (req, res, next) => {
     const { orderId } = req.params;
     const { status } = req.body;
     const storeId = req.user.storeId;
-    const statusShipper = ["picking", "picked", "delivering", "delivered"];
+    const statusShipper = [
+      "picking",
+      "picked",
+      "delivering",
+      "delivered",
+      "cancel",
+    ];
     if (!statusShipper.includes(status)) {
       throw new ErrorResponse(400, "Status is not exist");
     }
@@ -48,13 +71,6 @@ export const completeStatusOrderUser = asyncMiddleware(
       if (!updatedOrder) {
         throw new ErrorResponse(404, "No order");
       }
-      const value = 0.0005 * updatedOrder.totalOrder;
-      await userService.findOneAndUpdate(
-        { _id: userId },
-        { $inc: { balance: value } },
-        opts
-      );
-
       return new SuccessResponse(200, updatedOrder).send(res);
     } catch (err) {
       await session.abortTransaction();
@@ -65,17 +81,37 @@ export const completeStatusOrderUser = asyncMiddleware(
 );
 export const cancelOrder = asyncMiddleware(async (req, res, next) => {
   const { orderId } = req.params;
-  const userId = req.user._id;
-  const canceledOrder = await orderService.findOneAndUpdate(
-    { _id: orderId, user: userId, status: "picking" },
-    { status: "canceled" }
-  );
-  if (!canceledOrder) {
-    throw new ErrorResponse(400, "Cannot cancel this order");
+  const customerId = req.user._id;
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const opts = { session, returnOriginal: false };
+    const order = await orderService.findOne({});
+    const canceledOrder = await orderService.findOneAndUpdate(
+      {
+        _id: orderId,
+        user: userId,
+        status: { $nin: ["delivering", "canceled", "delivered"] },
+      },
+      { status: "canceled" },
+      opts
+    );
+    if (!canceledOrder) {
+      throw new ErrorResponse(400, "Cannot cancel this order");
+    }
+
+    await session.commitTransaction();
+    session.endSession();
+    return new SuccessResponse(200, "Your order is canceled successfully").send(
+      res
+    );
+  } catch (err) {
+    throw new ErrorResponse(400, err);
+  } finally {
+    await session.abortTransaction();
+    session.endSession();
   }
-  return new SuccessResponse(200, "Your order is canceled successfully").send(
-    res
-  );
 });
 export const getOrderStore = asyncMiddleware(async (req, res, next) => {
   const store = req.user.storeId;
