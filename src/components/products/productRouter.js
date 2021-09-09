@@ -11,6 +11,7 @@ import {
   deleteProductById,
   updateProductById,
   searchProductByName,
+  getAllProductSystem,
   searchByPrice,
 } from "./productController.js";
 import upload from "../commons/upload.js";
@@ -19,14 +20,21 @@ import validateMiddleware from "../commons/validateMiddleware.js";
 const router = express.Router();
 const routerAdmin = express.Router();
 const routerStore = express.Router();
+const routerSystem = express.Router();
 router.use("/store", routerStore);
 router.use("/admin", routerAdmin);
+router.use("/system", routerSystem);
 routerStore.use(jwtAuth, authorize("manager", "officer"));
 routerStore.post(
   "/",
   upload.array("products", 10),
   validateMiddleware(productValidate.postProduct, "body"),
   createNewProduct
+);
+routerStore.get(
+  "/all",
+  //validateMiddleware(paginationValidate.paging, "query"),
+  getAllProducts
 );
 routerStore.get(
   "/:productId",
@@ -43,11 +51,7 @@ routerStore.patch(
   validateMiddleware(productValidate.paramProduct, "params"),
   updateProductById
 );
-routerStore.get(
-  "/all",
-  validateMiddleware(paginationValidate.paging, "query"),
-  getAllProducts
-);
+
 routerStore.get(
   "/",
   // validateMiddleware(productValidate.paramProduct, "params"),
@@ -56,5 +60,5 @@ routerStore.get(
 );
 
 routerAdmin.use(jwtAuth, authorize("admin"));
-
+routerSystem.get("/all", getAllProductSystem);
 export default router;

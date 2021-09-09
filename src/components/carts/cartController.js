@@ -261,8 +261,16 @@ export const confirmNotDelivery = asyncMiddleware(async (req, res, next) => {
   }
 });
 export const getCart = asyncMiddleware(async (req, res, next) => {
-  const userId = req.user._id;
-  const cart = await cartService.findOne({ user: userId });
+  const email = req.user.email;
+  const customer = await customerService.findOne({ email, status: "active" });
+  if (!customer) {
+    throw new ErrorResponse(404, "No customer");
+  }
+  const cart = await cartService.findOne(
+    { customer: customer._id },
+    null,
+    "products.productId"
+  );
   if (!cart) {
     throw new ErrorResponse(400, "No cart");
   }

@@ -10,7 +10,7 @@ const schemas = {
     description: Joi.string().required(),
     amount: Joi.number().integer().positive().required(),
     author: Joi.string().required(),
-    //   image: Joi.string().required(),
+    //  products: Joi.array(),
   }),
   paramProduct: Joi.object({
     productId: myJoiObjectId().trim().required(),

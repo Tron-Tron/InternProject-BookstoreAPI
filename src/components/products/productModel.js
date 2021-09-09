@@ -29,7 +29,7 @@ const ProductSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["active", "disable", "out-of-stock"],
+      enum: ["active", "disable"],
       required: [true, "status is required"],
       default: "active",
     },

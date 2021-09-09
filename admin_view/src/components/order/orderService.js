@@ -1,15 +1,3 @@
-// headers: {
-//   'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRyb250cm9uQGdtYWlsLmNvbSIsImlkUm9sZSI6ImFkbWluIiwiaWF0IjoxNjIwNDQ0MjM4fQ.tJvGAbyNXlM6ozvW0YnXYx42le2HNsSI8__fHdK8CVY'
-// }
-// };
-// export const fetchDataOrder = function (data) {
-//   return axios({
-//     method: "GET",
-//     url: "http://localhost:5000/api/v1/order",
-//     data,
-//   });
-// };
-
 function orderService(token) {
   this.getOrdersList = function () {
     return axios({

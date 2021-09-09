@@ -29,42 +29,42 @@ function getListCategory() {
   }
 }
 
-document
-  .getElementById("btnThemLoaiSanPham")
-  .addEventListener("click", function () {
-    categoryServices
-      .getAllCategoryParent()
-      .then(function (result) {
-        renderAE_Category(result.data.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    document.getElementById("contain-category-AE").classList.remove("hidden");
-    document.getElementById("bnt-add-category").classList.remove("hidden");
-    document.getElementById("btn-edit-category").classList.add("hidden");
-  });
+// document
+//   .getElementById("btnThemLoaiSanPham")
+//   .addEventListener("click", function () {
+//     categoryServices
+//       .getAllCategoryParent()
+//       .then(function (result) {
+//         renderAE_Category(result.data.data);
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//     document.getElementById("contain-category-AE").classList.remove("hidden");
+//     document.getElementById("bnt-add-category").classList.remove("hidden");
+//     document.getElementById("btn-edit-category").classList.add("hidden");
+//   });
 
-function renderAE_Category(arr) {
-  var list = getEle("list-category-AE");
-  var option = document.createElement("option");
-  option.text = "---------";
-  option.value = "";
-  list.add(option);
-  console.log("check", arr);
-  for (let index = 0; index < arr.length; index++) {
-    var option = document.createElement("option");
-    option.text = arr[index].CategoryName;
-    option.value = arr[index].id;
-    list.add(option);
-  }
-}
+// function renderAE_Category(arr) {
+//   var list = getEle("list-category-AE");
+//   var option = document.createElement("option");
+//   option.text = "---------";
+//   option.value = "";
+//   list.add(option);
+//   console.log("check", arr);
+//   for (let index = 0; index < arr.length; index++) {
+//     var option = document.createElement("option");
+//     option.text = arr[index].CategoryName;
+//     option.value = arr[index].id;
+//     list.add(option);
+//   }
+// }
 
-document
-  .getElementById("bnt-add-category")
-  .addEventListener("click", function () {
-    themLoaiSanPham();
-  });
+// document
+//   .getElementById("bnt-add-category")
+//   .addEventListener("click", function () {
+//     themLoaiSanPham();
+//   });
 
 //Them San Pham
 function themLoaiSanPham() {
@@ -182,9 +182,9 @@ function suaCate(id) {
 }
 
 //Cap Nhat san pham
-document.getElementById("btn-edit-category").addEventListener("click", () => {
-  capNhatLSP();
-});
+// document.getElementById("btn-edit-category").addEventListener("click", () => {
+//   capNhatLSP();
+// });
 
 function capNhatLSP() {
   var name = getEle("name-category").value;

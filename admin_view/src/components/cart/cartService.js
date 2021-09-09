@@ -1,31 +1,30 @@
-function productService(token) {
-  this.getProductOnSystem = function () {
+function cartService(token) {
+  this.getCartCustomer = function () {
     return axios({
       method: "GET",
-      url: "http://localhost:3000/api/product/system/all",
+      url: "http://localhost:3000/api/cart/",
       headers: {
-        "Content-Type": "multipart/form-data",
-        //     Authorization: `Bearer ${token}`,
+        //  "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       },
     });
   };
-  this.themSanPham = function (fd) {
-    console.log("them san pham", fd);
+  this.addCart = function (data) {
     return axios({
       method: "POST",
-      url: "http://localhost:3000/api/product/store/",
-      data: fd,
+      url: "http://localhost:3000/api/cart/",
+      data,
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
   };
 
-  this.getProductsList = function () {
+  this.confirmOrder = function () {
     return axios({
-      method: "GET",
-      url: "http://localhost:3000/api/product/store/all",
+      method: "POST",
+      url: "http://localhost:3000/api/cart/confirm-delivery",
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,

@@ -6,7 +6,6 @@ function getListStaff() {
   staffServices
     .getStaffsList()
     .then(function (result) {
-      console.log("stafflisst", result.data.data);
       renderStaffTable(result.data.data);
     })
     .catch(function (error) {
@@ -75,7 +74,6 @@ function createNewStaff() {
   staffServices
     .addNewStaff(data)
     .then((result) => {
-      console.log("result", result);
       if (typeof result !== "undefined") {
         Swal.fire({
           icon: "success",
@@ -202,12 +200,9 @@ function resetStaffById(id) {
 }
 
 function renderStaffTable(staffArr) {
-  console.log("staffArr", staffArr);
   var contentHTML = "";
   staffArr.map(function (item) {
     let roles = item.account_detail.roles;
-    console.log("item.account_detail.roles", item.account_detail.roles);
-    console.log("role", role);
     let position;
     if (roles === "manager") {
       position = "Quản lý";
@@ -309,7 +304,6 @@ document
       .updateStaffById(id, edit_temp)
       .then(function (result) {
         if (result.status === 200 || result.status === 201) {
-          console.log(result);
           Swal.fire({
             icon: "success",
             title: "Sửa nhân viên thành công!!!",

@@ -58,7 +58,13 @@ export const rejectProduct = asyncMiddleware(async (req, res, next) => {
   }
   return new SuccessResponse(200, "Requirement Product is rejected").send(res);
 });
-
+export const getAllProductSystem = asyncMiddleware(async (req, res, next) => {
+  const product = await productService.getAll({ status: "active" });
+  if (!product) {
+    throw new ErrorResponse(404, "No products");
+  }
+  return new SuccessResponse(200, product).send(res);
+});
 export const getAllProducts = asyncMiddleware(async (req, res, next) => {
   const storeId = req.user.storeId;
   const { page, perPage } = req.query;
@@ -100,8 +106,9 @@ export const deleteProductById = asyncMiddleware(async (req, res, next) => {
     {
       _id: productId,
       store: storeId,
+      status: "active",
     },
-    { status: "deleted" }
+    { status: "disable" }
   );
   if (!deletedProduct) {
     throw new ErrorResponse(400, `No product has id ${productId}`);

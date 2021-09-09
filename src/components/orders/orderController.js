@@ -283,11 +283,18 @@ export const getOrderStore = asyncMiddleware(async (req, res, next) => {
   return new SuccessResponse(200, order).send(res);
 });
 export const getUserOrder = asyncMiddleware(async (req, res, next) => {
-  const user = req.user._id;
-  const { page, perPage } = req.query;
-  const order = await orderService.getAll({ user }, null, null, page, perPage);
-  if (!order.length) {
-    throw new ErrorResponse(400, "No order");
+  const email = req.user.email;
+  const customer = await customerService.findOne({ email, status: "active" });
+  if (!customer) {
+    throw new ErrorResponse(404, "No customer");
+  }
+  const order = await orderService.getAll(
+    { customer: customer._id },
+    null,
+    "products.productId"
+  );
+  if (!order) {
+    throw new ErrorResponse(400, "No cart");
   }
   return new SuccessResponse(200, order).send(res);
 });

@@ -27,7 +27,7 @@ router.post(
 router.post("/confirm-delivery", confirmDelivery);
 router.get(
   "/",
-  validateMiddleware(paginationValidate.paging, "query"),
+  // validateMiddleware(paginationValidate.paging, "query"),
   getCart
 );
 export default router;
