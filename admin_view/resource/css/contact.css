@@ -1,0 +1,154 @@
+* {
+  font-family: "Roboto", sans-serif; }
+
+.container-header {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9; }
+  .container-header .content-header .logo {
+    text-align: center; }
+  .container-header .content-header h1 {
+    color: #fff; }
+    .container-header .content-header h1 span {
+      color: #f73232; }
+
+.container-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(60, 66, 66, 0.829);
+  height: 85px; }
+  .container-nav .menu-web {
+    flex-basis: 40%;
+    height: 100%; }
+    .container-nav .menu-web .menu-nav {
+      height: inherit;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      list-style-type: none; }
+      .container-nav .menu-web .menu-nav .item-menu-nav {
+        flex-basis: 30%;
+        position: relative;
+        text-align: center; }
+        .container-nav .menu-web .menu-nav .item-menu-nav a {
+          color: #fff;
+          font-size: 20px;
+          font-weight: 400;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%); }
+        .container-nav .menu-web .menu-nav .item-menu-nav a:hover {
+          color: #edfa32;
+          transition: 0.4s; }
+  .container-nav .search {
+    flex-basis: 30%;
+    position: relative; }
+    .container-nav .search input {
+      width: 80%;
+      padding: 15px;
+      padding-right: 40px;
+      display: inline-block;
+      border: none;
+      border-radius: 4px;
+      box-sizing: border-box;
+      cursor: text;
+      outline: none;
+      font-size: 18px;
+      font-weight: 400;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+    .container-nav .search button {
+      position: absolute;
+      right: 95px;
+      top: 50%;
+      transform: translateY(-50%); }
+      .container-nav .search button i {
+        color: rgba(60, 66, 66, 0.829);
+        font-size: 25px; }
+
+.grow {
+  transition: all 0.2s ease-in-out; }
+
+.grow:hover {
+  transform: scale(1.1); }
+
+.zoom-out:hover {
+  transform: scale(0.9); }
+
+.zoom-out:active {
+  transform: scale(1.2); }
+
+.container-main {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 0px; }
+  .container-main #map {
+    width: 100%;
+    height: 500px; }
+  .container-main .title-contact {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 30px; }
+    .container-main .title-contact h2 {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 22px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #495057; }
+
+.container-contact100 {
+  background-color: #fff; }
+
+.info-service-web {
+  width: 100%;
+  background-color: #f5f5f5; }
+  .info-service-web .container-info-service {
+    width: inherit;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0px; }
+    .info-service-web .container-info-service .about-web .content {
+      font-style: italic; }
+      .info-service-web .container-info-service .about-web .content h5 {
+        font-size: 16px; }
+      .info-service-web .container-info-service .about-web .content p a {
+        display: inline-block; }
+
+.content a {
+  display: block;
+  padding: 5px;
+  color: #2f8dd2; }
+
+.title-service {
+  padding: 10px 0px; }
+  .title-service h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 2px solid #495057; }
+
+.container-footer {
+  border-top: 3px solid rgba(60, 66, 66, 0.829);
+  width: 100%;
+  background-color: unset;
+  padding: 30px; }
+  .container-footer p {
+    text-align: center;
+    font-size: 15px;
+    color: #596672;
+    font-weight: 500; }
+    .container-footer p span {
+      color: #e83030;
+      font-weight: 550; }
+
+/*# sourceMappingURL=contact.css.map */

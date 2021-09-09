@@ -28,7 +28,7 @@ routerStore.post(
 routerStore.get(
   "/all",
   checkActiveStore,
-  validateMiddleware(paginationValidate.paging, "query"),
+  // validateMiddleware(paginationValidate.paging, "query"),
   getAllCategories
 );
 routerStore.get(
@@ -51,11 +51,7 @@ routerStore.delete(
 );
 router.use("/admin", routerAdmin);
 routerAdmin.use(jwtAuth, authorize("admin"));
-routerAdmin.get(
-  "/all",
-  validateMiddleware(categoryValidate.paramCategory, "params"),
-  getAllCategoriesSystem
-);
+routerAdmin.get("/all", getAllCategoriesSystem);
 routerAdmin.delete(
   "/:categoryId",
   validateMiddleware(categoryValidate.paramCategory, "params"),

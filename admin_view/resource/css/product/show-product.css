@@ -1,0 +1,405 @@
+/* line 1, show-product.scss */
+* {
+	font-family: "Roboto", sans-serif;
+}
+
+/* line 5, show-product.scss */
+.fas {
+	font-size: 16px;
+}
+
+h5,
+p {
+	padding: unset;
+	margin: unset;
+}
+
+/* line 9, show-product.scss */
+.container-main {
+	padding: 50px 0px;
+	width: 100%;
+	background-color: #f5f5f5;
+}
+/* line 13, show-product.scss */
+.container-main .show-product {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-wrap: wrap;
+	background-color: #f5f5f5;
+}
+/* line 20, show-product.scss */
+.container-main .show-product .img-pro,
+.container-main .show-product .info-product {
+	flex-basis: 60%;
+	background-color: #fff;
+}
+/* line 25, show-product.scss */
+.container-main .show-product .img-pro {
+	flex-basis: 40%;
+	padding: 15px;
+}
+/* line 28, show-product.scss */
+.container-main .show-product .img-pro img {
+	width: 100%;
+	height: 500px;
+	object-fit: cover;
+}
+/* line 32, show-product.scss */
+.container-main .show-product .info-product {
+	padding: 10px;
+	border-left: 2px solid #f2f2f2;
+}
+/* line 35, show-product.scss */
+.container-main .show-product .info-product .name-pro {
+	font-weight: 500;
+	font-size: 24px;
+}
+/* line 39, show-product.scss */
+.container-main .show-product .info-product .wrap-info {
+	background-color: #eef8ff;
+	padding: 15px;
+	border-radius: 4px;
+}
+/* line 42, show-product.scss */
+.container-main .show-product .info-product .wrap-info p {
+	padding: 5px 0px;
+	color: #736b62;
+}
+/* line 45, show-product.scss */
+.container-main .show-product .info-product .wrap-info p i {
+	padding-right: 5px;
+}
+/* line 49, show-product.scss */
+.container-main .show-product .info-product .wrap-info .price-pro {
+	font-size: 32px;
+	font-weight: bold;
+	background: -webkit-linear-gradient(#30698c, #6ca6d9);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+/* line 60, show-product.scss */
+.container-main .show-product .info-product .wrap-info .unit-pro span {
+	font-weight: 600;
+	color: #ce2020;
+}
+/* line 66, show-product.scss */
+.container-main .show-product .info-product button {
+	margin-top: 15px;
+	padding: 10px 20px;
+	border: 1px solid #2f8dd2;
+	background: linear-gradient(106deg, #30698c 0%, #6ca6d9 100%);
+	font-size: 15px;
+	color: #fff;
+	border-radius: 4px;
+}
+/* line 78, show-product.scss */
+.container-main .show-product .info-product button:hover {
+	transition: 0.5s;
+	color: #2f8dd2;
+	background: unset;
+	background-color: #fff;
+	cursor: pointer;
+}
+/* line 85, show-product.scss */
+.container-main .show-product .info-product #rating-star {
+	display: flex;
+	margin: 0px;
+}
+/* line 87, show-product.scss */
+.container-main .show-product .info-product #rating-star li {
+	padding-right: 3px;
+}
+/* line 92, show-product.scss */
+.container-main .show-product .right-note {
+	padding: 15px 0px;
+}
+/* line 94, show-product.scss */
+.container-main .show-product .right-note h5 {
+	font-size: 17px;
+	color: #242424;
+}
+/* line 97, show-product.scss */
+.container-main .show-product .right-note h5 i {
+	color: #2f8dd2;
+	padding-right: 5px;
+}
+/* line 102, show-product.scss */
+.container-main .show-product .right-note ul {
+	padding-left: 15px;
+	list-style-type: none;
+	margin: unset;
+}
+/* line 105, show-product.scss */
+.container-main .show-product .right-note ul li {
+	padding-left: 15px;
+	position: relative;
+}
+/* line 108, show-product.scss */
+.container-main .show-product .right-note ul li p {
+	line-height: 25px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #242424;
+}
+/* line 115, show-product.scss */
+.container-main .show-product .right-note ul li::before {
+	content: "\f30b";
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	font-size: 10px;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 5px;
+}
+/* line 132, show-product.scss */
+.container-main .show-product .share-service h5 {
+	font-size: 17px;
+	color: #242424;
+}
+/* line 135, show-product.scss */
+.container-main .show-product .share-service h5 i {
+	color: #2f8dd2;
+	padding-right: 5px;
+}
+/* line 141, show-product.scss */
+.container-main .show-product .describe {
+	margin-top: 30px;
+	flex-basis: 100%;
+}
+/* line 144, show-product.scss */
+.container-main .show-product .describe h5 {
+	font-size: 16px;
+	display: inline-block;
+	text-transform: uppercase;
+}
+/* line 150, show-product.scss */
+.container-main .show-product .describe p {
+	padding: 15px;
+}
+/* line 153, show-product.scss */
+.container-main .show-product .describe .clip {
+	width: 80%;
+	margin: 0px auto;
+}
+
+/* line 161, show-product.scss */
+.same-product {
+	background-color: #f5f5f5;
+}
+
+/* line 165, show-product.scss */
+.container-same-product {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px 15px;
+	background-color: #fff;
+}
+/* line 171, show-product.scss */
+.container-same-product .hot-item {
+	width: 100%;
+}
+/* line 173, show-product.scss */
+.container-same-product .hot-item .title-section {
+	border-bottom: 2px solid #ececec;
+}
+/* line 175, show-product.scss */
+.container-same-product .hot-item .title-section img {
+	width: 190px;
+	height: 24px;
+}
+
+/* line 183, show-product.scss */
+.grid-view-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 5px 5px;
+	margin-top: 15px;
+}
+/* line 188, show-product.scss */
+.grid-view-item .item-represent {
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+/* line 194, show-product.scss */
+.grid-view-item .grid-item {
+	background-color: #cedef2;
+	text-align: left;
+	padding: 12px 16px;
+	padding-bottom: unset;
+	font-size: 30px;
+	border-radius: 5px;
+}
+/* line 202, show-product.scss */
+.grid-view-item .grid-item .thumbnail img {
+	width: 100%;
+	height: 150px;
+}
+/* line 207, show-product.scss */
+.grid-view-item .grid-item .info h5 {
+	font-weight: 300;
+	font-size: 16px;
+	height: 33px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	word-break: break-word;
+}
+/* line 211, show-product.scss */
+.grid-view-item .grid-item .info p {
+	font-weight: 600;
+	font-size: 22px;
+}
+/* line 216, show-product.scss */
+.grid-view-item .grid-item .more-pro {
+	text-align: right;
+}
+/* line 218, show-product.scss */
+.grid-view-item .grid-item .more-pro p {
+	color: #939393;
+	font-size: 14px;
+}
+
+/* line 226, show-product.scss */
+.check {
+	color: #f2cb05;
+}
+
+.img-magnifier-container {
+	position: relative;
+}
+
+.img-magnifier-glass {
+	position: absolute;
+	border: 1px solid #000;
+	cursor: zoom-in;
+	width: 100px;
+	height: 100px;
+}
+
+.container-more-info {
+	background-color: #fff;
+	overflow-y: scroll;
+	height: 338px;
+}
+/* ----- rating */
+
+.rating {
+	padding: 15px;
+}
+
+.rating .row {
+	margin: unset;
+	width: 700px;
+	padding-left: 15px;
+}
+
+.heading {
+	font-size: 25px;
+	margin-right: 25px;
+}
+
+.fa {
+	font-size: 25px;
+}
+
+.checked {
+	color: orange;
+}
+
+/* Three column layout */
+.side {
+	float: left;
+	width: 15%;
+	margin-top: 10px;
+}
+
+.middle {
+	margin-top: 10px;
+	float: left;
+	width: 70%;
+}
+
+/* Place text to the right */
+.right {
+	text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* The bar container */
+.bar-container {
+	width: 100%;
+	background-color: #f1f1f1;
+	text-align: center;
+	color: white;
+}
+
+/* Individual bars */
+.bar-5 {
+	width: 0%;
+	height: 18px;
+	background-color: #04aa6d;
+}
+.bar-4 {
+	width: 0%;
+	height: 18px;
+	background-color: #2196f3;
+}
+.bar-3 {
+	width: 0%;
+	height: 18px;
+	background-color: #00bcd4;
+}
+.bar-2 {
+	width: 0%;
+	height: 18px;
+	background-color: #ff9800;
+}
+.bar-1 {
+	width: 0%;
+	height: 18px;
+	background-color: #f44336;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+	.side,
+	.middle {
+		width: 100%;
+	}
+	.right {
+		display: none;
+	}
+}
+
+.price-pro::after {
+	content: "₫";
+}
+.container-rating {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.container-rating .average-rating {
+	line-height: 25px;
+	padding-left: 5px;
+	font-size: 16px;
+	border-left: 1px solid;
+}

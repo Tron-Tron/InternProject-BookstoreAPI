@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.4",
+    "fs": "0.0.1-security",
+    "sweetalert2": "^10.16.7"
+  },
+  "name": "seafoodtest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+  
+}

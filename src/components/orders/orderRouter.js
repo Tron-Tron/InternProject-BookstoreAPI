@@ -1,11 +1,11 @@
 import express from "express";
 import {
   getOrderStore,
-  completeStatusOrderUser,
   cancelOrder,
-  updateStatusOrderStore,
+  updateStatus,
   getUserOrder,
   confirmOrderStore,
+  getAllOrderStore,
 } from "./orderController.js";
 import orderValidate from "./orderValidate.js";
 import validateMiddleware from "../commons/validateMiddleware.js";
@@ -19,11 +19,6 @@ const routerUser = express.Router();
 router.use("/customer", routerUser);
 routerUser.use(jwtAuth, authorize("customer"));
 routerUser.get("/", getUserOrder);
-routerUser.patch(
-  "/:orderId",
-  validateMiddleware(orderValidate.paramOrder, "params"),
-  completeStatusOrderUser
-);
 routerUser.delete(
   "/:orderId",
   validateMiddleware(orderValidate.paramOrder, "params"),
@@ -32,11 +27,16 @@ routerUser.delete(
 
 router.use("/store", routerStore);
 routerStore.use(jwtAuth);
+routerStore.get(
+  "/all",
+  authorize("shipper", "manager", "officer"),
+  getAllOrderStore
+);
 routerStore.patch(
   "/:orderId",
-  authorize("shipper"),
+  authorize("shipper", "manager", "officer"),
   validateMiddleware(orderValidate.paramOrder, "params"),
-  updateStatusOrderStore
+  updateStatus
 );
 routerStore.patch(
   "/confirm/:orderId",
@@ -46,6 +46,7 @@ routerStore.patch(
 );
 routerStore.get(
   "/:orderId",
+  authorize("shipper", "manager", "officer"),
   validateMiddleware(orderValidate.paramOrder, "params"),
   getOrderStore
 );

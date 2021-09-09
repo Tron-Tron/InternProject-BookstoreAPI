@@ -57,7 +57,12 @@ const StaffSchema = new Schema(
 StaffSchema.virtual("normalizedAddress").get(function () {
   return `${this.address.text}, ${this.address.ward}, ${this.address.district}, ${this.address.province}`;
 });
-
+StaffSchema.virtual("account_detail", {
+  ref: "User",
+  localField: "email",
+  foreignField: "email",
+  justOne: true,
+});
 StaffSchema.pre("save", async function (next) {
   const loc = await geocoder.geocode(this.normalizedAddress);
   this.location = {

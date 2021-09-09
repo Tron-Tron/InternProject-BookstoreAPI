@@ -1,0 +1,113 @@
+.container-log {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f6f6f6; }
+  .container-log .left-container,
+  .container-log .right-container {
+    height: inherit;
+    flex: 1; }
+  .container-log .left-container {
+    width: 100%;
+    position: relative; }
+    .container-log .left-container .img-log {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: inherit; }
+      .container-log .left-container .img-log img {
+        width: inherit; }
+  .container-log .right-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .container-log .right-container .content-login .form-acc {
+      border-radius: 4px;
+      -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      margin: 0px auto;
+      width: 400px;
+      background: #fff; }
+      .container-log .right-container .content-login .form-acc form .img-logo {
+        display: flex;
+        height: 80px;
+        align-items: center;
+        justify-content: center; }
+      .container-log .right-container .content-login .form-acc form .item-form {
+        width: 100%;
+        padding: 10px 30px;
+        position: relative; }
+        .container-log .right-container .content-login .form-acc form .item-form h1 {
+          font-size: 24px;
+          font-weight: 500;
+          color: #000;
+          text-align: center;
+          font-weight: 600; }
+        .container-log .right-container .content-login .form-acc form .item-form input,
+        .container-log .right-container .content-login .form-acc form .item-form textarea {
+          width: 100%;
+          padding: 12px 10px;
+          padding-left: 40px;
+          display: inline-block;
+          border: none;
+          border-radius: 4px;
+          box-sizing: border-box;
+          cursor: text;
+          outline: none;
+          font-size: 16px;
+          font-weight: 400;
+          color: #495057;
+          background-color: #cccc;
+          background-clip: padding-box; }
+        .container-log .right-container .content-login .form-acc form .item-form .btn {
+          background-color: #30698c;
+          color: white;
+          height: 50px;
+          font-weight: 600;
+          font-size: 18px;
+          padding: 10px;
+          text-align: center;
+          display: block;
+          width: 100%;
+          border-radius: 4px; }
+        .container-log .right-container .content-login .form-acc form .item-form .error-input {
+          background-color: #f4bfbf !important; }
+        .container-log .right-container .content-login .form-acc form .item-form .btn:hover {
+          opacity: 0.8; }
+      .container-log .right-container .content-login .form-acc form .or {
+        display: flex;
+        align-items: center;
+        padding: 10px 0px; }
+        .container-log .right-container .content-login .form-acc form .or div {
+          height: 1px;
+          width: 100%;
+          background-color: #dbdbdb;
+          -webkit-box-flex: 1; }
+        .container-log .right-container .content-login .form-acc form .or span {
+          color: #ccc;
+          padding: 0 1rem;
+          text-transform: uppercase;
+          font-size: 14px; }
+      .container-log .right-container .content-login .form-acc form .sign-up-link {
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.26);
+        text-align: center; }
+        .container-log .right-container .content-login .form-acc form .sign-up-link p {
+          font-size: 14px; }
+          .container-log .right-container .content-login .form-acc form .sign-up-link p span {
+            color: darkblue;
+            font-weight: 600; }
+
+.item-form i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 42px; }
+
+.item-form .pass-icon {
+  left: unset;
+  right: 45px; }
+
+/*# sourceMappingURL=log-new.css.map */

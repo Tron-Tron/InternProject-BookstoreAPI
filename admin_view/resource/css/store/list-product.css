@@ -1,0 +1,260 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+.bnt-log {
+	position: absolute;
+	z-index: 999;
+	right: 15px;
+	top: 8px;
+}
+
+/* Main Start======================================================================================================= */
+.container-main {
+	background-color: #f2f2f2;
+	display: flex;
+	position: relative;
+}
+
+.container-main .adv {
+	position: absolute;
+	width: 73%;
+	right: 0;
+	top: 5px;
+}
+
+.cssmarquee {
+	background-image: linear-gradient(
+		to left,
+		violet,
+		indigo,
+		blue,
+		green,
+		yellow,
+		orange,
+		red
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.container-main .left-main {
+	margin: 30px;
+	margin-right: unset;
+	flex-basis: 22%;
+	background-color: #fff;
+}
+
+.title-left {
+}
+
+.title-left h2 {
+	font-size: 20px;
+	text-align: center;
+}
+
+.title-left h2::before {
+	content: "\f0b0";
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	color: #495057;
+	margin-right: 5px;
+}
+
+/* .menu-left-cover{
+
+} */
+
+.menu-left-cover .menu-left {
+	list-style-type: none;
+	padding: 0px 20px;
+}
+
+.menu-left-cover .menu-left li {
+	margin-bottom: 10px;
+}
+
+.container-main .right-main {
+	margin: 30px;
+	flex-basis: 78%;
+	background-color: #fff;
+}
+
+.container-right {
+	padding: 20px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 23% 23% 23% 23%;
+	gap: 20px;
+	justify-content: center;
+}
+
+.product-item {
+	/* background-color: #ece8e8; */
+	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%), 0 -2px 2px 0 rgb(0 0 0 / 4%);
+	transition: transform linear 0.1s;
+	border-radius: 5px;
+}
+
+.product-item:hover {
+	box-shadow: 0px 0px 8px 2px rgba(48, 105, 140, 0.76);
+	transition: 0.5s;
+}
+
+.img-product {
+	width: 100%;
+	height: 200px;
+}
+
+.img-product img {
+	width: inherit;
+	height: inherit;
+	object-fit: cover;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.info-product {
+	width: 100%;
+	padding: 0px 5px;
+	height: 95px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.info-product .name-product {
+	font-weight: 400;
+	margin: unset;
+	height: 34px;
+	font-size: 16px;
+}
+
+.info-product .price-product {
+	font-weight: 700;
+	font-size: 22px;
+	position: relative;
+}
+
+.info-product .price-product::after{
+	content: "đ";
+	text-decoration: underline;
+}
+
+.money{
+	display: flex;
+	justify-content: space-between;
+}
+
+.money .adv-pro {
+	align-self: center;
+}
+
+.money .adv-pro img {
+	width: 50px;
+}
+
+p {
+	margin: unset;
+}
+
+.specifications {
+	display: flex;
+	justify-content: space-between;
+	color: rgba(0, 0, 0, 0.65);
+}
+
+
+
+.specifications .about-pro {
+	text-align: right;
+	padding-right: 3px;
+}
+
+.specifications .about-pro .distributor{
+	width: 150px;
+	display: block;
+	word-break: break-word;
+}
+
+.filler {
+	padding: 10px 20px;
+}
+
+/* .info-product .price-product::after {
+  content: "\f164";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ff424e;
+  position: absolute;
+  top: 0;
+  right: 5px;
+} */
+
+.error-list {
+	text-align: center;
+}
+
+.error-list label {
+	display: none;
+	font-size: 25px;
+	border-bottom: 2px solid #bfbbbb;
+	color: #bfbbbb;
+}
+/* Main End======================================================================================================= */
+
+/* line 2, custom-left.scss */
+.menu-left li {
+	border: 1px solid #6ca6d9;
+}
+/* line 4, custom-left.scss */
+.menu-left li button {
+	width: 100%;
+	background: #6ca6d9;
+	text-align: left;
+	padding: 15px;
+	padding-left: 10px;
+	font-size: 14px;
+	font-weight: 500;
+	position: relative;
+	color: #fff;
+}
+/* line 15, custom-left.scss */
+.menu-left li button:after {
+	content: "\f078";
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	color: #fff;
+	position: absolute;
+	right: 15px;
+}
+/* line 27, custom-left.scss */
+.menu-left li .catalog-sub {
+	padding: 0px 20px;
+}
+/* line 29, custom-left.scss */
+.menu-left li .catalog-sub li {
+	border: none;
+	margin: unset;
+	padding: unset;
+	padding: 15px;
+}
+/* line 34, custom-left.scss */
+.menu-left li .catalog-sub li a {
+	font-size: 14px;
+}

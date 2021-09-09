@@ -1,0 +1,190 @@
+/* line 1, add-employee.scss */
+* {
+  font-family: "Roboto", sans-serif; }
+
+/* line 6, add-employee.scss */
+header .container-header {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09); }
+  /* line 9, add-employee.scss */
+  header .container-header .wrap-page {
+    max-width: 1200px;
+    margin: 0px auto;
+    height: 100px;
+    display: flex;
+    justify-content: space-between; }
+    /* line 15, add-employee.scss */
+    header .container-header .wrap-page .cart-logo {
+      display: flex;
+      align-items: center;
+      height: inherit; }
+      /* line 19, add-employee.scss */
+      header .container-header .wrap-page .cart-logo img {
+        width: initial; }
+      /* line 22, add-employee.scss */
+      header .container-header .wrap-page .cart-logo .vl {
+        border-left: 3px solid #1664af;
+        height: 80%;
+        border-radius: 15px; }
+      /* line 27, add-employee.scss */
+      header .container-header .wrap-page .cart-logo .fa-chevron-right {
+        padding: 0px 8px;
+        color: #1664af; }
+      /* line 32, add-employee.scss */
+      header .container-header .wrap-page .cart-logo a h5 {
+        font-size: 20px;
+        font-weight: 400;
+        color: #1664af;
+        padding-left: 5px; }
+      /* line 39, add-employee.scss */
+      header .container-header .wrap-page .cart-logo #curren-tab {
+        font-size: 20px;
+        font-weight: 400;
+        color: #1664af;
+        text-decoration: underline; }
+    /* line 46, add-employee.scss */
+    header .container-header .wrap-page .account-manager {
+      align-self: center; }
+
+/* line 53, add-employee.scss */
+main {
+  width: 100%;
+  background-color: #f6f6f6; }
+  /* line 57, add-employee.scss */
+  main .container-add-employee {
+    width: 80%;
+    padding: 30px;
+    margin: 0px auto; }
+    /* line 61, add-employee.scss */
+    main .container-add-employee .img-information,
+    main .container-add-employee .basic-information {
+      background-color: #fff;
+      margin-top: 15px; }
+    /* line 66, add-employee.scss */
+    main .container-add-employee .basic-information,
+    main .container-add-employee .account-information {
+      background-color: #fff; }
+
+/* line 73, add-employee.scss */
+.element {
+  padding: 10px 10px; }
+  /* line 74, add-employee.scss */
+  .element h5 {
+    font-size: 18px;
+    font-weight: 600; }
+  /* line 79, add-employee.scss */
+  .element #address-label {
+    vertical-align: top; }
+  /* line 82, add-employee.scss */
+  .element input:not(input[type="radio"]):focus {
+    border-color: rgba(0, 0, 0, 0.54); }
+  /* line 85, add-employee.scss */
+  .element .selected-category,
+  .element label {
+    display: inline-block;
+    width: 220px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 16px;
+    font-weight: 500; }
+  /* line 94, add-employee.scss */
+  .element label::before {
+    content: "*";
+    color: red; }
+  /* line 98, add-employee.scss */
+  .element #lb-add {
+    vertical-align: top; }
+  /* line 101, add-employee.scss */
+  .element .selected-category {
+    width: unset;
+    padding: 15px 63px; }
+    /* line 104, add-employee.scss */
+    .element .selected-category #choose-category {
+      color: #1664af; }
+  /* line 108, add-employee.scss */
+  .element button {
+    padding: 10px;
+    border: 1px solid #2f8dd2;
+    background-color: #2f8ed21a;
+    color: #2f8dd2;
+    border-radius: 4px;
+    font-size: 16px; }
+  /* line 116, add-employee.scss */
+  .element button:hover {
+    background-color: #2f8dd2;
+    color: #fff;
+    cursor: pointer; }
+  /* line 121, add-employee.scss */
+  .element button:active {
+    transform: scale(1.2); }
+  /* line 125, add-employee.scss */
+  .element input:not(input[type="radio"], input[type="file"]),
+  .element textarea {
+    width: 70%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: text;
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+  /* line 144, add-employee.scss */
+  .element .error-input {
+    border: 1px solid red !important;
+    background-color: #ffb1b1 !important; }
+
+/* line 150, add-employee.scss */
+.bnt-container {
+  margin-top: 15px;
+  text-align: right; }
+  /* line 153, add-employee.scss */
+  .bnt-container button {
+    padding: 10px 30px;
+    border: 1px solid #2f8dd2;
+    font-size: 15px;
+    color: #2f8dd2;
+    border-radius: 4px; }
+  /* line 160, add-employee.scss */
+  .bnt-container button:last-child {
+    background-color: #2f8dd2;
+    color: #fff;
+    margin-left: 10px; }
+
+/* line 167, add-employee.scss */
+.wrapper {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  border: 5px blue;
+  border-style: dashed;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 100px auto;
+  z-index: 1; }
+  /* line 177, add-employee.scss */
+  .wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+  /* line 182, add-employee.scss */
+  .wrapper .file-upload {
+    position: absolute;
+    bottom: 0px;
+    outline: none;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.5s;
+    z-index: 2;
+    display: block; }
+  /* line 195, add-employee.scss */
+  .wrapper .file-upload::-webkit-file-upload-button {
+    visibility: hidden; }

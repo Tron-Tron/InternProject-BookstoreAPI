@@ -18,9 +18,13 @@ const CategorySchema = new Schema(
       required: [true, "Store is required"],
     },
   },
-  {
-    timestamps: true,
-  }
+  { toJSON: { virtuals: true }, timestamps: true }
 );
+CategorySchema.virtual("store_detail", {
+  ref: "Store",
+  localField: "store",
+  foreignField: "_id",
+  justOne: true,
+});
 const Category = mongoose.model("Category", CategorySchema);
 export default Category;

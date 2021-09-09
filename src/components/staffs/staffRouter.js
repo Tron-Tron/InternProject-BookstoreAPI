@@ -9,14 +9,25 @@ import {
   registerStaff,
   updateProfileStaff,
   getProfile,
+  getStaffById,
+  updateStaffById,
   getAllStaffStore,
   deleteStaff,
 } from "./staffController.js";
 const router = express.Router();
-router.use(jwtAuth, authorize("manager"));
+router.use(jwtAuth);
 router.post(
   "/",
+  authorize("manager"),
   validateMiddleware(staffValidate.registerStaff, "body"),
   registerStaff
 );
+router.get(
+  "/all",
+  authorize("manager", "shipper", "officer"),
+  getAllStaffStore
+);
+router.get("/:staffId", authorize("manager"), getStaffById);
+router.patch("/:staffId", authorize("manager"), updateStaffById);
+router.delete("/:staffId", authorize("manager"), deleteStaff);
 export default router;

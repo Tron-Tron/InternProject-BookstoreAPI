@@ -72,8 +72,8 @@ export const getAllCategoriesSystem = asyncMiddleware(
       {
         status: "active",
       },
-      "name",
       null,
+      "store_detail",
       page,
       perPage
     );

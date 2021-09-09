@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Trang quản lý</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- FONT -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+		rel="stylesheet" />
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="../../resource/css/reset.css" />
+	<link rel="stylesheet" href="../../resource/css/admin/admin-start.css" />
+	<style>
+		.wrapper {
+			height: 200px;
+			width: 200px;
+			position: relative;
+			border: 5px blue;
+			border-style: dashed;
+			border-radius: 5px;
+			overflow: hidden;
+			margin: 100px auto;
+			z-index: 1;
+		}
+
+		.blog-N-product {
+			margin: 25px auto;
+		}
+
+		.wrapper img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.file-upload {
+			position: absolute;
+			bottom: 0px;
+			outline: none;
+			color: transparent;
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			cursor: pointer;
+			transition: 0.5s;
+			z-index: 2;
+			display: block;
+		}
+
+		.popover {
+			width: fit-content;
+		}
+
+		.file-upload::-webkit-file-upload-button {
+			visibility: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<div class="container-main">
+			<div class="left-main">
+				<div class="title-admin">
+					<div class="cart-logo">
+						<img src="../../resource/imgs/186489783_883092072241414_7715830012138423725_n.png" alt="" />
+					</div>
+				</div>
+				<div id="account">
+					<p id="account-email"></p>
+					<button id="changePass_btn_modal" type="button" data-toggle="modal" data-target="#changePassModal">
+						<i class="fas fa-sync-alt"></i>
+					</button>
+					<button id="logout_btn">
+						<i class="fas fa-power-off"></i>
+					</button>
+				</div>
+				<script>
+					//let test = JSON.parse(localStorage.getItem("user"));
+					const jwtData = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]));
+					let email_account = document.getElementById("account-email");
+					email_account.innerText = jwtData.email;
+				</script>
+				<ul class="nav nav-pills nav-stacked">
+					<li>
+						<button class="dropdown-btn">
+							<i class="far fa-file-alt circle-icon"></i> Quản Lý Đơn Mua<i
+								class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a data-toggle="pill" href="#list-order">Tất cả đơn mua</a>
+						</div>
+					</li>
+					<li>
+						<button class="dropdown-btn">
+							<i class="fas fa-window-restore"></i> Quản Lý Loại Sản Phẩm<i
+								class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a data-toggle="pill" href="#list-category">Loại sản phẩm</a>
+						</div>
+					</li>
+					<li>
+						<button class="dropdown-btn">
+							<i class="fas fa-shopping-bag"></i> Quản Lý Sản Phẩm<i class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a class="active" data-toggle="pill" href="#list-product">Tất cả sản phẩm</a>
+							<a href="../admin/add-product.html">Thêm sản phẩm</a>
+						</div>
+					</li>
+					<!-- <li>
+						<button class="dropdown-btn">
+							<i class="fas fa-wallet"></i> Thống Kê<i class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a data-toggle="pill" href="#revenue">Doanh Thu</a>
+							<a data-toggle="pill" href="#to-do-list">Thông báo</a>
+						</div>
+					</li> -->
+					<!-- <li>
+						<button class="dropdown-btn">
+							<i class="fas fa-users"></i> Quản Lý Khách Hàng<i class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a data-toggle="pill" href="#list-customer">Tất cả khách hàng</a>
+							<a href="#">Mua hàng giúp khách</a>
+						</div>
+					</li> -->
+					<li>
+						<button class="dropdown-btn">
+							<i class="fas fa-id-card-alt"></i> Quản Lý Nhân Viên<i class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a data-toggle="pill" href="#list-employees">Tất cả nhân viên</a>
+							<a href="add-employee.html">Thêm nhân viên</a>
+						</div>
+					</li>
+					<!-- <li>
+						<button class="dropdown-btn">
+							<i class="fas fa-tag"></i> Khác<i class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a data-toggle="pill" href="#list-slide">Tất cả slide</a>
+							<a data-toggle="pill" href="#list-blog">Tất cả blog</a>
+							<a href="../admin/add-blog.html">Thêm blog</a>
+						</div>
+					</li> -->
+					<!-- <li>
+						<button class="dropdown-btn">
+							<i class="fas fa-comments"></i> Chăm sóc khách hàng<i class="fas fa-angle-down icon"></i>
+						</button>
+						<div class="dropdown-container">
+							<a href="https://app.purechat.com/getting-started" target="_blank">Quản lí chat</a>
+						</div>
+					</li> -->
+				</ul>
+			</div>
+
+			<!-- Modal -->
+			<div id="changePassModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Đổi Mật Khẩu</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="">Mật Khẩu Cũ</label>
+								<input type="password" name="current-password" id="current-password"
+									class="form-control" placeholder="Mật Khẩu Cũ" />
+							</div>
+							<div class="form-group">
+								<label for="">Mật Khẩu Mới</label>
+								<input type="password" name="new-password" id="new-password" class="form-control"
+									placeholder="Mật Khẩu Mới" />
+							</div>
+							<div class="form-group">
+								<label for="">Xác Nhận Mật Khẩu</label>
+								<input type="password" name="re-password" id="re-password" class="form-control"
+									placeholder="Xác Nhận Mật Khẩu" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" id="changePass_btn">Đổi Mật Khẩu</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-main tab-content">
+				<section class="site-cus tab-pane fade in" id="to-do-list">
+					<div class="container-TD-list">
+						<div class="title">
+							<h5>Thống Kê Dữ Liệu Cửa Hàng</h5>
+						</div>
+						<div class="grid-list" id="main_todoList">
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Chờ xác nhận</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Đã xử lý</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Đơn Hủy</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+							<div class="element-nofi">
+								<span>0</span>
+								<p>Sản phẩm hết hàng</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="revenue">
+					<div id="contain-revenue">
+						<div class="title">
+							<h5>Tổng quan</h5>
+						</div>
+						<div class="container-pay">
+							<div class="will-pay">
+								<div class="title">
+									<h5>Sẽ thanh toán</h5>
+								</div>
+								<div class="valua">
+									<span>Tổng cộng</span> <span class="price-product">0đ</span>
+								</div>
+							</div>
+							<div class="paid">
+								<div class="title">
+									<h5>Đã thanh toán</h5>
+								</div>
+								<div class="valua">
+									<div class="date"><span>Hôm nay</span><span class="price-product">0đ</span></div>
+									<div class="week"><span>Tuần này</span><span class="price-product">0đ</span></div>
+									<div class="month">
+										<span>Tháng này</span><span class="price-product">0đ</span>
+									</div>
+									<div class="all"><span>Tổng cộng</span><span class="price-product">0đ</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="chart_div"></div>
+					<div id="chart_div_year"></div>
+				</section>
+				<section class="site-cus tab-pane fade active" id="list-order">
+					<div class="container-list-order">
+						<div class="title-site">
+							<h3>Danh Sách Hóa Đơn</h3>
+						</div>
+						<div class="container-btn-manager">
+							<ul id="order-bnt-manager">
+								<li class="element-LO-btn active-bnt-manager" onclick="filterOrder(0)">
+									<p>Tất cả</p>
+								</li>
+								<li class="element-LO-btn" onclick="filterOrder(1)">
+									<p>Chờ xác nhận</p>
+								</li>
+								<li class="element-LO-btn" onclick="filterOrder(2)">
+									<p>Đã xác nhận</p>
+								</li>
+								<li class="element-LO-btn" onclick="filterOrder(3)">
+									<p>Đang giao</p>
+								</li>
+								<li class="element-LO-btn" onclick="filterOrder(4)">
+									<p>Đã giao</p>
+								</li>
+								<li class="element-LO-btn" onclick="filterOrder(5)">
+									<p>Đã hủy</p>
+								</li>
+							</ul>
+						</div>
+						<script>
+							function filterOrder(params) {
+								const all_ord = "All"; //0
+								const wait_ord = "Chờ xác nhận"; //1
+								const confirmed_ord = "Đã xác nhận"; //2
+								const delivering_ord = "Đang giao";//3
+								const success_ord = "Đã giao"; //4
+								const cancel_ord = "Đã Hủy"; //5
+
+								let filter;
+								if (params === 1) {
+									filter = wait_ord;
+								} else if (params === 2) {
+									filter = confirmed_ord;
+								} else if (params === 3) {
+									filter = delivering_ord;
+								}
+								else if (params === 4) {
+									filter = success_ord;
+								} else if (params === 5) {
+									filter = cancel_ord;
+								}
+
+								const col_search = 4; // cột trạng thái
+								let TBorder = document.getElementById("TBlist-order");
+								tr = TBorder.getElementsByTagName("tr");
+								if (params == 0) {
+									for (let i = 0; i < tr.length; i++) {
+										td = tr[i].getElementsByTagName("td")[col_search];
+										tr[i].style.display = "";
+									}
+								} else {
+									for (let i = 0; i < tr.length; i++) {
+										td = tr[i].getElementsByTagName("td")[col_search];
+
+										if (td) {
+											txtValue = td.textContent || td.innerText;
+											txtValue = txtValue.trim();
+											if (txtValue.indexOf(filter) > -1) {
+												tr[i].style.display = "";
+											} else {
+												tr[i].style.display = "none";
+											}
+										}
+									}
+								}
+							}
+
+							// Add active class to the current button (highlight it)
+							var btnContainer = document.getElementById("order-bnt-manager");
+							var btns =
+								btnContainer.getElementsByClassName("element-LO-btn");
+							for (var i = 0; i < btns.length; i++) {
+								btns[i].addEventListener("click", function () {
+									var current =
+										document.getElementsByClassName("active-bnt-manager");
+									current[0].className = current[0].className.replace(
+										" active-bnt-manager",
+										""
+									);
+									this.className += " active-bnt-manager";
+								});
+							}
+						</script>
+						<div class="container-table">
+							<table class="
+										table table-bordered table-hover table-striped
+										custom-table
+									">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Tổng tiền</th>
+										<th>Phí Ship</th>
+										<th>Ngày Đặt</th>
+										<th>Trạng Thái</th>
+										<th>Địa Chỉ</th>
+										<th>Ghi chú</th>
+										<th>Chi tiết đơn</th>
+										<th>Khách Hàng</th>
+										<th>Thao tác</th>
+									</tr>
+								</thead>
+								<tbody id="TBlist-order"></tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Chi tiết đơn hàng -->
+					<div class="modal fade" id="detail-order" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLongTitle">
+										Chi tiết đơn hàng
+									</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="container-detail" id="detailOrder">
+										<div class="row-detail">
+											<div class="contain-img">
+												<img src="../../../resource/imgs/products/cuabien1.jpg" alt="" />
+											</div>
+											<p>Cua biển siu to khổng lồ2</p>
+											<span>x52</span>
+										</div>
+										<div class="row-detail">
+											<div class="contain-img">
+												<img src="../../../resource/imgs/products/cuabien1.jpg" alt="" />
+											</div>
+											<p>Cua biển siu to khổng lồ2</p>
+											<span>x52</span>
+										</div>
+										<div class="row-detail">
+											<div class="contain-img">
+												<img src="../../../resource/imgs/products/cuabien1.jpg" alt="" />
+											</div>
+											<p>Cua biển siu to khổng lồ</p>
+											<span>x52</span>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">
+										Đóng
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Chi tiết khách hàng -->
+					<div id="detail-customer" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										&times;
+									</button>
+									<h4 class="modal-title">Thông Tin Khách Hàng</h4>
+								</div>
+
+								<div class="modal-body" id="detailCustomer"></div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Close
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Edit - order -->
+					<div id="edit-order" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										&times;
+									</button>
+									<h4 class="modal-title">Chỉnh Sửa Hóa Đơn</h4>
+								</div>
+
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="SL-status-ord">Trạng thái đơn hàng:</label>
+										<select name="" id="SL-status-ord" class="form-control">
+											<option value="picked" selected="selected">
+												Xác nhận đơn hàng
+											</option>
+											<option value="canceled">Hủy Đơn Hàng</option>
+										</select>
+										<select name="" id="SL-status-ord-shipper" class="form-control hidden">
+											<option value="delivering" selected="selected">
+												Đang giao
+											</option>
+											<option value="delivered" selected="selected">
+												Giao hàng thành công
+											</option>
+										</select>
+									</div>
+								</div>
+								<script>
+									const role = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1])).roles;
+									if (role === "shipper") {
+										document.getElementById("SL-status-ord").classList.add("hidden");
+										document.getElementById("SL-status-ord-shipper").classList.remove("hidden");
+									}
+									//let test = JSON.parse(localStorage.getItem("user"));
+
+								</script>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="btn-edit-order">
+										Cập Nhật
+									</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Đóng
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="list-product">
+					<div class="container-list-product">
+						<div class="title-site">
+							<h3>Danh Sách Mặt Hàng</h3>
+						</div>
+						<div class="container-input">
+							<ul id="product-bnt-manager">
+								<li class="element-PO-btn active-bnt-product" onclick="filterProduct(0)">
+									<p>Tất cả</p>
+								</li>
+								<li class="element-PO-btn" onclick="filterProduct(1)">
+									<p>Còn Hàng</p>
+								</li>
+								<li class="element-PO-btn" onclick="filterProduct(2)">
+									<p>Hết Hàng</p>
+								</li>
+								<li class="element-PO-btn" onclick="filterProduct(3)">
+									<p>Đã Xóa</p>
+								</li>
+							</ul>
+
+							<script>
+								function filterProduct(params) {
+									const all_pro = "All"; //0
+									const onstock_pro = "Còn Hàng"; //1
+									const end_pro = "Hết Hàng"; //2
+									const cancel_pro = "Đã Xóa"; //3
+
+									let col_search; // cột trạng thái
+
+									let TBorder = document.getElementById("tblDanhSachSanPham");
+									tr = TBorder.getElementsByTagName("tr");
+									if (params == 0) {
+										for (let i = 0; i < tr.length; i++) {
+											// td = tr[i].getElementsByTagName("td")[col_search];
+											tr[i].style.display = "";
+										}
+									} else if (params == 3) {
+										col_search = 9;
+										for (let i = 0; i < tr.length; i++) {
+											td = tr[i].getElementsByTagName("td")[col_search];
+											btn = td.getElementsByTagName("button").length;
+											if (btn == 1) {
+												tr[i].style.display = "";
+												console.log(tr[i]);
+											} else {
+												tr[i].style.display = "none";
+											}
+										}
+									} else if (params == 1) {
+										col_search = 4;
+										for (let i = 0; i < tr.length; i++) {
+											td = tr[i].getElementsByTagName("td")[col_search];
+
+											if (td) {
+												txtValue = td.textContent || td.innerText;
+												txtValue = parseInt(txtValue.trim());
+												if (txtValue > 0) {
+													tr[i].style.display = "";
+												} else {
+													tr[i].style.display = "none";
+												}
+											}
+										}
+									} else if (params == 2) {
+										col_search = 4;
+										for (let i = 0; i < tr.length; i++) {
+											td = tr[i].getElementsByTagName("td")[col_search];
+
+											if (td) {
+												txtValue = td.textContent || td.innerText;
+												txtValue = parseInt(txtValue.trim());
+												if (txtValue == 0) {
+													tr[i].style.display = "";
+												} else {
+													tr[i].style.display = "none";
+												}
+											}
+										}
+									}
+								}
+
+								// Add active class to the current button (highlight it)
+								var btnContainer = document.getElementById(
+									"product-bnt-manager"
+								);
+								var btns =
+									btnContainer.getElementsByClassName("element-PO-btn");
+								for (var i = 0; i < btns.length; i++) {
+									btns[i].addEventListener("click", function () {
+										console.log(i);
+										var current =
+											document.getElementsByClassName("active-bnt-product");
+										current[0].className = current[0].className.replace(
+											"active-bnt-product",
+											""
+										);
+										this.className += " active-bnt-product";
+									});
+								}
+							</script>
+
+							<div>
+								<input type="text" id="myInput" onkeyup="search_for()" placeholder="Tìm Kiếm Theo"
+									class="form-control" />
+								<select name="" id="value-search" class="form-control">
+									<option value="0">ID</option>
+									<option value="1">Tên Sản Phẩm</option>
+									<option value="2">Giá</option>
+									<option value="4">Tồn Kho</option>
+									<option value="6">Nổi Bật</option>
+									<option value="8">Lượt xem</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="container-table">
+							<table class="table table-bordered table-hover table-striped" id="table-product">
+								<thead>
+									<tr>
+										<th onclick="sortTable(0)">
+											<p class="content-head">ID</p>
+										</th>
+										<th onclick="sortTable(1)">
+											<p class="content-head">Tên Sản Phẩm</p>
+										</th>
+										<th onclick="sortTable(2)">
+											<p class="content-head">Giá</p>
+										</th>
+										<th>
+											<p class="content-head">Ngày nhập</p>
+										</th>
+										<th onclick="sortTable(4)">
+											<p class="content-head">Tồn Kho</p>
+										</th>
+										<th>Mô tả</th>
+										<th onclick="sortTable(6)">
+											<p class="content-head">Nổi bật</p>
+										</th>
+										<th>
+											<p class="content-head">NSX</p>
+										</th>
+										<th onclick="sortTable(8)">
+											<p class="content-head">Lượt xem</p>
+										</th>
+										<th>Thao tác</th>
+									</tr>
+								</thead>
+								<tbody id="tblDanhSachSanPham"></tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Modal -->
+					<div id="edit-product" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										&times;
+									</button>
+									<h4 class="modal-title">Chỉnh sửa sản phẩm</h4>
+								</div>
+								<div class="modal-body" style="height: 450px; overflow-y: scroll">
+									<div class="form-group">
+										<label>Tên sản phẩm</label>
+										<input id="name-productE" class="form-control" placeholder="Nhập vào mô tả"
+											disabled />
+									</div>
+									<div class="form-group">
+										<label>Giá</label>
+										<input id="price-productE" class="form-control" placeholder="Nhập vào mô tả" />
+									</div>
+									<div class="form-group">
+										<label>Mô tả</label>
+										<textarea class="form-control" rows="5" id="description-productE"></textarea>
+									</div>
+									<div class="form-group">
+										<label>Tồn Kho</label>
+										<input id="unit-productE" class="form-control" placeholder="Nhập vào mô tả" />
+									</div>
+									<div class="form-group">
+										<label>Nổi bật</label>
+										<label class="radio-inline"><input type="radio" name="adv-product" value="1"
+												id="remark-true" />Có</label>
+										<label class="radio-inline"><input type="radio" name="adv-product" value="0"
+												id="remark-false" />Không</label>
+									</div>
+									<div class="form-group">
+										<label>NSX</label>
+										<input id="distributor-productE" class="form-control"
+											placeholder="Nhập vào mô tả" />
+									</div>
+									<div class="form-group">
+										<label>Hình ảnh</label>
+										<!-- <input
+												id="image-productE"
+												type="file"
+												class="form-control"
+												placeholder="Nhập vào mô tả"
+											/> -->
+
+										<div class="wrapper blog-N-product">
+											<img src="../../../resource/imgs/image+photo+upload+photo+icon-1320166594426292180.png"
+												alt="" id="upload-img-product" />
+											<input id="image-productE" type="file" class="file-upload" />
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal" id="btn-smEdit">
+										Thay đổi
+									</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Đóng
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="list-blog">
+					<!-- Sửa blog -->
+					<div id="edit-blog" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										&times;
+									</button>
+									<h4 class="modal-title">Chỉnh Sửa Blog</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="">Tiêu đề</label>
+										<input type="text" name="title-blog" id="title-blog" class="form-control"
+											placeholder="Tiêu đề" maxlength="60" aria-describedby="" />
+										<small id="count-name" class="text-muted">0/60</small>
+									</div>
+
+									<div class="form-group">
+										<label for="">Tiêu đề</label>
+										<textarea type="text" name="content-blog" id="content-blog" rows="10"
+											maxlength="3000" class="form-control" placeholder="Tiêu đề"
+											aria-describedby=""></textarea>
+										<span id="count-content">0/3000</span>
+									</div>
+
+									<div class="form-group">
+										<label class="">Hình ảnh:</label>
+
+										<div class="wrapper blog-N-product">
+											<img src="../../../resource/imgs/image+photo+upload+photo+icon-1320166594426292180.png"
+												alt="" id="upload-img-blog" />
+											<input type="file" class="file-upload" id="fileupload-blog" />
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-success" id="btn-edit-blog">
+										Chỉnh sửa Blog
+									</button>
+
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Đóng
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container-list-blog">
+						<div class="title-site">
+							<h3>Danh Sách Bài Viết</h3>
+						</div>
+						<div class="container-table">
+							<table class="
+										table table-bordered table-hover table-striped
+										custom-table
+									">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Tiêu đề</th>
+										<th>Nội dung</th>
+										<th>Ngày</th>
+										<th>Hình ảnh</th>
+										<th>Thao tác</th>
+									</tr>
+								</thead>
+								<tbody id="TB-list-blog"></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="list-slide">
+					<div class="container-list-order">
+						<div class="title-site">
+							<h3>Danh Sách Slide</h3>
+						</div>
+						<div class="container-add">
+							<!-- Trigger the modal with a button -->
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#add-slide">
+								<i class="fas fa-plus-circle"></i>
+								Thêm mới
+							</button>
+							<button data-toggle="collapse" data-target="#manual-slider" class="btn">
+								<i class="fas fa-info-circle more"></i>
+							</button>
+							<!-- Hướng dẫn sử dụng -->
+							<div id="manual-slider" class="collapse">
+								<ol start="1">
+									<li>
+										1. Thêm phần tử: Ấn (Thêm Mới) -> Kéo thả hoặc upload file
+										ảnh vào khung có sẵn -> Ấn (Thêm Slide)
+									</li>
+									<li>2. Xóa phần tử: Ấn (Xóa) -> Xác Nhận</li>
+									<li>
+										3. Chỉnh sửa phần tử: Ấn (Sửa) -> Kéo thả hoặc upload file
+										ảnh vào khung có sẵn -> Ấn (Chỉnh Slide)
+									</li>
+								</ol>
+							</div>
+							<!-- Thêm, sửa silder -->
+							<div id="add-slide" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">
+												&times;
+											</button>
+											<h4 class="modal-title" id="modal-slide">
+												Thêm Slide Mới
+											</h4>
+										</div>
+										<div class="modal-body">
+											<form class="form-horizontal" enctype="multipart/form-data">
+												<div class="form-group">
+													<label class="control-label col-sm-2">Hình ảnh:</label>
+
+													<div class="wrapper">
+														<img src="../../../resource/imgs/image+photo+upload+photo+icon-1320166594426292180.png"
+															alt="" id="upload-img-slide" />
+														<input type="file" class="file-upload" id="fileupload-slide" />
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-success hidden" id="btn-edit-slide">
+												Chỉnh sửa Slide
+											</button>
+											<button class="btn btn-success" id="bnt-add-slide">
+												Thêm Slide
+											</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">
+												Đóng
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="container-table-slide" id="list-slider"></div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="list-category">
+					<div class="container-list-category">
+						<div class="title-category">
+							<h3>Danh Sách Loại Sản Phẩm</h3>
+						</div>
+						<div class="container-add">
+							<!-- Trigger the modal with a button -->
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#add-category"
+								id="btnThemLoaiSanPham">
+								<i class="fas fa-plus-circle"></i>
+								Thêm mới
+							</button>
+							<button data-toggle="collapse" data-target="#manual-categoryr" class="btn">
+								<i class="fas fa-info-circle more"></i>
+							</button>
+							<!-- Hướng dẫn sử dụng -->
+							<div id="manual-categoryr" class="collapse">
+								<ol start="1">
+									<li>
+										1. Thêm phần tử: Ấn (Thêm Mới) -> Kéo thả hoặc upload file
+										ảnh vào khung có sẵn -> Ấn (Thêm category)
+									</li>
+									<li>2. Xóa phần tử: Ấn (Xóa) -> Xác Nhận</li>
+									<li>
+										3. Chỉnh sửa phần tử: Ấn (Sửa) -> Kéo thả hoặc upload file
+										ảnh vào khung có sẵn -> Ấn (Chỉnh category)
+									</li>
+								</ol>
+							</div>
+							<!-- Thêm, sửa category -->
+							<div id="add-category" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">
+												&times;
+											</button>
+											<h4 class="modal-title" id="modal-category">
+												Thêm Loại Sản Phẩm Mới
+											</h4>
+											<h4 class="modal-title hidden" id="modal-edit-category">
+												Chỉnh sửa loại sách
+											</h4>
+										</div>
+										<div class="modal-body">
+
+											<div class="form-group">
+												<label>Name:</label>
+												<input type="text" class="form-control" id="name-category">
+											</div>
+											<!-- <div class="form-group" id="contain-category-AE">
+												<label for="list-category-AE">Loại sản phẩm cha:</label>
+												<select class="form-control" id="list-category-AE">
+
+												</select>
+											</div> -->
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-success hidden" id="btn-edit-category">
+												Chỉnh Sửa Loại Sản Phẩm
+											</button>
+											<button class="btn btn-success" id="bnt-add-category">
+												Thêm Loại Sản Phẩm
+											</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">
+												Đóng
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="container-table-category">
+							<ul id="TBlist-category">
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="list-customer">
+					<div class="container-list-customer">
+						<div class="title-site">
+							<h3>Danh Sách Khách Hàng</h3>
+						</div>
+						<div class="container-table">
+							<table class="
+										table table-bordered table-hover table-striped
+										custom-table
+									">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Tên Khách Hàng</th>
+										<th>Địa Chỉ</th>
+										<th>SDT</th>
+										<th>Hình Ảnh</th>
+										<th>Email</th>
+										<th>Thao Tác</th>
+									</tr>
+								</thead>
+								<tbody id="TB-list-customer"></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section class="site-cus tab-pane fade" id="list-employees">
+					<div class="container-list-employees">
+						<div class="title-site">
+							<h3>Danh Sách Nhân Viên</h3>
+						</div>
+						<div class="container-table-employees" id="TB-list-employees"></div>
+
+						<!-- Modal -->
+						<div id="edit-emloyees" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											&times;
+										</button>
+										<h4 class="modal-title">Sửa Thông Tin Nhân Viên</h4>
+									</div>
+									<div class="modal-body" style="height: 450px; overflow-y: scroll">
+										<div class="form-group">
+											<label>Email</label>
+											<input id="email-employeeE" class="form-control"
+												placeholder="Nhập vào mô tả" disabled />
+										</div>
+										<div class="form-group">
+											<label>Tên Nhân Viên: </label>
+											<input id="name-employeeE" class="form-control"
+												placeholder="Nhập vào mô tả" />
+										</div>
+										<!-- <div class="form-group">
+											<label>SDT: </label>
+											<input class="form-control" id="phone-employeeE"
+												placeholder="Nhập vào mô tả" />
+										</div> -->
+										<div class="form-group">
+											<label>Địa Chỉ: </label><br>
+											<label>Tỉnh: </label>
+											<textarea id="province-employeeE" class="form-control"
+												placeholder="Nhập vào tỉnh"></textarea><br>
+											<label>Quận/huyện: </label>
+											<textarea id="district-employeeE" class="form-control"
+												placeholder="Nhập vào quận/huyện"></textarea><br>
+											<label>Phường/xã: </label>
+											<textarea id="ward-employeeE" class="form-control"
+												placeholder="Nhập vào phường/xã"></textarea><br>
+											<label>Đường: </label>
+											<textarea id="text-employeeE" class="form-control"
+												placeholder="Nhập vào địa chỉ cụ thể"></textarea><br>
+										</div>
+										<div class="form-group">
+											<!-- <label>Hình ảnh</label>
+											<div class="wrapper blog-N-product">
+												<img src="../../../resource/imgs/image+photo+upload+photo+icon-1320166594426292180.png"
+													alt="" id="upload-img-employeeE" />
+												<input id="image-employeeE" type="file" class="file-upload" />
+											</div> -->
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success" data-dismiss="modal"
+												id="btn-employeeEdit">
+												Thay đổi
+											</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">
+												Close
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</section>
+			</div>
+		</div>
+	</main>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<script src="../../src/components/category/categoryModel.js"></script>
+	<script src="../../src/components/category/categoryService.js"></script>
+	<script src="../../src/components/category/categories.js"></script>
+
+	<script src="../../src/components/products/productModel.js"></script>
+	<script src="../../src/components/products/productService.js"></script>
+	<script src="../../src/components/products/product.js"></script>
+
+	<script src="../../src/components/order/orderModel.js"></script>
+	<script src="../../src/components/order/orderService.js"></script>
+	<script src="../../src/components/order/order.js"></script>
+
+	<script src="../../src/components/staff/satffModel.js"></script>
+	<script src="../../src/components/staff/staffService.js"></script>
+	<script src="../../src/components/staff/staff.js"></script>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- <script type="text/javascript">
+		google.charts.load("current", { packages: ["corechart"] });
+		google.charts.setOnLoadCallback(get_total_week);
+
+		google.charts.load("current", { packages: ["corechart", "bar"] });
+		google.charts.setOnLoadCallback(get_total_montt);
+	</script> -->
+
+	<script>
+		getListProduct();
+		getListOrder();
+		// getListSlider();
+		// getListBlog();
+
+		function search_for() {
+			// Declare variables
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("table-product");
+			tr = table.getElementsByTagName("tr");
+
+			let select_input = document.getElementById("value-search").value;
+
+			// Loop through all table rows, and hide those who don't match the search query
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[select_input];
+				console.log(tr[i].getElementsByTagName("td")[select_input]);
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+		function sortTable(col) {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("tblDanhSachSanPham");
+			switching = true;
+
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+
+				for (i = 0; i < rows.length - 1; i++) {
+					shouldSwitch = false;
+
+					x = rows[i].getElementsByTagName("TD")[col];
+					y = rows[i + 1].getElementsByTagName("TD")[col];
+
+					if (col == 0 || col == 2 || col == 4 || col == 6 || col == 8) {
+						if (
+							parseInt(x.innerHTML.toLowerCase()) >
+							parseInt(y.innerHTML.toLowerCase())
+						) {
+							shouldSwitch = true;
+							break;
+						}
+					} else {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	</script>
+	<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+		integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+		crossorigin="anonymous"></script>
+	<script>
+		//format giá tiền
+		$(document).ready(function () {
+			let x = document.querySelectorAll(".price-product");
+			for (let i = 0, len = x.length; i < len; i++) {
+				let num = Number(x[i].innerHTML).toLocaleString("en");
+				x[i].innerHTML = num;
+				x[i].classList.add("currSign");
+			}
+		});
+
+		$(document).ready(function () {
+			// upfile slide
+			$("#fileupload-slide").change(function (event) {
+				var x = URL.createObjectURL(event.target.files[0]);
+				$("#upload-img-slide").attr("src", x);
+			});
+
+			// upfile employee
+			$("#image-employeeE").change(function (event) {
+				var x = URL.createObjectURL(event.target.files[0]);
+				$("#upload-img-employeeE").attr("src", x);
+			});
+
+			// upfile product
+			$("#image-productE").change(function (event) {
+				var x = URL.createObjectURL(event.target.files[0]);
+				$("#upload-img-product").attr("src", x);
+			});
+
+			// slide bar dashboard
+			$(".dropdown-btn").click(function (e) {
+				let curren_tab = $(this).next();
+				if ($(curren_tab).css("display") == "none") {
+					$(this).find(".fa-angle-down").addClass("fas fa-angle-down open");
+				} else {
+					$(this).find(".fa-angle-down").removeClass("open");
+				}
+				$(curren_tab).slideToggle();
+			});
+
+			$('[data-toggle="tooltip"]').tooltip({
+				trigger: "hover",
+			});
+
+			// show hình product
+			let currenImg;
+			let insideImg;
+			$("td.name-product").mouseover(function () {
+				currenImg = $(this);
+				insideImg = currenImg.find(".img-pro");
+				$(insideImg).css("display", "unset");
+			});
+			$("td.name-product").mouseout(function () {
+				$(".img-pro").css("display", "none");
+			});
+
+			// cập nhật product
+			$("#btn-smEdit").click(function (e) {
+				let idSP = localStorage.getItem("idSP");
+				capNhatSP(idSP);
+				localStorage.removeItem("idSP");
+			});
+
+			// add slide
+			$("#bnt-add-slide").click(function (e) {
+				if ($("#fileupload-slide").val() == "") {
+					Swal.fire({
+						icon: "error",
+						title: "Lỗi nhập liệu",
+						text: "Bổ sung ảnh vào khung!!",
+					});
+				} else {
+					themSlide();
+				}
+			});
+			// cập nhật order
+			$("#btn-edit-order").click(function (e) {
+				let idOrder = localStorage.getItem("idOrder");
+				console.log("idOrder", idOrder)
+				capNhatOrder(idOrder);
+				localStorage.removeItem("idOrder");
+			});
+
+			//validate change pass
+			$("input").focus(function (e) {
+				let curren = $(this).attr("id");
+				if (curren == "current-password") {
+					$(this)
+						.popover({
+							title: "**Chú ý Mật Khẩu**",
+							content: "Không rỗng. <br /> 8 đến 16 Kí tự.",
+							html: true,
+							trigger: "focus",
+						})
+						.popover("show");
+				} else if (curren == "new-password") {
+					$(this)
+						.popover({
+							title: "**Chú ý Mật Khẩu Mới**",
+							content: "Không rỗng. <br /> 8 đến 16 Kí tự.",
+							html: true,
+							trigger: "focus",
+						})
+						.popover("show");
+				} else if (curren == "re-password") {
+					$(this)
+						.popover({
+							title: "**Chú ý Xác Nhận Mật Khẩu**",
+							content: "Không rỗng. <br /> Trùng khớp với mật khẩu mới",
+							html: true,
+							trigger: "focus",
+						})
+						.popover("show");
+				}
+			});
+
+		});
+	</script>
+
+	<script>
+		$(function () {
+			$("#fileupload-blog").change(function (event) {
+				var x = URL.createObjectURL(event.target.files[0]);
+				$("#upload-img-blog").attr("src", x);
+			});
+
+			$("#title-blog").keyup(function () {
+				const max_lenght = 60;
+				let count = $(this).val().length;
+				$("#count-name").text(count + "/60");
+			});
+
+			$("#content-blog").keyup(function (e) {
+				const max_lenght = 3000;
+				let count = $(this).val().length;
+				$("#count-content").text(count + "/3000");
+			});
+
+			$("#btn-add-blog").click(function (e) {
+				let name_check = $("#title-blog").val();
+				let content_check = $("#content-blog").val();
+				let fileupload_check = $("#fileupload").val();
+
+				let flag_add = true;
+
+				if (name_check == "" || name_check.length < 10) {
+					$("#title-blog").addClass("error-input");
+					flag_add = false;
+				}
+
+				if (content_check == "" || content_check.length < 30) {
+					$("#content-blog").addClass("error-input");
+					flag_add = false;
+				}
+
+				if (fileupload_check == "") {
+					alert("Bổ sung hình ảnh cho sản phẩm");
+					flag_add = false;
+				}
+
+				if (flag_add == true) {
+					themBlog();
+				} else {
+					alert("lỗi nhập liệu");
+				}
+			});
+
+			$("input, textarea").focus(function (e) {
+				if ($(this).hasClass("error-input")) {
+					$(this).removeClass("error-input");
+					let curren = $(this).attr("id");
+					if (curren == "name-blog") {
+						$(this)
+							.popover({
+								title: "**Chú ý Tên**",
+								content: "Không rỗng. <br /> Không dưới 10 kí tự.",
+								html: true,
+								trigger: "focus",
+							})
+							.popover("show");
+					} else if (curren == "content-blog") {
+						$(this)
+							.popover({
+								title: "**Chú ý Mô tả**",
+								content: "Không rỗng. <br /> Không dưới 30 kí tự.",
+								html: true,
+								trigger: "focus",
+							})
+							.popover("show");
+					}
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

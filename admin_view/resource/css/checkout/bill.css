@@ -1,0 +1,195 @@
+/* line 1, bill.scss */
+* {
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.8);
+	font-weight: 300;
+}
+
+/* line 8, bill.scss */
+main {
+	background-color: #f5f5f5;
+}
+
+/* line 12, bill.scss */
+.container-main {
+	width: 80%;
+	margin-left: auto;
+	padding: 20px;
+	margin-right: auto;
+	background-color: #f5f5f5;
+}
+/* line 17, bill.scss */
+.container-main .info-customer {
+	background-color: #fff;
+	border-radius: 2px;
+	padding: 15px;
+}
+/* line 22, bill.scss */
+.container-main .info-customer .title h1 {
+	font-size: 22px;
+}
+/* line 26, bill.scss */
+.container-main .info-customer .title h1::before {
+	content: "\f3c5";
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	color: #1664af;
+	padding-right: 5px;
+}
+/* line 38, bill.scss */
+.container-main .info-customer .customer-address {
+	display: flex;
+	font-weight: 600;
+}
+/* line 41, bill.scss */
+.container-main .info-customer .customer-address p {
+	padding: 10px;
+	font-weight: 600;
+}
+/* line 45, bill.scss */
+.container-main .info-customer .customer-address p:last-child {
+	font-weight: 500;
+	font-style: oblique;
+}
+/* line 49, bill.scss */
+.container-main .info-customer .customer-address .btn-fix-address {
+	padding-bottom: 10px;
+	font-weight: 300;
+	text-decoration: underline;
+	color: blue;
+}
+
+/* line 59, bill.scss */
+.header-cart,
+.item-product {
+	margin-top: 20px;
+	background-color: #fff;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px;
+}
+/* line 68, bill.scss */
+.header-cart div,
+.item-product div {
+	width: inherit;
+	flex-basis: 12%;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+	padding: 10px 0px;
+}
+/* line 74, bill.scss */
+.header-cart .check-list,
+.item-product .check-list {
+	flex-basis: 5%;
+}
+/* line 77, bill.scss */
+.header-cart .product-name,
+.item-product .product-name {
+	flex-basis: 47%;
+}
+/* line 80, bill.scss */
+.header-cart div:not(.product-name, .check-list),
+.item-product div:not(.product-name, .check-list) {
+	text-align: center;
+}
+/* line 84, bill.scss */
+.header-cart .action button:hover,
+.item-product .action button:hover {
+	color: #f04040;
+	transition: 0.3s;
+}
+
+/* line 92, bill.scss */
+.title-cart div {
+	border: none;
+}
+
+/* line 97, bill.scss */
+.list-name-img {
+	display: flex;
+}
+/* line 99, bill.scss */
+.list-name-img .product-img {
+	height: 80px;
+	width: 80px;
+	padding: unset;
+	border: none;
+}
+/* line 104, bill.scss */
+.list-name-img .product-img img {
+	width: inherit;
+	height: inherit;
+	object-fit: cover;
+}
+/* line 110, bill.scss */
+.list-name-img label {
+	height: 36px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 20px;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+/* line 121, bill.scss */
+.payment {
+	width: 100%;
+	border-radius: 4px;
+	padding: 15px;
+}
+/* line 125, bill.scss */
+.payment .tilte-payment {
+	border-bottom: 1px dotted #dd892a;
+}
+
+/* line 130, bill.scss */
+.bill {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding: 15px;
+}
+/* line 135, bill.scss */
+.bill .detail-bill {
+	border-bottom: 1px dotted #000;
+}
+/* line 137, bill.scss */
+.bill .detail-bill .money-all {
+	color: #dd3f2a;
+	font-size: 35px;
+	font-weight: 600;
+}
+/* line 143, bill.scss */
+.bill #buy-it {
+	width: 250px;
+}
+/* line 145, bill.scss */
+.bill #buy-it button {
+	margin-top: 50px;
+	color: #fff;
+	background-color: #3785df;
+	padding: 15px;
+	border-radius: 4px;
+	width: 100%;
+}
+/* line 153, bill.scss */
+.bill #buy-it button:hover {
+	opacity: 0.5;
+}
+/* line 156, bill.scss */
+.bill #buy-it button:active {
+	transform: scale(1.2);
+}
+input#btn-checkout {
+	padding: 10px 55px;
+	margin: 15px 0px;
+	font-size: 20px;
+	font-weight: 600;
+}

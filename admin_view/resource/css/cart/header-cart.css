@@ -1,0 +1,33 @@
+/* line 1, header-cart.scss */
+* {
+    font-family: "Roboto", sans-serif; }
+  
+  /* line 5, header-cart.scss */
+  .container-header {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09); }
+    /* line 8, header-cart.scss */
+    .container-header .wrap-page {
+      max-width: 1200px;
+      margin: 0px auto;
+      height: 101px; }
+      /* line 12, header-cart.scss */
+      .container-header .wrap-page .cart-logo {
+        display: flex;
+        align-items: center;
+        height: inherit; }
+        /* line 16, header-cart.scss */
+        .container-header .wrap-page .cart-logo img {
+          width: initial; }
+        /* line 19, header-cart.scss */
+        .container-header .wrap-page .cart-logo .vl {
+          border-left: 3px solid #1664af;
+          height: 80%;
+          border-radius: 15px; }
+        /* line 24, header-cart.scss */
+        .container-header .wrap-page .cart-logo h5 {
+          font-size: 20px;
+          font-weight: 400;
+          color: #1664af;
+          padding-left: 5px; }
+  

@@ -14,12 +14,12 @@ export const getReportProductByMonth = asyncMiddleware(
         },
       },
       {
-        $unwind: "$productOrder",
+        $unwind: "$product_orders",
       },
       {
         $lookup: {
           from: "products",
-          localField: "productOrder.productId",
+          localField: "product_orders.productId",
           foreignField: "_id",
           as: "product-detail",
         },
@@ -36,14 +36,17 @@ export const getReportProductByMonth = asyncMiddleware(
             month: {
               $month: "$updatedAt",
             },
-            productId: "$productOrder.productId",
+            productId: "$product_orders.productId",
           },
           revenue: {
             $sum: {
-              $multiply: ["$product-detail.price", "$productOrder.amountCart"],
+              $multiply: [
+                "$product-detail.price",
+                "$product_orders.amountCart",
+              ],
             },
           },
-          total_order: { $sum: "$productOrder.amountCart" },
+          total_order: { $sum: "$product_orders.amountCart" },
         },
       },
       {
@@ -176,7 +179,7 @@ export const createReportCategory = asyncMiddleware(async (req, res, next) => {
   ]);
   return new SuccessResponse(200, aggCategory).send(res);
 });
-export const createReportStore = asyncMiddleware(async (req, res, next) => {
+export const reportStore = asyncMiddleware(async (req, res, next) => {
   const { from_date, to_date } = req.body;
   console.log(from_date, to_date);
   const aggStore = await Order.aggregate([
@@ -187,6 +190,38 @@ export const createReportStore = asyncMiddleware(async (req, res, next) => {
           $lte: new Date(to_date),
         },
         status: "delivered",
+        store: req.user.storeId,
+      },
+    },
+    {
+      $lookup: {
+        from: "stores",
+        localField: "store",
+        foreignField: "_id",
+        as: "store_detail",
+      },
+    },
+    {
+      $unwind: "$store_detail",
+    },
+    {
+      $group: {
+        _id: "$store_detail.name",
+        total_statistic: { $sum: "$totalOrder" },
+      },
+    },
+  ]);
+});
+export const createReportStore = asyncMiddleware(async (req, res, next) => {
+  const { from_date, to_date } = req.body;
+  const aggStore = await Order.aggregate([
+    {
+      $match: {
+        updatedAt: {
+          $gte: new Date(from_date),
+          $lte: new Date(to_date),
+        },
+        //  status: "delivered",
       },
     },
     {

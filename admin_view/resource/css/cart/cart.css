@@ -1,0 +1,193 @@
+/* line 1, cart.scss */
+* {
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+/* line 7, cart.scss */
+button,
+input[type="checkbox"] {
+	cursor: pointer;
+}
+
+/* line 12, cart.scss */
+main {
+	background-color: #f5f5f5;
+}
+/* line 14, cart.scss */
+main h2 {
+	text-align: center;
+	padding-top: 15px;
+	margin: unset;
+}
+
+/* line 21, cart.scss */
+.container-main {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 30px 15px;
+	display: flex;
+	flex-wrap: wrap;
+}
+/* line 28, cart.scss */
+.container-main .left-main {
+	flex-basis: 78%;
+}
+/* line 31, cart.scss */
+.container-main .right-main {
+	margin-left: 15px;
+	height: inherit;
+	flex-basis: 20%;
+	margin-top: 20px;
+}
+
+.container-main .right-main .box-amount-all-pro{
+  background-color: #fff;
+  position: sticky;
+  top: 0px;
+  padding: 30px 15px;
+}
+/* line 38, cart.scss */
+.container-main .right-main .all-product,
+.container-main .right-main .all-money-product {
+	padding: 10px 0px;
+}
+/* line 41, cart.scss */
+.container-main .right-main .all-product h5,
+.container-main .right-main .all-money-product h5 {
+	display: inline;
+}
+/* line 44, cart.scss */
+.container-main .right-main .all-product span,
+.container-main .right-main .all-money-product span {
+	display: inline;
+}
+
+.container-main .right-main .all-money-product span::after{
+	content: "₫";
+}
+/* line 48, cart.scss */
+.container-main .right-main a {
+	margin-top: 50px;
+	color: #fff;
+	background-color: #3785df;
+	padding: 15px;
+	border-radius: 4px;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+/* line 58, cart.scss */
+.container-main .right-main a:hover {
+	opacity: 0.5;
+	text-decoration: none;
+}
+
+/* line 65, cart.scss */
+.title-cart,
+.item-product {
+	margin-top: 20px;
+	background-color: #fff;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+}
+/* line 73, cart.scss */
+.title-cart div,
+.item-product div {
+	width: inherit;
+	flex-basis: 12%;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+	padding: 10px 0px;
+}	
+
+/* line 82, cart.scss */
+.title-cart .product-name,
+.item-product .product-name {
+	flex-basis: 51%;
+}
+/* line 85, cart.scss */
+.title-cart div:not(.product-name, .check-list),
+.item-product div:not(.product-name, .check-list) {
+	text-align: center;
+}
+/* line 89, cart.scss */
+.title-cart .action button:hover,
+.item-product .action button:hover {
+	color: #f04040;
+	transition: 0.3s;
+}
+
+/* line 97, cart.scss */
+.title-cart div {
+	border: none;
+}
+
+/* line 101, cart.scss */
+.product-quantity {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+/* line 106, cart.scss */
+.product-quantity input {
+	width: 50px;
+	height: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.09);
+	border-radius: 2px;
+	background: transparent;
+	padding: 10px;
+}
+/* line 114, cart.scss */
+.product-quantity button {
+	height: 30px;
+	padding: 0px 7px;
+	border: 1px solid rgba(0, 0, 0, 0.09);
+	border-radius: 2px;
+	background: transparent;
+}
+/* line 121, cart.scss */
+.product-quantity button:active {
+	opacity: 0.5;
+	transform: scale(1.1);
+}
+
+/* line 127, cart.scss */
+.list-name-img {
+	display: flex;
+}
+/* line 129, cart.scss */
+.list-name-img .product-img {
+	height: 80px;
+	width: 80px;
+	padding: unset;
+	border: none;
+}
+/* line 134, cart.scss */
+.list-name-img .product-img img {
+	width: inherit;
+	height: inherit;
+	object-fit: cover;
+}
+/* line 140, cart.scss */
+.list-name-img label {
+	padding-left: 5px;
+	height: 36px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 20px;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+a#delete-all-cart {
+    padding: 10px;
+    display: block;
+    font-weight: 500;
+    color: red;
+}

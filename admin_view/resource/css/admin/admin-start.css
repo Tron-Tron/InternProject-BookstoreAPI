@@ -1,0 +1,695 @@
+@charset "UTF-8";
+/* line 1, admin-start.scss */
+* {
+  font-family: "Roboto", sans-serif; }
+
+/* line 14, admin-start.scss */
+header .container-header {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  background-color: #4e73df; }
+  /* line 18, admin-start.scss */
+  header .container-header .wrap-page {
+    max-width: 1200px;
+    margin: 0px auto;
+    height: 100px;
+    display: flex;
+    justify-content: space-between; }
+    /* line 24, admin-start.scss */
+    header .container-header .wrap-page .cart-logo {
+      display: flex;
+      align-items: center;
+      height: inherit; }
+      /* line 28, admin-start.scss */
+      header .container-header .wrap-page .cart-logo img {
+        width: initial; }
+      /* line 31, admin-start.scss */
+      header .container-header .wrap-page .cart-logo .vl {
+        border-left: 3px solid #1664af;
+        height: 80%;
+        border-radius: 15px; }
+      /* line 36, admin-start.scss */
+      header .container-header .wrap-page .cart-logo h5 {
+        font-size: 20px;
+        font-weight: 400;
+        color: #1664af;
+        padding-left: 5px; }
+    /* line 43, admin-start.scss */
+    header .container-header .wrap-page .account-manager {
+      align-self: center; }
+
+/* line 50, admin-start.scss */
+.container-main {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  width: 100%; }
+  /* line 55, admin-start.scss */
+  .container-main .left-main {
+    position: sticky;
+    top: 0px;
+    background-color: #4e73df;
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    flex-basis: 20%;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll; }
+    /* line 64, admin-start.scss */
+    .container-main .left-main .title-admin {
+      margin: 0px auto;
+      height: 100px;
+      display: flex;
+      justify-content: center; }
+      /* line 69, admin-start.scss */
+      .container-main .left-main .title-admin .cart-logo {
+        display: flex;
+        align-items: center;
+        height: inherit; }
+        /* line 73, admin-start.scss */
+        .container-main .left-main .title-admin .cart-logo img {
+          width: initial; }
+        /* line 76, admin-start.scss */
+        .container-main .left-main .title-admin .cart-logo .vl {
+          border-left: 3px solid #1664af;
+          height: 80%;
+          border-radius: 15px; }
+        /* line 81, admin-start.scss */
+        .container-main .left-main .title-admin .cart-logo h5 {
+          font-size: 20px;
+          font-weight: 400;
+          color: #1664af;
+          padding-left: 5px; }
+    /* line 89, admin-start.scss */
+    .container-main .left-main #account {
+      padding: 10px 0px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center; }
+      /* line 94, admin-start.scss */
+      .container-main .left-main #account p {
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        font-size: 16px;
+        color: #fff;
+        display: inline-block; }
+      /* line 102, admin-start.scss */
+      .container-main .left-main #account button {
+        color: #fff;
+        background-color: #aa4444;
+        padding: 5px;
+        margin-left: 5px;
+        border-radius: 3px; }
+      /* line 109, admin-start.scss */
+      .container-main .left-main #account #changePass_btn_modal {
+        background-color: #04aa6d; }
+    /* line 113, admin-start.scss */
+    .container-main .left-main ul {
+      padding: 0px 16px;
+      padding-top: 10px;
+      padding-bottom: 30px; }
+      /* line 118, admin-start.scss */
+      .container-main .left-main ul li button {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+        font-weight: 600; }
+      /* line 132, admin-start.scss */
+      .container-main .left-main ul li .dropdown-btn {
+        position: relative; }
+        /* line 134, admin-start.scss */
+        .container-main .left-main ul li .dropdown-btn .icon {
+          position: absolute;
+          right: 0px; }
+  /* line 142, admin-start.scss */
+  .container-main .right-main {
+    flex-basis: 80%;
+    width: 100%;
+    padding: 30px 15px;
+    background: #f6f6f6; }
+
+/* line 150, admin-start.scss */
+#to-do-list {
+  width: 70%;
+  margin: auto;
+  background: #fff;
+  padding: 15px; }
+  /* line 156, admin-start.scss */
+  #to-do-list .container-TD-list .title {
+    padding: 10px 0px; }
+    /* line 158, admin-start.scss */
+    #to-do-list .container-TD-list .title h5 {
+      font-size: 18px;
+      color: #333;
+      font-weight: 600; }
+  /* line 164, admin-start.scss */
+  #to-do-list .container-TD-list .grid-list {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center; }
+    /* line 170, admin-start.scss */
+    #to-do-list .container-TD-list .grid-list .element-nofi {
+      text-align: center; }
+      /* line 172, admin-start.scss */
+      #to-do-list .container-TD-list .grid-list .element-nofi span {
+        margin-bottom: 7px;
+        font-size: 16px;
+        min-height: 18px;
+        color: #2673dd;
+        font-weight: 600; }
+    /* line 180, admin-start.scss */
+    #to-do-list .container-TD-list .grid-list .element-nofi:not(.element-nofi:nth-child(4n)) {
+      border-right: 2px solid #e5e5e5; }
+
+/* line 187, admin-start.scss */
+.fa-angle-down {
+  transform: rotate(0deg);
+  transition: transform 0.4s linear; }
+
+/* line 192, admin-start.scss */
+.fa-angle-down.open {
+  transform: rotate(180deg);
+  transition: transform 0.4s linear; }
+
+/* line 197, admin-start.scss */
+#revenue {
+  background: #fff;
+  width: 80%;
+  margin: 0px auto; }
+  /* line 201, admin-start.scss */
+  #revenue #contain-revenue {
+    padding: 15px; }
+    /* line 204, admin-start.scss */
+    #revenue #contain-revenue .title h3 {
+      font-weight: 600;
+      margin-top: unset; }
+    /* line 208, admin-start.scss */
+    #revenue #contain-revenue .title h5 {
+      font-weight: 600;
+      font-size: 18px; }
+    /* line 213, admin-start.scss */
+    #revenue #contain-revenue .container-pay {
+      display: flex; }
+      /* line 215, admin-start.scss */
+      #revenue #contain-revenue .container-pay .price-product {
+        padding-top: 10px;
+        font-weight: 900;
+        font-size: 25px; }
+      /* line 220, admin-start.scss */
+      #revenue #contain-revenue .container-pay .title-price {
+        color: #999; }
+      /* line 223, admin-start.scss */
+      #revenue #contain-revenue .container-pay .price-product::after {
+        content: "đ"; }
+      /* line 226, admin-start.scss */
+      #revenue #contain-revenue .container-pay .title {
+        padding-bottom: 15px; }
+      /* line 229, admin-start.scss */
+      #revenue #contain-revenue .container-pay .will-pay {
+        flex-basis: 30%; }
+        /* line 231, admin-start.scss */
+        #revenue #contain-revenue .container-pay .will-pay .valua {
+          border-right: 2px solid #e5e5e5; }
+          /* line 233, admin-start.scss */
+          #revenue #contain-revenue .container-pay .will-pay .valua span {
+            display: block; }
+      /* line 238, admin-start.scss */
+      #revenue #contain-revenue .container-pay .paid {
+        flex-basis: 70%;
+        padding-left: 20px; }
+        /* line 241, admin-start.scss */
+        #revenue #contain-revenue .container-pay .paid .valua {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          flex: 1; }
+          /* line 247, admin-start.scss */
+          #revenue #contain-revenue .container-pay .paid .valua div span {
+            display: block;
+            text-align: center; }
+  /* line 256, admin-start.scss */
+  #revenue #chart_div,
+  #revenue #chart_div_year {
+    display: -webkit-inline-box;
+    margin: 0px auto; }
+
+/* line 263, admin-start.scss */
+.dropdown-container {
+  padding: 5px;
+  margin-left: 30px;
+  background-color: #fff;
+  border-radius: 4px; }
+  /* line 268, admin-start.scss */
+  .dropdown-container a {
+    padding: 10px;
+    display: block;
+    color: #3a3b45; }
+
+/* line 276, admin-start.scss */
+.modal-header {
+  text-align: left; }
+  /* line 278, admin-start.scss */
+  .modal-header #exampleModalLongTitle {
+    display: inline-block;
+    font-weight: 600; }
+
+/* line 286, admin-start.scss */
+.modal-body .container-detail .row-detail {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #cccc;
+  padding: 10px 0px; }
+  /* line 291, admin-start.scss */
+  .modal-body .container-detail .row-detail .contain-img {
+    width: 80px; }
+    /* line 293, admin-start.scss */
+    .modal-body .container-detail .row-detail .contain-img img {
+      width: 100% !important; }
+/* line 299, admin-start.scss */
+.modal-body .SL-status-ord {
+  border: 1px solid;
+  padding: 10px;
+  display: unset;
+  height: unset;
+  width: unset; }
+
+/* line 306, admin-start.scss */
+#list-order .container-list-order .container-btn-manager {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  margin-bottom: 15px; }
+  /* line 310, admin-start.scss */
+  #list-order .container-list-order .container-btn-manager #order-bnt-manager {
+    display: flex;
+    margin: unset; }
+    /* line 314, admin-start.scss */
+    #list-order .container-list-order .container-btn-manager #order-bnt-manager .element-LO-btn p {
+      margin: unset;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 600; }
+    /* line 321, admin-start.scss */
+    #list-order .container-list-order .container-btn-manager #order-bnt-manager .active-bnt-manager {
+      color: #4e73df;
+      border-bottom: 3px solid #4e73df; }
+/* line 330, admin-start.scss */
+#list-order .container-list-order .container-table .custom-table thead th {
+  font-size: 14px;
+  text-align: center;
+  vertical-align: baseline; }
+/* line 338, admin-start.scss */
+#list-order .container-list-order .container-table .custom-table tbody tr .img-detail,
+#list-order .container-list-order .container-table .custom-table tbody tr .img-customer {
+  text-align: center; }
+  /* line 341, admin-start.scss */
+  #list-order .container-list-order .container-table .custom-table tbody tr .img-detail img,
+  #list-order .container-list-order .container-table .custom-table tbody tr .img-customer img {
+    width: 40px; }
+/* line 346, admin-start.scss */
+#list-order .container-list-order .container-table .custom-table tbody tr .unit-order p {
+  display: max-content; }
+/* line 350, admin-start.scss */
+#list-order .container-list-order .container-table .custom-table tbody tr .action-row {
+  text-align: center;
+  padding: 8px 0px; }
+
+/* line 362, admin-start.scss */
+.img-customer {
+  position: relative; }
+  /* line 364, admin-start.scss */
+  .img-customer .container-customer {
+    position: absolute;
+    width: 250px;
+    height: auto;
+    display: none;
+    top: 0px;
+    right: -52px;
+    background-color: #f2f2f2;
+    text-align: left;
+    z-index: 2; }
+    /* line 375, admin-start.scss */
+    .img-customer .container-customer .title-container {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #000;
+      background-color: #fd7e14; }
+      /* line 380, admin-start.scss */
+      .img-customer .container-customer .title-container h5 {
+        padding: 7px; }
+      /* line 383, admin-start.scss */
+      .img-customer .container-customer .title-container .btn-close {
+        cursor: pointer;
+        outline: none;
+        flex-basis: 12%;
+        align-items: center;
+        padding: 0;
+        overflow: hidden;
+        transition: color 0.1s ease-out;
+        border: none;
+        border-radius: 0;
+        background: 0 0;
+        color: #ccc;
+        font-family: serif;
+        font-size: 25px; }
+      /* line 398, admin-start.scss */
+      .img-customer .container-customer .title-container .btn-close:hover {
+        color: #000; }
+    /* line 402, admin-start.scss */
+    .img-customer .container-customer .info-customer {
+      padding: 15px; }
+      /* line 404, admin-start.scss */
+      .img-customer .container-customer .info-customer p {
+        line-height: 1.2;
+        word-break: break-all; }
+
+/* line 413, admin-start.scss */
+.control-tab {
+  display: flex;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transition: margin-left 0.5s; }
+  /* line 421, admin-start.scss */
+  .control-tab .btn-control-tab {
+    flex-basis: 50%;
+    background-color: #555;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px; }
+  /* line 431, admin-start.scss */
+  .control-tab .btn-control-tab:hover {
+    background-color: #777; }
+
+/* Style the tab content */
+/* line 439, admin-start.scss */
+.tabcontent {
+  color: #000;
+  display: none;
+  text-align: center;
+  width: 90%;
+  margin: 0px auto;
+  padding: 30px 0px 55px 0px; }
+
+/* line 451, admin-start.scss */
+#list-product .name-product p {
+  word-break: break-word;
+  width: 190px; }
+
+/* line 475, admin-start.scss */
+#list-blog #TB-list-blog .element-blog td {
+  vertical-align: top; }
+/* line 479, admin-start.scss */
+#list-blog #TB-list-blog .element-blog .img-blog img {
+  width: 120px;
+  object-fit: cover;
+  height: 160px; }
+/* line 486, admin-start.scss */
+#list-blog #TB-list-blog .element-blog .title-blog p {
+  width: 150px;
+  word-wrap: break-word; }
+/* line 492, admin-start.scss */
+#list-blog #TB-list-blog .element-blog .content-blog p {
+  width: 450px;
+  word-wrap: break-word; }
+
+/* line 503, admin-start.scss */
+#list-slide .container-list-order .container-add {
+  position: relative;
+  padding: 15px 0px;
+  text-align: right; }
+  /* line 508, admin-start.scss */
+  #list-slide .container-list-order .container-add button .more {
+    font-size: 23px; }
+  /* line 511, admin-start.scss */
+  #list-slide .container-list-order .container-add button .more:hover {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px; }
+  /* line 518, admin-start.scss */
+  #list-slide .container-list-order .container-add #manual-slider {
+    position: absolute;
+    right: 0px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 10px; }
+    /* line 524, admin-start.scss */
+    #list-slide .container-list-order .container-add #manual-slider ol {
+      text-align: left; }
+/* line 529, admin-start.scss */
+#list-slide .container-list-order .container-table-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 30px; }
+  /* line 534, admin-start.scss */
+  #list-slide .container-list-order .container-table-slide .element-slide {
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    flex-basis: 30%; }
+    /* line 538, admin-start.scss */
+    #list-slide .container-list-order .container-table-slide .element-slide .img-container {
+      width: 100%;
+      border-radius: inherit; }
+      /* line 541, admin-start.scss */
+      #list-slide .container-list-order .container-table-slide .element-slide .img-container a {
+        width: inherit;
+        border-radius: inherit; }
+        /* line 544, admin-start.scss */
+        #list-slide .container-list-order .container-table-slide .element-slide .img-container a img {
+          width: inherit;
+          height: 300px;
+          border-radius: inherit;
+          object-fit: cover; }
+    /* line 552, admin-start.scss */
+    #list-slide .container-list-order .container-table-slide .element-slide .content-slide {
+      padding: 10px 0px;
+      text-align: center; }
+      /* line 555, admin-start.scss */
+      #list-slide .container-list-order .container-table-slide .element-slide .content-slide .date-slide {
+        text-align: left;
+        padding-left: 6px; }
+        /* line 558, admin-start.scss */
+        #list-slide .container-list-order .container-table-slide .element-slide .content-slide .date-slide span {
+          font-weight: 600; }
+      /* line 562, admin-start.scss */
+      #list-slide .container-list-order .container-table-slide .element-slide .content-slide .custom-bnt {
+        padding: 10px 60px; }
+
+@keyframes shake {
+  10%,
+    90% {
+    transform: translate3d(-1px, 0, 0); }
+  20%,
+    80% {
+    transform: translate3d(2px, 0, 0); }
+  30%,
+    50%,
+    70% {
+    transform: translate3d(-4px, 0, 0); }
+  40%,
+    60% {
+    transform: translate3d(4px, 0, 0); } }
+/* line 592, admin-start.scss */
+#list-category #TBlist-category {
+  padding: 15px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px; }
+  /* line 597, admin-start.scss */
+  #list-category #TBlist-category li {
+    border: 1px solid #6ca6d9; }
+    /* line 599, admin-start.scss */
+    #list-category #TBlist-category li .content-category {
+      width: 100%;
+      background: #6ca6d9;
+      text-align: left;
+      padding: 15px;
+      padding-left: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      position: relative;
+      color: #fff; }
+  /* line 611, admin-start.scss */
+  #list-category #TBlist-category .id-category {
+    display: contents; }
+  /* line 614, admin-start.scss */
+  #list-category #TBlist-category .name-category {
+    display: inline-block; }
+  /* line 617, admin-start.scss */
+  #list-category #TBlist-category .sub-category {
+    padding-left: 30px; }
+    /* line 619, admin-start.scss */
+    #list-category #TBlist-category .sub-category li {
+      list-style-type: disclosure-closed;
+      border: unset; }
+
+/* line 629, admin-start.scss */
+#list-employees .container-table-employees .media {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  background-color: #fff; }
+  /* line 633, admin-start.scss */
+  #list-employees .container-table-employees .media .media-body {
+    width: unset;
+    padding: 5px; }
+    /* line 636, admin-start.scss */
+    #list-employees .container-table-employees .media .media-body .address-employee {
+      word-break: break-word; }
+  /* line 640, admin-start.scss */
+  #list-employees .container-table-employees .media .media-object {
+    object-fit: cover;
+    height: 120px;
+    width: 120px !important; }
+
+/* line 649, admin-start.scss */
+.content-head {
+  position: relative; }
+
+/* line 653, admin-start.scss */
+.content-head::after {
+  content: "\f161";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #000;
+  position: absolute;
+  top: 0; }
+
+/* line 667, admin-start.scss */
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  vertical-align: baseline; }
+
+/* line 676, admin-start.scss */
+.table-hover > tbody > tr:hover {
+  background-color: #e3efff; }
+
+/* line 680, admin-start.scss */
+.table > thead > tr > th {
+  text-align: center; }
+
+/* line 684, admin-start.scss */
+.test + .tooltip > .tooltip-inner {
+  color: #fff;
+  padding: 5px;
+  font-size: 15px;
+  max-width: 300px;
+  word-wrap: break-word;
+  background: #30698c; }
+
+/* line 693, admin-start.scss */
+.tooltip.right .tooltip-arrow {
+  border-right-color: #30698c; }
+
+/* line 700, admin-start.scss */
+.description a,
+.address-order a,
+.note-order a {
+  width: 150px;
+  height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 14px;
+  -webkit-line-clamp: 1;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical; }
+
+/* line 712, admin-start.scss */
+.name-product {
+  position: relative; }
+
+/* Img for Product */
+/* line 719, admin-start.scss */
+.img-pro {
+  width: 100%;
+  position: absolute;
+  left: 35px;
+  z-index: 2;
+  height: auto;
+  display: none; }
+
+/* line 728, admin-start.scss */
+.img-pro > img {
+  width: 100%;
+  height: auto; }
+
+/* line 733, admin-start.scss */
+.distributor {
+  width: 100px;
+  text-align: center; }
+
+/* line 738, admin-start.scss */
+.remark,
+.price,
+.view,
+.id-procduct,
+.amount,
+.price,
+.action-btn-manager {
+  text-align: center; }
+
+/* line 748, admin-start.scss */
+.container-input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #ffff;
+  margin: 10px 0px; }
+  /* line 754, admin-start.scss */
+  .container-input #myInput,
+  .container-input #value-search {
+    border: 1px solid;
+    padding: 10px;
+    display: unset;
+    height: unset;
+    width: unset; }
+  /* line 758, admin-start.scss */
+  .container-input #product-bnt-manager {
+    display: flex;
+    margin: unset; }
+    /* line 762, admin-start.scss */
+    .container-input #product-bnt-manager .element-PO-btn p {
+      margin: unset;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 600; }
+    /* line 769, admin-start.scss */
+    .container-input #product-bnt-manager .active-bnt-product {
+      color: #4e73df;
+      border-bottom: 3px solid #4e73df; }
+
+/* line 776, admin-start.scss */
+.cus-alert {
+  margin-right: 10px; }
+
+/* line 780, admin-start.scss */
+.error-input {
+  border: 1px solid red !important;
+  background-color: #ffb1b1 !important; }

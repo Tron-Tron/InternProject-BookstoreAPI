@@ -1,0 +1,224 @@
+/* line 1, log.scss */
+.container-header {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09); }
+  /* line 4, log.scss */
+  .container-header .wrap-page {
+    max-width: 1200px;
+    margin: 0px auto;
+    height: 6.25rem; }
+    /* line 8, log.scss */
+    .container-header .wrap-page .cart-logo {
+      display: flex;
+      align-items: center;
+      height: inherit; }
+      /* line 12, log.scss */
+      .container-header .wrap-page .cart-logo img {
+        width: initial; }
+      /* line 15, log.scss */
+      .container-header .wrap-page .cart-logo .vl {
+        border-left: 3px solid #1664af;
+        height: 80%;
+        border-radius: 15px; }
+      /* line 20, log.scss */
+      .container-header .wrap-page .cart-logo h5 {
+        font-size: 20px;
+        font-weight: 400;
+        color: #1664af;
+        padding-left: 5px; }
+
+/* line 30, log.scss */
+.container-main {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 85vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  /* line 38, log.scss */
+  .container-main .content-login {
+    flex-basis: 50%; }
+    /* line 40, log.scss */
+    .container-main .content-login .form-acc {
+      margin: 0px auto;
+      width: 400px;
+      background: #fff; }
+      /* line 45, log.scss */
+      .container-main .content-login .form-acc form .item-form {
+        width: 100%;
+        padding: 10px 30px;
+        position: relative; }
+        /* line 50, log.scss */
+        .container-main .content-login .form-acc form .item-form input,
+        .container-main .content-login .form-acc form .item-form textarea {
+          width: 100%;
+          padding: 12px 10px;
+          padding-left: 40px;
+          display: inline-block;
+          border: none;
+          border-radius: 4px;
+          box-sizing: border-box;
+          cursor: text;
+          outline: none;
+          font-size: 1rem;
+          font-weight: 400;
+          color: #495057;
+          background-color: #cccc;
+          background-clip: padding-box; }
+        /* line 69, log.scss */
+        .container-main .content-login .form-acc form .item-form .btn {
+          background-color: #30698c;
+          color: white;
+          height: 50px;
+          font-weight: 600;
+          font-size: 18px;
+          padding: 10px;
+          text-align: center;
+          display: block;
+          width: 100%;
+          border-radius: 4px; }
+        /* line 85, log.scss */
+        .container-main .content-login .form-acc form .item-form .error-input {
+          background-color: #f4bfbf !important; }
+        /* line 89, log.scss */
+        .container-main .content-login .form-acc form .item-form .btn:hover {
+          opacity: 0.8; }
+      /* line 94, log.scss */
+      .container-main .content-login .form-acc form .or {
+        display: flex;
+        align-items: center;
+        padding: 10px 0px; }
+        /* line 98, log.scss */
+        .container-main .content-login .form-acc form .or div {
+          height: 1px;
+          width: 100%;
+          background-color: #dbdbdb;
+          -webkit-box-flex: 1; }
+        /* line 104, log.scss */
+        .container-main .content-login .form-acc form .or span {
+          color: #ccc;
+          padding: 0 1rem;
+          text-transform: uppercase;
+          font-size: 0.75rem; }
+      /* line 111, log.scss */
+      .container-main .content-login .form-acc form .sign-up-link {
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.26);
+        text-align: center; }
+        /* line 115, log.scss */
+        .container-main .content-login .form-acc form .sign-up-link p {
+          font-size: 14px; }
+          /* line 117, log.scss */
+          .container-main .content-login .form-acc form .sign-up-link p span {
+            color: darkblue;
+            font-weight: 500; }
+
+/* line 128, log.scss */
+.item-form i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 42px; }
+
+/* line 135, log.scss */
+.item-form .pass-icon {
+  left: unset;
+  right: 45px; }
+
+/* line 140, log.scss */
+.content-sign-up {
+  flex-basis: 50%; }
+  /* line 142, log.scss */
+  .content-sign-up .form-acc {
+    margin: 0px auto;
+    background: #fff; }
+    /* line 145, log.scss */
+    .content-sign-up .form-acc form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; }
+      /* line 149, log.scss */
+      .content-sign-up .form-acc form .title {
+        flex-basis: 100%;
+        border-bottom: 2px solid #dbdbdb; }
+      /* line 153, log.scss */
+      .content-sign-up .form-acc form .error-input {
+        background-color: #f4bfbf !important; }
+      /* line 157, log.scss */
+      .content-sign-up .form-acc form .btn:hover {
+        opacity: 0.8; }
+      /* line 160, log.scss */
+      .content-sign-up .form-acc form .left-form,
+      .content-sign-up .form-acc form .right-form {
+        flex-basis: 50%; }
+      /* line 164, log.scss */
+      .content-sign-up .form-acc form .left-form {
+        border-right: 2px solid #dbdbdb; }
+      /* line 167, log.scss */
+      .content-sign-up .form-acc form .item-form {
+        width: 100%;
+        padding: 10px 30px;
+        position: relative; }
+        /* line 172, log.scss */
+        .content-sign-up .form-acc form .item-form input,
+        .content-sign-up .form-acc form .item-form textarea {
+          width: 100%;
+          padding: 12px 10px;
+          padding-left: 40px;
+          display: inline-block;
+          border: none;
+          border-radius: 4px;
+          box-sizing: border-box;
+          cursor: text;
+          outline: none;
+          font-size: 1rem;
+          font-weight: 400;
+          color: #495057;
+          background-color: #cccc;
+          background-clip: padding-box; }
+        /* line 191, log.scss */
+        .content-sign-up .form-acc form .item-form .btn {
+          background-color: #30698c;
+          color: white;
+          height: 50px;
+          font-weight: 600;
+          font-size: 18px;
+          padding: 10px;
+          text-align: center;
+          display: block;
+          width: 100%;
+          border-radius: 4px; }
+        /* line 207, log.scss */
+        .content-sign-up .form-acc form .item-form .btn:hover {
+          opacity: 0.8; }
+      /* line 212, log.scss */
+      .content-sign-up .form-acc form .or {
+        flex-basis: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px 0px; }
+        /* line 217, log.scss */
+        .content-sign-up .form-acc form .or div {
+          height: 1px;
+          width: 100%;
+          background-color: #dbdbdb;
+          -webkit-box-flex: 1; }
+        /* line 223, log.scss */
+        .content-sign-up .form-acc form .or span {
+          color: #ccc;
+          padding: 0 1rem;
+          text-transform: uppercase;
+          font-size: 0.75rem; }
+      /* line 230, log.scss */
+      .content-sign-up .form-acc form .sign-up-link {
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.26);
+        text-align: center; }
+        /* line 234, log.scss */
+        .content-sign-up .form-acc form .sign-up-link p {
+          font-size: 14px; }
+          /* line 236, log.scss */
+          .content-sign-up .form-acc form .sign-up-link p span {
+            color: darkblue;
+            font-weight: 500; }

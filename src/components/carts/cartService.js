@@ -138,34 +138,34 @@ const service = (model) => {
       type: "Point",
       coordinates: [loc[0].longitude, loc[0].latitude],
     };
-    console.log(locationDelivery);
-    // const agg = await Store.aggregate([
-    //   {
-    //     $geoNear: {
-    //       near: locationDelivery,
-    //       query: { _id: store },
-    //       distanceField: "distance",
-    //     },
-    //   },
-    // ]);
-    // return agg[0].distance;
-    const R = 6378137; // Earth’s mean radius in meter
-    const dLat = rad(
-      locationDelivery.coordinates[1] - storeLocation.location.coordinates[1]
-    );
-    const dLong = rad(
-      locationDelivery.coordinates[0] - storeLocation.location.coordinates[0]
-    );
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(rad(storeLocation.location.coordinates[1])) *
-        Math.cos(rad(locationDelivery.coordinates[1])) *
-        Math.sin(dLong / 2) *
-        Math.sin(dLong / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c;
-    console.log("d", d);
-    return d; // returns the distance in meter
+    const agg = await Store.aggregate([
+      {
+        $geoNear: {
+          near: locationDelivery,
+          query: { _id: store },
+          distanceField: "distance",
+        },
+      },
+    ]);
+    console.log("agg[0].distance", agg[0].distance);
+    return agg[0].distance;
+    // const R = 6378137; // Earth’s mean radius in meter
+    // const dLat = rad(
+    //   locationDelivery.coordinates[1] - storeLocation.location.coordinates[1]
+    // );
+    // const dLong = rad(
+    //   locationDelivery.coordinates[0] - storeLocation.location.coordinates[0]
+    // );
+    // const a =
+    //   Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //   Math.cos(rad(storeLocation.location.coordinates[1])) *
+    //     Math.cos(rad(locationDelivery.coordinates[1])) *
+    //     Math.sin(dLong / 2) *
+    //     Math.sin(dLong / 2);
+    // const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    // const d = R * c;
+    // //console.log("d", d);
+    // return d; // returns the distance in meter
   };
   const getTotalCart = async (customerId) => {
     try {

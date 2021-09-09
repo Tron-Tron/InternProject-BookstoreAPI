@@ -1,0 +1,104 @@
+/* line 1, new.scss */
+.container-header {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  background-color: #2f8dd2; }
+  /* line 5, new.scss */
+  .container-header .wrap-page {
+    max-width: 1200px;
+    margin: 0px auto;
+    height: 130px; }
+    /* line 9, new.scss */
+    .container-header .wrap-page .cart-logo {
+      display: flex;
+      align-items: center;
+      height: inherit; }
+      /* line 13, new.scss */
+      .container-header .wrap-page .cart-logo img {
+        width: initial; }
+      /* line 16, new.scss */
+      .container-header .wrap-page .cart-logo .vl {
+        border-left: 3px solid #fff;
+        height: 80%;
+        border-radius: 15px; }
+      /* line 21, new.scss */
+      .container-header .wrap-page .cart-logo h5 {
+        font-size: 20px;
+        font-weight: 400;
+        color: #fff;
+        padding-left: 5px; }
+
+/* line 31, new.scss */
+.container-main {
+  width: 100%;
+  display: flex;
+  padding: 30px; }
+  /* line 35, new.scss */
+  .container-main .left-main {
+    flex-basis: 18%;
+    border-right: 1px solid #cccc; }
+    /* line 38, new.scss */
+    .container-main .left-main .title-left {
+      display: flex;
+      margin-bottom: 30px; }
+      /* line 41, new.scss */
+      .container-main .left-main .title-left img {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #ccc; }
+      /* line 46, new.scss */
+      .container-main .left-main .title-left .content {
+        padding-left: 5px;
+        align-self: flex-end; }
+        /* line 49, new.scss */
+        .container-main .left-main .title-left .content label {
+          display: block; }
+        /* line 52, new.scss */
+        .container-main .left-main .title-left .content p {
+          margin: unset;
+          font-size: 16px;
+          line-height: 19px;
+          font-weight: 400;
+          display: block; }
+  /* line 62, new.scss */
+  .container-main .right-main {
+    flex-basis: 82%; }
+
+/* line 67, new.scss */
+.fa-id-card {
+  background-color: #ffc107 !important;
+  color: #fff; }
+
+/* line 72, new.scss */
+.fa-key {
+  background-color: #ee4d2d !important;
+  color: #fff; }
+
+/* line 77, new.scss */
+.fa-file-alt {
+  background-color: #99d7ff !important;
+  color: #fff; }
+
+/* line 82, new.scss */
+.circle-icon {
+  padding: 7px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ccc;
+  border-radius: 50%; }
+
+/* line 91, new.scss */
+main {
+  background-color: #f4f4f4; }
+
+/* line 95, new.scss */
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  background-color: #ececec;
+  color: #4a4a4a; }
+
+/* line 102, new.scss */
+.nav-pills li a {
+  color: #4a4a4a; }

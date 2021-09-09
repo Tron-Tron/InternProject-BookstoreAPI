@@ -1,0 +1,235 @@
+main {
+	background-color: #f5f5f5;
+}
+
+.container-main {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.container-main .slider-menu {
+	background-color: #fff;
+	width: 100%;
+}
+.container-main .slider-menu .carousel {
+	width: 100%;
+}
+.container-main .slider-menu .carousel .carousel-cell {
+	width: 66%;
+	height: 450px;
+	margin-right: 10px;
+	background: #9bcaf2;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.container-main .slider-menu .carousel .carousel-cell img {
+	width: 100%;
+	height: 70%;
+	object-fit: fill;
+	border-radius: 2px;
+}
+.container-main .new-item,
+.container-main .hot-item {
+	background-color: #f5f5f5;
+	margin-top: 30px;
+	width: 100%;
+}
+.container-main .new-item .title-section,
+.container-main .hot-item .title-section {
+	padding: 15px 0px;
+}
+.container-main .new-item .title-section h3,
+.container-main .hot-item .title-section h3 {
+	font-size: 25px;
+	text-transform: uppercase;
+	padding-bottom: unset;
+	border-bottom: 2px solid #ececec;
+}
+
+@keyframes shake {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
+}
+
+.grid-view-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	gap: 5px 5px;
+}
+.grid-view-item .grid-item {
+	background-color: #cedef2;
+	padding: 10px;
+	font-size: 30px;
+	display: flex;
+}
+
+.grid-view-item .grid-item:hover {
+	/* Start the shake animation and make the animation last for 0.5 seconds */
+	animation: shake 0.5s;
+
+	/* When the animation is finished, start again */
+	animation-iteration-count: infinite;
+}
+
+.grid-view-item .grid-item img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+.grid-view-item .grid-item .info-pro {
+	padding-left: 5px;
+}
+.grid-view-item .grid-item .info-pro h5 {
+	color: #2f7cc5;
+	margin: unset;
+	font-weight: 400;
+	font-size: 15px;
+	margin-bottom: unset;
+	height: 33px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	word-break: break-word;
+}
+.grid-view-item .grid-item .info-pro p {
+	font-size: 15px;
+	font-weight: 500;
+}
+.grid-view-item .grid-item .info-pro .price-product::after {
+	content: "₫";
+	/* text-decoration: underline; */
+}
+
+.new-item .grid-view-item .grid-item:first-child {
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	text-align: center;
+	display: block;
+}
+.new-item .grid-view-item .grid-item:first-child img {
+	width: 100%;
+	height: 100px;
+	object-fit: cover;
+}
+.new-item .grid-view-item .grid-item:first-child .info-pro {
+	padding-left: 5px;
+}
+.new-item .grid-view-item .grid-item:first-child .info-pro h5 {
+	padding-top: 5px;
+	font-weight: 600;
+	font-size: 16px;
+	height: unset;
+}
+.new-item .grid-view-item .grid-item:first-child .info-pro p {
+	font-size: 16px;
+	font-weight: 500;
+	margin: unset;
+}
+.new-item
+	.grid-view-item
+	.grid-item:first-child
+	.info-pro
+	.price-product::after {
+	content: " đ";
+}
+
+section.service {
+	margin: 15px 0px;
+}
+section.service .service-section {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+}
+section.service .service-section .service-item {
+	flex-basis: 33%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+section.service .service-section .service-item .icon-service {
+	display: block;
+	width: 15%;
+}
+section.service .service-section .service-item .icon-service img {
+	width: 100%;
+}
+section.service .service-section .service-item p {
+	margin-top: 20px;
+}
+section.service .service-section .service-item p span {
+	color: #d26e4b;
+	font-weight: 500;
+}
+section.service .service-section .service-item:not(.service-item:last-child) {
+	border-right: 3px dotted #596672;
+}
+
+.business-partner {
+	padding: 30px 0px;
+}
+.business-partner .container-bp {
+	width: 100%;
+}
+.business-partner .container-bp .title-bp {
+	text-align: center;
+	position: relative;
+}
+.business-partner .container-bp .title-bp h3 {
+	display: inline-block;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	padding: 0.3em 0.8em;
+	text-transform: uppercase;
+	color: #0a0a0a;
+	font-weight: 500;
+	font-size: 22px;
+}
+.business-partner .container-bp .menu-logo-partner ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.business-partner .container-bp .menu-logo-partner ul li {
+	flex-basis: 23%;
+	text-align: center;
+}

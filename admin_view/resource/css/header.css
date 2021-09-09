@@ -1,0 +1,77 @@
+* {
+	font-family: "Roboto", sans-serif;
+}
+
+.flip-box {
+	background-color: transparent;
+	width: 100%;
+	height: 450px;
+	perspective: 1000px;
+}
+
+.flip-box-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+
+/* .flip-box:hover .flip-box-inner {
+  transform: rotateX(180deg); } */
+
+.flip-box-front,
+.flip-box-back {
+	position: absolute;
+	width: 100%;
+	height: 450px;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.flip-box-front {
+	background-color: #bbb;
+	color: black;
+}
+
+.flip-box-back {
+	background-color: black;
+	color: white;
+	transform: rotateX(180deg);
+}
+
+.container-header {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 450px;
+}
+.container-header .content-header {
+	margin: 0px auto;
+}
+.container-header .content-header .logo {
+	text-align: center;
+}
+.container-header .content-header h1 {
+	font-family: "Original Surfer", cursive;
+	text-align: center;
+	color: #fff;
+	margin: unset;
+}
+
+/* ============================================================ */
+
+.heart {
+	display: inline-block;
+	font-size: 50px;
+	color: rgb(248, 252, 54);
+	animation: beat 0.25s infinite alternate;
+	transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+	to {
+		transform: scale(1.5);
+	}
+}

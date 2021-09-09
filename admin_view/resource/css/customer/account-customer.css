@@ -1,0 +1,603 @@
+/* line 1, account-customer.scss */
+
+* {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+}
+
+
+/* line 6, account-customer.scss */
+
+p {
+    display: inline-block;
+    color: #4a4a4a;
+}
+
+
+/* line 11, account-customer.scss */
+
+label {
+    color: #4a4a4a;
+}
+
+
+/* line 15, account-customer.scss */
+
+#container-info {
+    width: 70%;
+    margin: 0px auto;
+    background-color: #fff;
+}
+
+
+/* line 19, account-customer.scss */
+
+#container-info .title {
+    padding: 30px 15px;
+    border-bottom: 1px solid #948d8d;
+}
+
+
+/* line 22, account-customer.scss */
+
+#container-info .title h3 {
+    font-size: 22px;
+    font-weight: 600;
+    padding: unset;
+    margin: unset;
+}
+
+
+/* line 29, account-customer.scss */
+
+#container-info .title p {
+    font-size: 16px;
+    margin: unset;
+    margin-top: 5px;
+}
+
+
+/* line 36, account-customer.scss */
+
+#container-info .form-customer {
+    padding: 15px;
+}
+
+
+/* line 38, account-customer.scss */
+
+#container-info .form-customer form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* line 41, account-customer.scss */
+
+#container-info .form-customer form .left-main {
+    flex-basis: 70%;
+}
+
+
+/* line 43, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form {
+    padding: 10px 10px;
+}
+
+
+/* line 45, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form #address-label {
+    vertical-align: top;
+}
+
+
+/* line 48, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form input:not(input[type="radio"]):focus {
+    border-color: rgba(0, 0, 0, 0.54);
+}
+
+
+/* line 51, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form label {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* line 59, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form .email {
+    font-style: italic;
+    color: #1044f1;
+}
+
+
+/* line 63, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form button {
+    padding: 10px;
+    border: 1px solid #2f8dd2;
+    background-color: #2f8ed21a;
+    color: #2f8dd2;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+/* line 71, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form button:hover {
+    background-color: #2f8dd2;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* line 76, account-customer.scss */
+
+#container-info .form-customer form .left-main .item-form button:active {
+    transform: scale(1.2);
+}
+
+
+/* line 82, account-customer.scss */
+
+#container-info .form-customer form .btn {
+    margin-left: 123px;
+}
+
+
+/* line 86, account-customer.scss */
+
+#container-info .form-customer form .right-main {
+    flex-basis: 30%;
+    border-left: 1px solid #948d8d;
+}
+
+
+/* line 89, account-customer.scss */
+
+#container-info .form-customer form .right-main .notifi {
+    padding: 15px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.479);
+}
+
+
+/* line 100, account-customer.scss */
+
+.item-form input:not(input[type="radio"]),
+.item-form textarea {
+    width: 70%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: text;
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+/* line 119, account-customer.scss */
+
+.item-form .error-input {
+    border: 1px solid red !important;
+    background-color: #ffb1b1 !important;
+}
+
+
+/* line 124, account-customer.scss */
+
+.profile-images {
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* line 132, account-customer.scss */
+
+.profile-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* line 140, account-customer.scss */
+
+.custom-file input[type="file"] {
+    display: none;
+}
+
+
+/* line 143, account-customer.scss */
+
+.custom-file label {
+    cursor: pointer;
+    color: #000;
+    text-align: center;
+    display: table;
+    margin: auto;
+    margin-top: 15px;
+    font-size: 20px;
+    color: rgba(32, 31, 31, 0.397);
+    font-weight: 600;
+}
+
+
+/* line 155, account-customer.scss */
+
+.custom-file label::after {
+    content: "\f304";
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    padding-left: 5px;
+    color: rgba(32, 31, 31, 0.397);
+}
+
+
+/* line 168, account-customer.scss */
+
+#container-password {
+    width: 70%;
+    margin: 0px auto;
+    background-color: #fff;
+}
+
+
+/* line 172, account-customer.scss */
+
+#container-password .title {
+    padding: 30px 15px;
+    border-bottom: 1px solid #948d8d;
+}
+
+
+/* line 175, account-customer.scss */
+
+#container-password .title h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #4a4a4a;
+    padding: unset;
+    margin: unset;
+}
+
+
+/* line 183, account-customer.scss */
+
+#container-password .form-customer {
+    padding: 30px;
+}
+
+
+/* line 186, account-customer.scss */
+
+#container-password .form-customer form .item-form {
+    padding: 15px 10px;
+}
+
+
+/* line 188, account-customer.scss */
+
+#container-password .form-customer form .item-form input:focus {
+    border-color: rgba(0, 0, 0, 0.54);
+}
+
+
+/* line 191, account-customer.scss */
+
+#container-password .form-customer form .item-form label {
+    display: inline-block;
+    width: 170px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* line 199, account-customer.scss */
+
+#container-password .form-customer form .item-form button {
+    padding: 10px;
+    border: 1px solid #2f8dd2;
+    background-color: #2f8ed21a;
+    color: #2f8dd2;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+/* line 207, account-customer.scss */
+
+#container-password .form-customer form .item-form button:hover {
+    background-color: #2f8dd2;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* line 212, account-customer.scss */
+
+#container-password .form-customer form .item-form button:active {
+    transform: scale(1.2);
+}
+
+
+/* line 217, account-customer.scss */
+
+#container-password .form-customer form .btn {
+    margin-left: 175px;
+}
+
+
+/* line 224, account-customer.scss */
+
+#container-order {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* line 230, account-customer.scss */
+
+#container-order .list-order .item-order {
+    background-color: #fff;
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+
+/* line 234, account-customer.scss */
+
+#container-order .list-order .item-order .title-order {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    padding: 5px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* line 239, account-customer.scss */
+
+#container-order .list-order .item-order .title-order .date,
+#container-order .list-order .item-order .title-order .id-order {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#container-order .list-order .item-order .title-order .container-status .vl {
+    display: inline;
+    border-left: 2px solid #6ca6d9;
+    height: 80%;
+    padding: 0px 2px;
+}
+
+
+/* line 243, account-customer.scss */
+
+#container-order .list-order .item-order .title-order .status {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #6ca6d9;
+}
+
+
+/* line 251, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order {
+    padding: 10px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* line 256, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order .content {
+    flex-basis: 80%;
+    display: flex;
+}
+
+
+/* line 258, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order .content img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+
+/* line 263, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order .content .info-pro {
+    width: 100%;
+    padding-left: 10px;
+}
+
+
+/* line 265, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order .content .info-pro p {
+    width: 100%;
+    padding: unset;
+    margin: unset;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    width: 90%;
+}
+
+
+/* line 277, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order .content .info-pro span {
+    font-size: 14px;
+}
+
+
+/* line 282, account-customer.scss */
+
+#container-order .list-order .item-order .detail-order .row-order .price-pro {
+    align-self: center;
+    font-size: 14px;
+}
+
+
+/* line 288, account-customer.scss */
+
+#container-order .list-order .item-order .total {
+    padding-top: 30px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+
+/* line 292, account-customer.scss */
+
+#container-order .list-order .item-order .total img {
+    width: 30px;
+    height: 30px;
+}
+
+
+/* line 296, account-customer.scss */
+
+#container-order .list-order .item-order .total p {
+    font-size: 14px;
+}
+
+
+/* line 298, account-customer.scss */
+
+#container-order .list-order .item-order .total p span {
+    font-size: 30px;
+    color: #6ca6d9;
+}
+
+
+/* line 304, account-customer.scss */
+
+#container-order .list-order .item-order .action-order {
+    text-align: right;
+    padding-right: 10px;
+}
+
+
+/* line 307, account-customer.scss */
+
+#container-order .list-order .item-order .action-order button {
+    font-size: 14px;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 2px;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* line 315, account-customer.scss */
+
+#container-order .list-order .item-order .action-order button.btn-info {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+#container-order .list-order .item-order .action-order button.btn-success {
+    background-color: #04aa6d;
+    color: #fff;
+}
+
+#container-order .list-order .item-order .action-order button.btn-cancel {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+
+/* line 320, account-customer.scss */
+
+
+/* 
+#container-order .list-order .item-order .action-order button:hover:not(button:first-child) {
+    border-color: #6ca6d9;
+    transition: 0.5s;
+}
+
+
+/* line 324, account-customer.scss */
+
+
+/* #container-order .list-order .item-order .action-order button:first-child:hover {
+    opacity: 0.7;
+    transition: 0.5s;
+} */
+
+*/
+/* line 333, account-customer.scss */
+
+.active-site {
+    display: block !important;
+}
+
+.simple-rating {}
+
+.simple-rating i {
+    color: #f5ba00;
+    display: inline-block;
+    padding: 1px 2px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.rating-start {
+    text-align: center;
+    display: block;
+    padding: 30px;
+}
+
+.modal-dialog {
+    width: 400px;
+}
+
+.contain-bnt-rating {
+    text-align: right;
+}
+
+.price-pro::after,
+.total-order::after {
+    content: "đ";
+    text-decoration: underline;
+}

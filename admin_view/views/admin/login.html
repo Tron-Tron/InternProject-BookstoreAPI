@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Login</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Font, Icon -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="sweetalert2.all.min.js"></script>
+  <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+  <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../resource/css/reset.css" />
+  <link rel="stylesheet" href="../../resource/css/admin/log-new.css" />
+
+
+  <!-- JS -->
+  <!-- <script src="../js/login.js"></script> -->
+</head>
+
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+  <!-- <main>
+        <div class="container-log" style="background-image: url(https://img.freepik.com/free-vector/seafood-restaurant-template_1308-22654.jpg?size=626&ext=jpg);">
+            <div class="wrap-form">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#log-in">Đăng Nhập</a></li>
+                   
+                </ul>
+                <div class="logo">
+                    <img src="../imgs/logo-quangdz.png" alt="" />
+                </div>
+                <div class="tab-content">
+                    <div id="log-in" class="tab-pane fade in active">
+                        <div class="form-container sign-in-container">
+                            <form id="sign-in-container">
+                                <div class="account-input">
+                                    <div class="icon-form">
+                                        <img src="../imgs/Log/icon_letter.png" alt="">
+                                    </div>
+                                    <input type="email" placeholder="Email" id="email-login" />
+                                </div>
+                                <div class="account-input">
+                                    <div class="icon-form">
+                                        <img src="../imgs/Log/icon_lock.png" alt="">
+                                    </div>
+                                    <input type="password" name="password" placeholder="Mật Khẩu" id="password"
+                                        autocomplete="on" />
+                                </div>
+                                <div class="cappcha-input">
+                                    <div id="divGenerateRandomValues"></div>
+                                    <input type="text" id='txtInput' />
+                                </div>
+                                <p class="forgot" id="slidedown">Forgot your password?</p>
+                                <button class="signIn-form-button" id="btn-log-in" type="submit">Sign In</button>
+                            </form>
+                        </div>
+                        
+                        <div class="hide" id="forgot">
+                            <form action="" class="form-container">
+                                <div class="enter-email">
+                                    <div class="enter-email-detail">
+                                        <h3>Quên mật khẩu</h3>
+                                        <div class="account-input">
+                                            <div class="icon-form">
+                                                <img src="../imgs/Log/icon_letter.png" alt="">
+                                            </div>
+                                            <input type="email" placeholder="Email" />
+                                        </div>
+                                        <div class="">
+                                            <button class="signIn-form-button">Send</button>
+                                            <p id="slideup" style="cursor: pointer"><u>close</u></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+                </section>
+            </div>
+    </main> -->
+
+  <main>
+    <div class="container-log">
+      <div class="left-container">
+        <div class="img-log">
+          <img src="../../resource/imgs/book-br.jpg" alt="" />
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="content-login">
+          <div class="form-acc">
+            <form action="#" id="form-login" method="POST">
+              <div class="item-form">
+                <h1>Đăng Nhập Kênh Quản Trị</h1>
+              </div>
+              <div class="item-form img-logo">
+                <img src="../../resource/imgs/logo-book-1.jpg">
+              </div>
+              <div class=" item-form">
+                <i class="fas fa-envelope"></i>
+                <input name="email" id="email-login" type="email" placeholder="Nhập email" />
+              </div>
+              <div class="item-form">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password-login" placeholder="Nhập mật khẩu" />
+                <i class="fas fa-eye pass-icon" id="show-pass-login"></i>
+                <i class="fas fa-eye-slash pass-icon" id="hide-pass-login" style="display: none"></i>
+              </div>
+              <div class="item-form">
+                <button class="btn" type="submit" id="btn-login">
+                  Đăng Nhập
+                </button>
+              </div>
+              <div class="item-form">
+                <a href="#" class="forgot-pass">Quên mật khẩu</a>
+              </div>
+              <div class="or">
+                <div></div>
+                <span>Hoặc</span>
+                <div></div>
+              </div>
+              <div class="sign-up-link">
+                <p>
+                  Đi đến
+                  <a id="btn-open-register" href="http://localhost:83/webTMDT/"><span>Trang Web Chính!</span></a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="module" src="../../src/components/account/accountService.js"></script>
+  <script type="module" src="../../src/components/account/accountModel.js"></script>
+  <script type="module" src="../../src/components/account/account.js"></script>
+
+</body>
+
+</html>

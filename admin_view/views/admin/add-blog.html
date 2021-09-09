@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Thêm Sản Phẩm</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Bootstrap -->
+		<!-- Latest compiled and minified CSS -->
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+		/>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="../../../resource/css/reset.css" />
+		<link rel="stylesheet" href="../../../resource/css/admin/add-product.css" />
+
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="sweetalert2.all.min.js"></script>
+		<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+		<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+		<style>
+			.popover {
+				top: 50% !important;
+				transform: translateY(-50%);
+				width: 180px;
+			}
+
+			.arrow {
+				top: 50% !important;
+			}
+
+			#count-content,
+			#count-name {
+				position: absolute;
+				top: 15px;
+				right: 83px;
+				color: rgba(0, 0, 0, 0.247);
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--[if lt IE 7]>
+			<p class="browsehappy">
+				You are using an <strong>outdated</strong> browser. Please
+				<a href="#">upgrade your browser</a> to improve your experience.
+			</p>
+		<![endif]-->
+
+		<header>
+			<div class="container-header">
+				<div class="wrap-page">
+					<div class="cart-logo">
+						<img src="../../../resource/imgs/logo-quangdz.png" alt="" />
+						<div class="vl"></div>
+						<a href="../admin/admin-start.html">
+							<h5 id="title-name">Kênh Quản Lí</h5>
+						</a>
+						<i class="fas fa-chevron-right"></i>
+						<h5 id="curren-tab">Thêm Blog</h5>
+					</div>
+
+					<div class="account-manager">
+						<h5 id="account-email"></h5>
+						<script>
+							let test = JSON.parse(localStorage.getItem("user"));
+							let email_account = document.getElementById("account-email");
+							email_account.innerText = test.email;
+						</script>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<div class="container-add-product">
+				<form
+					action=""
+					method="POST"
+					id="add-blog-form"
+					enctype="multipart/form-data"
+				>
+					<div class="basic-information">
+						<div class="element">
+							<h5>Thông tin cơ bản</h5>
+						</div>
+						<div class="element">
+							<label for="">*Tên Tiêu Đề</label>
+							<input
+								type="text"
+								name="name-blog"
+								id="name-blog"
+								maxlength="60"
+								data-toggle="popover"
+								data-placement="right"
+							/>
+							<span id="count-name">0/60</span>
+						</div>
+						<div class="element">
+							<label style="vertical-align: top" for="">*Nội Dung</label>
+							<textarea
+								name=""
+								id="content-blog"
+								cols="30"
+								rows="10"
+								maxlength="3000"
+							></textarea>
+							<span id="count-content">0/3000</span>
+						</div>
+
+						<div class="element">
+							<label for="" class="title-img">*Hình ảnh Blog</label>
+							<div class="custome-input-image">
+								<div class="profile-images">
+									<img src="../../../resource/imgs/empty.jpg" id="upload-img" />
+								</div>
+								<div class="custom-file">
+									<label for="fileupload">Ảnh Bìa</label>
+									<input type="file" id="fileupload" accept=".jpg,.png" />
+								</div>
+								<div class="notifi">
+									<label for="">Định dạng:.JPG, .PNG</label>
+								</div>
+							</div>
+							<script></script>
+						</div>
+					</div>
+
+					<div class="bnt-container">
+						<button type="reset">Hủy bỏ</button>
+						<button type="button" id="btn-add-blog">Lưu</button>
+					</div>
+				</form>
+			</div>
+		</main>
+
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+		<script src="./../../src/components/blog/blogModel.js"></script>
+		<script src="./../../src/components/blog/blogService.js"></script>
+		<script src="./../../src/components/blog/blog.js"></script>
+
+		<script>
+			$(function () {
+				$("#fileupload").change(function (event) {
+					var x = URL.createObjectURL(event.target.files[0]);
+					$("#upload-img").attr("src", x);
+				});
+
+				$("#name-blog").keyup(function () {
+					const max_lenght = 60;
+					let count = $(this).val().length;
+					$("#count-name").text(count + "/60");
+				});
+
+				$("#content-blog").keyup(function (e) {
+					const max_lenght = 3000;
+					let count = $(this).val().length;
+					$("#count-content").text(count + "/3000");
+				});
+
+				$("#btn-add-blog").click(function (e) {
+					let name_check = $("#name-blog").val();
+					let content_check = $("#content-blog").val();
+					let fileupload_check = $("#fileupload").val();
+
+					let flag_add = true;
+
+					if (name_check == "" || name_check.length < 10) {
+						$("#name-blog").addClass("error-input");
+						flag_add = false;
+					}
+
+					if (content_check == "" || content_check.length < 30) {
+						$("#content-blog").addClass("error-input");
+						flag_add = false;
+					}
+
+					if (fileupload_check == "") {
+						flag_add = false;
+					}
+
+					if (flag_add == true) {
+						themBlog();
+					} else {
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Bổ sung đầy đủ thông tin!",
+						});
+					}
+				});
+
+				$("input, textarea").focus(function (e) {
+					if ($(this).hasClass("error-input")) {
+						$(this).removeClass("error-input");
+						let curren = $(this).attr("id");
+						if (curren == "name-blog") {
+							$(this)
+								.popover({
+									title: "**Chú ý Tên**",
+									content: "Không rỗng. <br /> Không dưới 10 kí tự.",
+									html: true,
+									trigger: "focus",
+								})
+								.popover("show");
+						} else if (curren == "content-blog") {
+							$(this)
+								.popover({
+									title: "**Chú ý Mô tả**",
+									content: "Không rỗng. <br /> Không dưới 30 kí tự.",
+									html: true,
+									trigger: "focus",
+								})
+								.popover("show");
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

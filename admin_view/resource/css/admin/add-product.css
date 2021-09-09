@@ -1,0 +1,316 @@
+/* line 1, add-product.scss */
+* {
+  font-family: "Roboto", sans-serif; }
+
+/* line 6, add-product.scss */
+header .container-header {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09); }
+  /* line 9, add-product.scss */
+  header .container-header .wrap-page {
+    max-width: 1200px;
+    margin: 0px auto;
+    height: 100px;
+    display: flex;
+    justify-content: space-between; }
+    /* line 15, add-product.scss */
+    header .container-header .wrap-page .cart-logo {
+      display: flex;
+      align-items: center;
+      height: inherit; }
+      /* line 19, add-product.scss */
+      header .container-header .wrap-page .cart-logo img {
+        width: initial; }
+      /* line 22, add-product.scss */
+      header .container-header .wrap-page .cart-logo .vl {
+        border-left: 3px solid #1664af;
+        height: 80%;
+        border-radius: 15px; }
+      /* line 27, add-product.scss */
+      header .container-header .wrap-page .cart-logo .fa-chevron-right {
+        padding: 0px 8px;
+        color: #1664af; }
+      /* line 32, add-product.scss */
+      header .container-header .wrap-page .cart-logo a h5 {
+        font-size: 20px;
+        font-weight: 400;
+        color: #1664af;
+        padding-left: 5px; }
+      /* line 39, add-product.scss */
+      header .container-header .wrap-page .cart-logo #curren-tab {
+        font-size: 20px;
+        font-weight: 400;
+        color: #1664af;
+        text-decoration: underline; }
+    /* line 46, add-product.scss */
+    header .container-header .wrap-page .account-manager {
+      align-self: center; }
+
+/* line 53, add-product.scss */
+main {
+  width: 100%;
+  background-color: #f6f6f6; }
+  /* line 57, add-product.scss */
+  main .container-add-product {
+    width: 80%;
+    padding: 30px;
+    margin: 0px auto; }
+    /* line 61, add-product.scss */
+    main .container-add-product .sales-information,
+    main .container-add-product .type-information,
+    main .container-add-product .other-information {
+      background-color: #fff;
+      margin-top: 15px; }
+    /* line 67, add-product.scss */
+    main .container-add-product .basic-information,
+    main .container-add-product .sales-information,
+    main .container-add-product .type-information,
+    main .container-add-product .other-information {
+      background-color: #fff; }
+
+/* line 76, add-product.scss */
+.element {
+  padding: 10px 10px;
+  position: relative; }
+  /* line 77, add-product.scss */
+  .element h5 {
+    font-size: 18px;
+    font-weight: 600; }
+  /* line 82, add-product.scss */
+  .element #address-label {
+    vertical-align: top; }
+  /* line 85, add-product.scss */
+  .element input:not(input[type="radio"]):focus {
+    border-color: rgba(0, 0, 0, 0.54); }
+  /* line 88, add-product.scss */
+  .element .selected-category,
+  .element label {
+    display: inline-block;
+    width: 220px;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 20px;
+    font-weight: 500; }
+  /* line 98, add-product.scss */
+  .element .selected-category {
+    width: unset;
+    padding: 15px 63px; }
+    /* line 101, add-product.scss */
+    .element .selected-category #choose-category {
+      color: #1664af; }
+  /* line 105, add-product.scss */
+  .element button {
+    padding: 10px;
+    border: 1px solid #2f8dd2;
+    background-color: #2f8ed21a;
+    color: #2f8dd2;
+    border-radius: 4px;
+    font-size: 16px; }
+  /* line 113, add-product.scss */
+  .element button:hover {
+    background-color: #2f8dd2;
+    color: #fff;
+    cursor: pointer; }
+  /* line 118, add-product.scss */
+  .element button:active {
+    transform: scale(1.2); }
+  /* line 122, add-product.scss */
+  .element input:not(input[type="radio"], input[type="file"]),
+  .element textarea {
+    width: 70%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: text;
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+  /* line 141, add-product.scss */
+  .element .error-input {
+    border: 1px solid red !important;
+    background-color: #ffb1b1 !important; }
+  /* line 146, add-product.scss */
+  .element input:not(input[type="radio"], input[type="file"]):active,
+  .element input:not(input[type="radio"], input[type="file"]):focus {
+    border-color: rgba(0, 0, 0, 0.247); }
+  /* line 150, add-product.scss */
+  .element .container-bnt {
+    display: inline-block; }
+  /* line 156, add-product.scss */
+  .element #count-name,
+  .element #count-describe {
+    position: absolute;
+    top: 12px;
+    right: 83px; }
+  /* line 163, add-product.scss */
+  .element .unit {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    width: 40px;
+    border-right: 1px solid rgba(0, 0, 0, 0.14);
+    text-align: center;
+    color: #a9a39f; }
+  /* line 173, add-product.scss */
+  .element #price {
+    padding-left: 45px; }
+  /* line 177, add-product.scss */
+  .element .title-img {
+    vertical-align: top; }
+  /* line 180, add-product.scss */
+  .element .custome-input-image {
+    display: inline-block; }
+    /* line 182, add-product.scss */
+    .element .custome-input-image .profile-images {
+      width: 150px;
+      height: 150px;
+      background: #fff;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 4px;
+      padding: 5px; }
+      /* line 191, add-product.scss */
+      .element .custome-input-image .profile-images img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    /* line 199, add-product.scss */
+    .element .custome-input-image .custom-file input[type="file"] {
+      display: none; }
+    /* line 202, add-product.scss */
+    .element .custome-input-image .custom-file label {
+      padding: unset;
+      width: unset;
+      text-align: unset;
+      cursor: pointer;
+      color: #000;
+      display: table;
+      margin: 0px auto;
+      margin-top: 15px;
+      font-size: 20px;
+      color: rgba(32, 31, 31, 0.397);
+      font-weight: 600; }
+    /* line 216, add-product.scss */
+    .element .custome-input-image .custom-file label::after {
+      content: "\f304";
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      padding-left: 5px;
+      color: rgba(32, 31, 31, 0.397); }
+    /* line 229, add-product.scss */
+    .element .custome-input-image .notifi {
+      color: rgba(0, 0, 0, 0.479);
+      text-align: center; }
+      /* line 232, add-product.scss */
+      .element .custome-input-image .notifi label {
+        font-size: 13px;
+        width: unset;
+        text-align: unset;
+        padding: unset; }
+  /* line 240, add-product.scss */
+  .element .container-type {
+    background-color: #f5f5f5;
+    padding: 15px;
+    cursor: pointer; }
+    /* line 244, add-product.scss */
+    .element .container-type .container-catalory {
+      display: flex;
+      width: 80%;
+      margin: auto;
+      padding: 10px 0px;
+      background-color: white;
+      transition: left 0.5s ease 0s; }
+      /* line 251, add-product.scss */
+      .element .container-type .container-catalory ul {
+        padding: 0px 15px;
+        -webkit-box-flex: 1;
+        flex: 1 1 0%;
+        border-left: 1px solid white;
+        height: 160px;
+        overflow-y: scroll; }
+        /* line 258, add-product.scss */
+        .element .container-type .container-catalory ul li {
+          position: relative; }
+          /* line 260, add-product.scss */
+          .element .container-type .container-catalory ul li p {
+            font-size: 16px;
+            font-weight: 500; }
+        /* line 265, add-product.scss */
+        .element .container-type .container-catalory ul .active {
+          text-decoration: underline;
+          color: #1664af; }
+        /* line 269, add-product.scss */
+        .element .container-type .container-catalory ul li::after {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 5px;
+          content: "\f054";
+          font-style: normal;
+          font-variant: normal;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: #ff424e; }
+
+/* line 287, add-product.scss */
+.bnt-container {
+  margin-top: 15px;
+  text-align: right; }
+  /* line 290, add-product.scss */
+  .bnt-container button {
+    padding: 10px 30px;
+    border: 1px solid #2f8dd2;
+    font-size: 15px;
+    color: #2f8dd2;
+    border-radius: 4px; }
+  /* line 297, add-product.scss */
+  .bnt-container button:last-child {
+    background-color: #2f8dd2;
+    color: #fff;
+    margin-left: 10px; }
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg); }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg); }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg); }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg); }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg); }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg); }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg); }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg); }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg); }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg); }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg); } }
+/* line 339, add-product.scss */
+.popover {
+  top: 50% !important;
+  transform: translateY(-50%);
+  width: 130px; }
+
+/* line 345, add-product.scss */
+.arrow {
+  top: 50% !important; }

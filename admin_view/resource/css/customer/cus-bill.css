@@ -1,0 +1,69 @@
+/* line 1, cus-bill.scss */
+body {
+  font-family: "Lato", sans-serif; }
+
+/* Fixed sidenav, full height */
+/* line 19, cus-bill.scss */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #5C78A8;
+  overflow-x: hidden;
+  padding-top: 20px;
+  /* Style the sidenav links and the dropdown button */
+  /* On mouse-over */ }
+  /* line 30, cus-bill.scss */
+  .sidenav button,
+  .sidenav .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #45494E;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none; }
+  /* line 45, cus-bill.scss */
+  .sidenav button:hover,
+  .sidenav .dropdown-btn:hover {
+    color: #f1f1f1;
+    transform: scale(1.1); }
+
+/* Main content */
+/* line 53, cus-bill.scss */
+.main {
+  margin-left: 200px;
+  /* Same as the width of the sidenav */
+  font-size: 20px;
+  /* Increased text to enable scrolling */
+  padding: 0px 10px; }
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+/* line 60, cus-bill.scss */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px; }
+
+/* Optional: Style the caret down icon */
+/* line 67, cus-bill.scss */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px; }
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  /* line 74, cus-bill.scss */
+  .sidenav {
+    padding-top: 15px; }
+
+  /* line 77, cus-bill.scss */
+  .sidenav a {
+    font-size: 18px; } }

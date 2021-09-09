@@ -1,0 +1,109 @@
+* {
+  font-size: 16px; }
+
+.container {
+  padding: 30px; }
+
+.wrap-form {
+  width: 400px;
+  padding: 30px;
+  border: 1px solid #000;
+  margin-left: auto;
+  margin-right: auto; }
+  .wrap-form .logo {
+    width: 40%;
+    margin: 15px auto; }
+    .wrap-form .logo img {
+      width: 100%; }
+
+.form-container .account-input {
+  position: relative; }
+  .form-container .account-input .icon-form {
+    position: absolute;
+    top: 44%;
+    transform: translateY(-50%);
+    left: 10px;
+    color: #495057; }
+    .form-container .account-input .icon-form img {
+      width: 20px;
+      height: 20px; }
+
+.account-input input,
+.account-input textarea {
+  width: 100%;
+  padding: 10px 10px;
+  padding-left: 40px;
+  display: inline-block;
+  border: none;
+  box-sizing: border-box;
+  cursor: text;
+  outline: none;
+  font-weight: 400;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+
+button {
+  background: #495057;
+  color: white;
+  height: 50px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+
+.signIn-form-button,
+.signUp-form-button {
+  margin: 25px 0px; }
+
+.forgot {
+  margin-top: 15px; }
+
+.account-input > input {
+  border: 1px solid #9e9393; }
+
+.sign-up-container .account-input > input {
+  border-bottom: unset; }
+
+.sign-up-container form .account-input .last-child {
+  border-bottom: 1px solid #9e9393; }
+
+.sign-in-container .account-input:nth-child(even) input {
+  border-top: unset; }
+
+.nav-tabs {
+  display: flex; }
+
+.nav-tabs li {
+  flex-basis: 50%; }
+
+.error-input {
+  border: 1px solid red !important;
+  background-color: #ffb1b1 !important; }
+
+.cappcha-input {
+  padding-top: 15px; }
+
+#txtInput,
+#txtInput1 {
+  border: 1px solid #9e9393;
+  width: 100px; }
+
+.nav-tabs {
+  border: unset; }
+  .nav-tabs li a {
+    font-weight: 600;
+    color: #555; }
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border: unset;
+  border-bottom: 2px solid #555; }
+
+.nav-tabs > li > a:hover {
+  border-color: unset; }

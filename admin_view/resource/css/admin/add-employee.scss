@@ -1,0 +1,198 @@
+* {
+	font-family: "Roboto", sans-serif;
+}
+
+header {
+	.container-header {
+		width: 100%;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+		.wrap-page {
+			max-width: 1200px;
+			margin: 0px auto;
+			height: 100px;
+			display: flex;
+			justify-content: space-between;
+			.cart-logo {
+				display: flex;
+				align-items: center;
+				height: inherit;
+				img {
+					width: initial;
+				}
+				.vl {
+					border-left: 3px solid #1664af;
+					height: 80%;
+					border-radius: 15px;
+				}
+				.fa-chevron-right {
+					padding: 0px 8px;
+					color: #1664af;
+				}
+				a {
+					h5 {
+						font-size: 20px;
+						font-weight: 400;
+						color: #1664af;
+						padding-left: 5px;
+					}
+				}
+				#curren-tab {
+					font-size: 20px;
+					font-weight: 400;
+					color: #1664af;
+					text-decoration: underline;
+				}
+			}
+			.account-manager {
+				align-self: center;
+			}
+		}
+	}
+}
+
+main {
+	//#add-product,
+	width: 100%;
+	background-color: #f6f6f6;
+	.container-add-employee {
+		width: 80%;
+		padding: 30px;
+		margin: 0px auto;
+		.img-information,
+		.basic-information {
+			background-color: #fff;
+			margin-top: 15px;
+		}
+		.basic-information,
+		.account-information {
+			background-color: #fff;
+		}
+	}
+}
+
+.element {
+	h5 {
+		font-size: 18px;
+		font-weight: 600;
+	}
+	padding: 10px 10px;
+	#address-label {
+		vertical-align: top;
+	}
+	input:not(input[type="radio"]):focus {
+		border-color: rgba(0, 0, 0, 0.54);
+	}
+	.selected-category,
+	label {
+		display: inline-block;
+		width: 220px;
+		text-align: right;
+		padding-right: 20px;
+		font-size: 16px;
+		font-weight: 500;
+	}
+	label::before {
+		content: "*";
+		color: red;
+	}
+	#lb-add {
+		vertical-align: top;
+	}
+	.selected-category {
+		width: unset;
+		padding: 15px 63px;
+		#choose-category {
+			color: #1664af;
+		}
+	}
+	button {
+		padding: 10px;
+		border: 1px solid #2f8dd2;
+		background-color: #2f8ed21a;
+		color: #2f8dd2;
+		border-radius: 4px;
+		font-size: 16px;
+	}
+	button:hover {
+		background-color: #2f8dd2;
+		color: #fff;
+		cursor: pointer;
+	}
+	button:active {
+		transform: scale(1.2);
+	}
+
+	input:not(input[type="radio"], input[type="file"]),
+	textarea {
+		width: 70%;
+		padding: 12px 10px;
+		display: inline-block;
+		border: 1px solid rgba(0, 0, 0, 0.14);
+		border-radius: 4px;
+		box-sizing: border-box;
+		cursor: text;
+		outline: none;
+		font-size: 20px;
+		font-weight: 400;
+		color: #495057;
+		background-color: #fff;
+		background-clip: padding-box;
+		// box-shadow: 0px 3px 20px rgb(0 0 0 / 8%);
+		transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	}
+
+	.error-input {
+		border: 1px solid red !important;
+		background-color: rgb(255, 177, 177) !important;
+	}
+}
+
+.bnt-container {
+	margin-top: 15px;
+	text-align: right;
+	button {
+		padding: 10px 30px;
+		border: 1px solid #2f8dd2;
+		font-size: 15px;
+		color: #2f8dd2;
+		border-radius: 4px;
+	}
+	button:last-child {
+		background-color: #2f8dd2;
+		color: #fff;
+		margin-left: 10px;
+	}
+}
+
+.wrapper {
+	height: 200px;
+	width: 200px;
+	position: relative;
+	border: 5px blue;
+	border-style: dashed;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 100px auto;
+	z-index: 1;
+	img {
+		width: 100%;
+        height: 100%;
+		object-fit: cover;
+	}
+	.file-upload {
+		position: absolute;
+		bottom: 0px;
+		outline: none;
+		color: transparent;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		cursor: pointer;
+		transition: 0.5s;
+		z-index: 2;
+		display: block;
+	}
+	.file-upload::-webkit-file-upload-button {
+		visibility: hidden;
+	}
+}

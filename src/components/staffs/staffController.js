@@ -78,7 +78,7 @@ export const getAllStaffStore = asyncMiddleware(async (req, res, next) => {
   const staffs = await staffService.getAll(
     { store, status: "active" },
     null,
-    null,
+    "account_detail",
     page,
     perPage
   );
@@ -89,15 +89,30 @@ export const getAllStaffStore = asyncMiddleware(async (req, res, next) => {
 });
 export const deleteStaff = asyncMiddleware(async (req, res, next) => {
   const { staffId } = req.params;
+  const store = req.user.storeId;
   if (!staffId.trim()) {
     throw new ErrorResponse(400, "staffId is empty");
   }
+  const staff = await staffService.findOne({
+    _id: staffId,
+    status: "active",
+    store,
+  });
+  if (!staff) {
+    throw new ErrorResponse(404, `No staff has id ${staffId}`);
+  }
+  const checkRoleStaff = await userService.findOne({ email: staff.email });
+  if (checkRoleStaff.roles === "manager") {
+    throw new ErrorResponse(
+      401,
+      "You don't have permission to delete this user"
+    );
+  }
   const deletedStaff = await staffService.findOneAndUpdate(
-    { _id: staffId, status: "active" },
+    { _id: staffId, status: "active", store },
     { status: "disable" },
     { new: true }
   );
-
   if (!deletedStaff) {
     throw new ErrorResponse(404, ` Staff ${staffId} is not found`);
   }
@@ -105,4 +120,34 @@ export const deleteStaff = asyncMiddleware(async (req, res, next) => {
     200,
     `Staff id ${staffId} is deleted successfully`
   ).send(res);
+});
+export const getStaffById = asyncMiddleware(async (req, res, next) => {
+  const store = req.user.storeId;
+  const { staffId } = req.params;
+  const staff = await staffService.findOne(
+    { _id: staffId, store },
+    null,
+    "account_detail"
+  );
+  if (!staff) {
+    throw new ErrorResponse(400, `No staff `);
+  }
+  return new SuccessResponse(200, staff).send(res);
+});
+export const updateStaffById = asyncMiddleware(async (req, res, next) => {
+  const { staffId } = req.params;
+  const { staff_name, email, district, province, ward, text } = req.body;
+  const storeId = req.user.storeId;
+  if (!staffId.trim()) {
+    throw new ErrorResponse(400, "staffId is empty");
+  }
+  const updatedStaff = await staffService.findOneAndUpdate(
+    { _id: staffId, status: "active", store: storeId },
+    { staff_name, email, address: { district, province, ward, text } },
+    { new: true }
+  );
+  if (!updatedStaff) {
+    throw new ErrorResponse(404, `No staff has id ${staffId}`);
+  }
+  return new SuccessResponse(200, updatedStaff).send(res);
 });
